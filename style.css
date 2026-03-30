@@ -1,4 +1,4 @@
-/* ESTILO SENDA DIGITAL | REFORMA CLÍNICA PRO */
+//* ESTILO SENDA DIGITAL | REFORMA CLÍNICA PRO */
 
 :root {
     /* Nueva Paleta Curativa */
@@ -68,6 +68,87 @@ main {
 
 .btn-tipp {
     background: linear-gradient(135deg, #d32f2f, #f44336); /* Gradiente Rojo Suave */
+    color: white;
+    border: none;
+    padding: 22px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(211, 47, 47, 0.3);
+    transition: all 0.2s ease;
+}
+
+.btn-tipp:active {
+    transform: scale(0.97) translateY(2px);
+    box-shadow: 0 3px 10px rgba(211, 47, 47, 0.2);
+}
+
+/* ZONA DE REGISTRO - ESTILO TARJETA */
+.check-in {
+    background: var(--card-background);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+.check-in h2 {
+    margin-top: 0;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+}
+
+/* SLIDER PERSONALIZADO */
+input[type=range] {
+    width: 100%;
+    margin: 25px 0;
+    cursor: pointer;
+    accent-color: var(--secondary-color);
+}
+
+.btn-save {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.2);
+    transition: background 0.3s;
+}
+
+.btn-save:hover {
+    background: #43a047;
+}
+
+/* FOOTER - LIMPIO */
+footer {
+    margin-top: auto;
+    width: 100%;
+    text-align: center;
+    padding: 30px 0 20px 0;
+}
+
+.btn-export {
+    background: none;
+    border: 2px solid #bdc3c7;
+    color: #7f8c8d;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-export:hover {
+    border-color: #34495e;
+    color: #34495e;
+}6); /* Gradiente Rojo Suave */
     color: white;
     border: none;
     padding: 22px;
