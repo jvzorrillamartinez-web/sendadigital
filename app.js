@@ -1,38 +1,36 @@
-// Lógica TIPP simplificada
-function showTipp(type) {
-    if (type === 'water') {
-        alert("PASO 1: Ve al lavabo.\nPASO 2: Lánzate agua muy fría en la cara 30 segundos.\nPASO 3: Siente cómo bajan tus pulsaciones.");
-    } else if (type === 'muscle') {
-        alert("PASO 1: Aprieta puños y hombros 5 segundos.\nPASO 2: Suelta de golpe.\nPASO 3: Repite hasta notar el relax.");
-    }
-}
-
-// Guardar datos localmente (Privacidad)
-function saveLog() {
-    const level = document.getElementById('craving-slider').value;
-    const entry = {
-        timestamp: new Date().toISOString(),
-        craving: level
+// Lógica de Regulación Emocional
+function suggestAction() {
+    const emotion = document.getElementById('emotion-tag').value;
+    const box = document.getElementById('action-suggestion');
+    
+    const actions = {
+        rabia: "🔥 TÉCNICA: Hielo. Mójate la cara o sujeta un hielo. La rabia requiere bajar la temperatura biológica.",
+        tristeza: "🚶 ACCIÓN OPUESTA: Actívate. Sal a caminar 10 min aunque no quieras. No te encierres.",
+        ansiedad: "🌊 SURF DE URGENCIA: No luches contra el craving. Imagina que es una ola; sube y bajará en 15 min. Solo respira."
     };
-    let history = JSON.parse(localStorage.getItem('senda_logs') || '[]');
+    
+    box.innerText = actions[emotion] || "Selecciona una emoción para ver la técnica específica.";
+}
+
+// Contador Evolutivo (Lógica biológica para el doctorado)
+function updateEvolution(days) {
+    const bio = document.getElementById('bio-progress');
+    if (days < 3) bio.innerText = "Fase de Desintoxicación: Tu cuerpo está eliminando toxinas.";
+    else if (days < 7) bio.innerText = "Mejora del Sueño: Tus ciclos REM se están estabilizando.";
+    else bio.innerText = "Neuroplasticidad: Tu cerebro está creando nuevas vías sin alcohol.";
+}
+
+// Guardar Mente Sabia
+function saveWiseMind() {
+    const emo = document.getElementById('emotion-input').value;
+    const log = document.getElementById('logic-input').value;
+    const entry = { date: new Date().toISOString(), emotion: emo, logic: log, type: 'WiseMind' };
+    
+    let history = JSON.parse(localStorage.getItem('senda_history') || '[]');
     history.push(entry);
-    localStorage.setItem('senda_logs', JSON.stringify(history));
-    alert("Nivel " + level + " guardado. ¡Bien hecho!");
+    localStorage.setItem('senda_history', JSON.stringify(history));
+    alert("Equilibrio guardado en tu Mente Sabia.");
 }
 
-// Generar archivo para el investigador
-function exportData() {
-    const data = localStorage.getItem('senda_logs');
-    if(!data) return alert("No hay datos para exportar aún.");
-    const blob = new Blob([data], {type: 'application/json'});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'datos_sendadigital.json';
-    a.click();
-}
-
-// Registro para ser App de Android (PWA)
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js');
-}
+// Inicialización
+updateEvolution(0); // Aquí podrías cargar los días reales
