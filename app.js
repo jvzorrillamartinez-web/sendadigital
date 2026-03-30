@@ -1,36 +1,36 @@
-// Lógica de Regulación Emocional
-function suggestAction() {
-    const emotion = document.getElementById('emotion-tag').value;
-    const box = document.getElementById('action-suggestion');
-    
-    const actions = {
-        rabia: "🔥 TÉCNICA: Hielo. Mójate la cara o sujeta un hielo. La rabia requiere bajar la temperatura biológica.",
-        tristeza: "🚶 ACCIÓN OPUESTA: Actívate. Sal a caminar 10 min aunque no quieras. No te encierres.",
-        ansiedad: "🌊 SURF DE URGENCIA: No luches contra el craving. Imagina que es una ola; sube y bajará en 15 min. Solo respira."
-    };
-    
-    box.innerText = actions[emotion] || "Selecciona una emoción para ver la técnica específica.";
+// Protocolo de Recaída (Muro de Sinceridad)
+function triggerRelapse() {
+    if(confirm("¿Confirmas que se ha producido un consumo? Esto activará el protocolo de seguridad.")) {
+        document.getElementById('lock-screen').classList.remove('hidden');
+        localStorage.setItem('aracapp_lock', 'true');
+        // Aquí se dispararía la alerta a Qualtrics/Terapeuta
+        console.log("Alerta enviada al equipo clínico.");
+    }
 }
 
-// Contador Evolutivo (Lógica biológica para el doctorado)
-function updateEvolution(days) {
-    const bio = document.getElementById('bio-progress');
-    if (days < 3) bio.innerText = "Fase de Desintoxicación: Tu cuerpo está eliminando toxinas.";
-    else if (days < 7) bio.innerText = "Mejora del Sueño: Tus ciclos REM se están estabilizando.";
-    else bio.innerText = "Neuroplasticidad: Tu cerebro está creando nuevas vías sin alcohol.";
+// Comprobación de estado al cargar
+window.onload = function() {
+    if(localStorage.getItem('aracapp_lock') === 'true') {
+        document.getElementById('lock-screen').classList.remove('hidden');
+    }
 }
 
-// Guardar Mente Sabia
-function saveWiseMind() {
-    const emo = document.getElementById('emotion-input').value;
-    const log = document.getElementById('logic-input').value;
-    const entry = { date: new Date().toISOString(), emotion: emo, logic: log, type: 'WiseMind' };
+// Lógica de Vulnerabilidad (Simulación EMA)
+function checkVulnerability() {
+    const stress = document.getElementById('stress-range').value;
+    const resilience = document.getElementById('resilience-level');
     
-    let history = JSON.parse(localStorage.getItem('senda_history') || '[]');
-    history.push(entry);
-    localStorage.setItem('senda_history', JSON.stringify(history));
-    alert("Equilibrio guardado en tu Mente Sabia.");
+    if(stress > 7) {
+        resilience.innerText = "RIESGO ALTO";
+        resilience.style.color = "red";
+        alert("Detectada vulnerabilidad alta. Se recomienda realizar técnica TIPP de respiración.");
+    } else {
+        resilience.innerText = "Estable";
+        resilience.style.color = "green";
+        alert("Reporte guardado. Continúa con tu planificación.");
+    }
 }
 
-// Inicialización
-updateEvolution(0); // Aquí podrías cargar los días reales
+function activateTIPP(tipo) {
+    alert("Iniciando protocolo TIPP: " + tipo.toUpperCase() + ". Concéntrate en la sensación física.");
+}
