@@ -1,151 +1,108 @@
-/* ESTILO SENDA DIGITAL | REFORMA CLÍNICA PRO */
-
+/* ESTILO SENDA DIGITAL | MINIMALISMO CLÍNICO */
 :root {
-    /* Nueva Paleta Curativa */
-    --primary-color: #4caf50; /* Verde Menta (Calma) */
-    --secondary-color: #2196f3; /* Azul Suave (Confianza) */
-    --background-color: #e3f2fd; /* Fondo Azul muy pálido */
-    --text-color: #2c3e50;
-    --card-background: #ffffff;
-    --shadow: 0 4px 15px rgba(0,0,0,0.1);
-    --border-radius: 20px;
+    --bg: #f8fafc;
+    --text: #1e293b;
+    --accent: #3b82f6;
+    --danger: #ef4444;
+    --success: #10b981;
+    --card-bg: #ffffff;
 }
 
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: var(--background-color);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
     margin: 0;
-    color: var(--text-color);
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    -webkit-font-smoothing: antialiased;
 }
 
 header {
-    background: var(--card-background);
-    width: 100%;
-    padding: 30px 0;
     text-align: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    margin-bottom: 30px;
 }
 
-#main-title {
-    margin: 0;
-    color: var(--primary-color);
-    font-size: 2.2rem;
-    font-weight: 700;
+h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--text);
+    margin-bottom: 5px;
 }
 
+/* EL CONTADOR COMO EN TU WEB ANTERIOR */
 #counter-box {
-    margin-top: 15px;
-    font-size: 1.1rem;
-    color: #7f8c8d;
+    background: var(--card-bg);
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    font-size: 0.9rem;
+    color: #64748b;
 }
 
-#days {
-    font-weight: bold;
-    color: var(--secondary-color);
-    font-size: 2rem;
-}
+#days { color: var(--success); font-weight: bold; }
 
+/* TARJETAS DE ACCIÓN */
 main {
-    width: 90%;
-    max-width: 450px;
-    margin-top: 25px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    width: 100%;
+    max-width: 400px;
 }
 
-/* ZONA DE EMERGENCIA TIPP - BONITA */
-.emergency-section {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+section {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
+
+h2 { font-size: 1rem; margin-top: 0; color: #475569; text-transform: uppercase; letter-spacing: 1px; }
+
+/* BOTONES TIPP MÁS PEQUEÑOS Y ELEGANTES */
+.emergency-section { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
 .btn-tipp {
-    background: linear-gradient(135deg, #d32f2f, #f44336); /* Gradiente Rojo Suave */
-    color: white;
-    border: none;
-    padding: 22px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: var(--border-radius);
+    background: #fee2e2;
+    color: var(--danger);
+    border: 1px solid #fecaca;
+    padding: 15px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.85rem;
     cursor: pointer;
-    box-shadow: 0 6px 18px rgba(211, 47, 47, 0.3);
-    transition: all 0.2s ease;
+    transition: all 0.2s;
 }
 
-.btn-tipp:active {
-    transform: scale(0.97) translateY(2px);
-    box-shadow: 0 3px 10px rgba(211, 47, 47, 0.2);
-}
+.btn-tipp:active { background: #fecaca; transform: translateY(1px); }
 
-/* ZONA DE REGISTRO - ESTILO TARJETA */
-.check-in {
-    background: var(--card-background);
-    padding: 25px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    text-align: center;
-}
-
-.check-in h2 {
-    margin-top: 0;
-    font-size: 1.3rem;
-    color: var(--primary-color);
-}
-
-/* SLIDER PERSONALIZADO */
+/* SLIDER DE CRAVING */
 input[type=range] {
     width: 100%;
-    margin: 25px 0;
-    cursor: pointer;
-    accent-color: var(--secondary-color);
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 5px;
+    appearance: none;
 }
 
 .btn-save {
-    background: var(--primary-color);
+    width: 100%;
+    margin-top: 15px;
+    background: var(--text);
     color: white;
     border: none;
-    padding: 15px 30px;
-    border-radius: 30px;
-    font-weight: bold;
-    font-size: 1rem;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.2);
-    transition: background 0.3s;
-}
-
-.btn-save:hover {
-    background: #43a047;
-}
-
-/* FOOTER - LIMPIO */
-footer {
-    margin-top: auto;
-    width: 100%;
-    text-align: center;
-    padding: 30px 0 20px 0;
 }
 
 .btn-export {
-    background: none;
-    border: 2px solid #bdc3c7;
-    color: #7f8c8d;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-size: 0.9rem;
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    text-decoration: underline;
+    font-size: 0.8rem;
     cursor: pointer;
-    transition: all 0.3s;
-}
-
-.btn-export:hover {
-    border-color: #34495e;
-    color: #34495e;
 }
