@@ -3,35 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SendaDigital | Control</title>
-    <link rel="stylesheet" href="style.css">
+    <title>SendaDigital | Empoderamiento</title>
+    <link rel="stylesheet" href="style.css?v=1.1">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#d32f2f">
 </head>
 <body>
     <header>
-        <h1 id="main-title">SendaDigital</h1>
-        <div id="counter-box">
-            <span id="days">0</span> días de Mente Clara
+        <div class="brand">SendaDigital</div>
+        <div id="evolution-panel">
+            <h2 id="days-count">0 Días</h2>
+            <p id="bio-progress">Tu sistema nervioso se está estabilizando...</p>
         </div>
     </header>
 
     <main>
-        <section class="emergency-section">
-            <button onclick="showTipp('water')" class="btn-tipp">❄️ AGUA FRÍA (Shock)</button>
-            <button onclick="showTipp('muscle')" class="btn-tipp">💪 TENSIÓN/RELAX</button>
+        <section class="card emergency">
+            <h3>🚨 Crisis TIPP (Acción Inmediata)</h3>
+            <div class="tipp-grid">
+                <button onclick="tipp('hielo')">❄️ Choque Térmico</button>
+                <button onclick="tipp('respiracion')">💨 Respiración 4-7-8</button>
+            </div>
         </section>
 
-        <section class="check-in">
-            <h2>Nivel de Impulso (0-10)</h2>
-            <input type="range" id="craving-slider" min="0" max="10" value="0">
-            <button onclick="saveLog()" class="btn-save">Registrar Ahora</button>
+        <section class="card wise-mind">
+            <h3>🧠 Diario de Mente Sabia</h3>
+            <textarea id="emotion-input" placeholder="¿Qué dice mi emoción?"></textarea>
+            <textarea id="logic-input" placeholder="¿Qué dice mi lógica?"></textarea>
+            <button onclick="saveWiseMind()" class="btn-primary">Equilibrar</button>
         </section>
 
-        <footer>
-            <button onclick="exportData()" class="btn-export">Exportar mis datos (.json)</button>
-        </footer>
+        <section class="card regulation">
+            <h3>🌊 Surf de Urgencia</h3>
+            <p>Etiqueta tu emoción para actuar:</p>
+            <select id="emotion-tag" onchange="suggestAction()">
+                <option value="">Selecciona...</option>
+                <option value="rabia">Rabia / Ira</option>
+                <option value="tristeza">Tristeza Profunda</option>
+                <option value="ansiedad">Ansiedad / Urgencia</option>
+            </select>
+            <div id="action-suggestion" class="suggestion-box"></div>
+        </section>
     </main>
+
+    <footer>
+        <button onclick="exportData()" class="btn-subtle">Exportar Historial Clínico (.json)</button>
+    </footer>
 
     <script src="app.js"></script>
 </body>
