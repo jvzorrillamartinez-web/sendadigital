@@ -3,51 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SendaDigital | Empoderamiento</title>
-    <link rel="stylesheet" href="style.css?v=1.1">
-    <link rel="manifest" href="manifest.json">
+    <title>AracApp | Monitorización Clínica</title>
+    <link rel="stylesheet" href="style.css?v=AracApp_v1">
 </head>
 <body>
+    <div id="lock-screen" class="hidden">
+        <div class="lock-content">
+            <h1>Protocolo de Seguridad</h1>
+            <p>Se ha registrado un evento de consumo. El seguimiento autónomo queda pausado.</p>
+            <p class="instruction">La acción opuesta a la vergüenza es la transparencia. Contacta con tu terapeuta para validar este episodio y desbloquear la herramienta.</p>
+            <a href="tel:900000000" class="btn-emergency">Llamar al Centro de Día</a>
+        </div>
+    </div>
+
     <header>
-        <div class="brand">SendaDigital</div>
-        <div id="evolution-panel">
-            <h2 id="days-count">0 Días</h2>
-            <p id="bio-progress">Tu sistema nervioso se está estabilizando...</p>
+        <div class="status-bar">
+            <span id="user-id">ID: UUID-8821</span>
+            <span class="clinical-tag">SISTEMA EMA ACTIVO</span>
+        </div>
+        <div class="hero">
+            <h2 id="evolution-days">Día 12</h2>
+            <p>Estado de Resiliencia: <span id="resilience-level">Óptimo</span></p>
         </div>
     </header>
 
-    <main>
-        <section class="card emergency">
-            <h3>🚨 Crisis TIPP (Acción Inmediata)</h3>
-            <div class="tipp-grid">
-                <button onclick="tipp('hielo')">❄️ Choque Térmico</button>
-                <button onclick="tipp('respiracion')">💨 Respiración 4-7-8</button>
+    <main id="app-content">
+        <section class="card">
+            <h3>Check-in de Vulnerabilidad</h3>
+            <p class="subtitle">Evaluación de estado afectivo y biológico</p>
+            <div class="ema-brief">
+                <label>Nivel de agitación/estrés:</label>
+                <input type="range" id="stress-range" min="1" max="10" value="5">
+                <button onclick="checkVulnerability()" class="btn-outline">Enviar Reporte</button>
             </div>
         </section>
 
-        <section class="card wise-mind">
-            <h3>🧠 Diario de Mente Sabia</h3>
-            <textarea id="emotion-input" placeholder="¿Qué dice mi emoción?"></textarea>
-            <textarea id="logic-input" placeholder="¿Qué dice mi lógica?"></textarea>
-            <button onclick="saveWiseMind()" class="btn-primary">Equilibrar</button>
+        <section class="card emergency">
+            <h3>Intervención S.O.S (DBT)</h3>
+            <div class="tipp-grid">
+                <button onclick="activateTIPP('frio')" class="tipp-btn">❄️ T (Frío)</button>
+                <button onclick="activateTIPP('respirar')" class="tipp-btn">💨 P (Ritmo)</button>
+            </div>
+            <button onclick="openUrgeSurf()" class="btn-surf">Surf de Urgencia (Ola)</button>
         </section>
 
-        <section class="card regulation">
-            <h3>🌊 Surf de Urgencia</h3>
-            <p>Etiqueta tu emoción para actuar:</p>
-            <select id="emotion-tag" onchange="suggestAction()">
-                <option value="">Selecciona...</option>
-                <option value="rabia">Rabia / Ira</option>
-                <option value="tristeza">Tristeza Profunda</option>
-                <option value="ansiedad">Ansiedad / Urgencia</option>
-            </select>
-            <div id="action-suggestion" class="suggestion-box"></div>
+        <section class="card">
+            <h3>Mente Sabia</h3>
+            <button id="btn-relapse" onclick="triggerRelapse()" class="btn-danger-subtle">Registrar Recaída</button>
         </section>
     </main>
-
-    <footer>
-        <button onclick="exportData()" class="btn-subtle">Exportar Historial Clínico (.json)</button>
-    </footer>
 
     <script src="app.js"></script>
 </body>
