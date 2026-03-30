@@ -1,104 +1,151 @@
-/* DISEÑO SENDA DIGITAL PRO */
+/* ESTILO SENDA DIGITAL | REFORMA CLÍNICA PRO */
+
 :root {
-    --rojo-panico: #d32f2f;
-    --azul-mente-clara: #1976d2;
-    --fondo: #f5f5f5;
-    --blanco: #ffffff;
+    /* Nueva Paleta Curativa */
+    --primary-color: #4caf50; /* Verde Menta (Calma) */
+    --secondary-color: #2196f3; /* Azul Suave (Confianza) */
+    --background-color: #e3f2fd; /* Fondo Azul muy pálido */
+    --text-color: #2c3e50;
+    --card-background: #ffffff;
+    --shadow: 0 4px 15px rgba(0,0,0,0.1);
+    --border-radius: 20px;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--fondo);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--background-color);
     margin: 0;
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #333;
+    -webkit-font-smoothing: antialiased;
 }
 
 header {
-    background-color: var(--rojo-panico);
-    color: var(--blanco);
+    background: var(--card-background);
     width: 100%;
+    padding: 30px 0;
     text-align: center;
-    padding: 20px 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+#main-title {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 2.2rem;
+    font-weight: 700;
 }
 
 #counter-box {
-    font-size: 1.2rem;
-    margin-top: 10px;
+    margin-top: 15px;
+    font-size: 1.1rem;
+    color: #7f8c8d;
 }
 
 #days {
     font-weight: bold;
-    font-size: 1.5rem;
+    color: var(--secondary-color);
+    font-size: 2rem;
 }
 
 main {
     width: 90%;
-    max-width: 400px;
-    margin-top: 20px;
+    max-width: 450px;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
+/* ZONA DE EMERGENCIA TIPP - BONITA */
 .emergency-section {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-bottom: 30px;
 }
 
 .btn-tipp {
-    background-color: var(--rojo-panico);
+    background: linear-gradient(135deg, #d32f2f, #f44336); /* Gradiente Rojo Suave */
     color: white;
     border: none;
-    padding: 20px;
-    font-size: 1.1rem;
+    padding: 22px;
+    font-size: 1.2rem;
     font-weight: bold;
-    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
+    box-shadow: 0 6px 18px rgba(211, 47, 47, 0.3);
+    transition: all 0.2s ease;
 }
 
 .btn-tipp:active {
-    transform: scale(0.95);
+    transform: scale(0.97) translateY(2px);
+    box-shadow: 0 3px 10px rgba(211, 47, 47, 0.2);
 }
 
+/* ZONA DE REGISTRO - ESTILO TARJETA */
 .check-in {
-    background: var(--blanco);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    background: var(--card-background);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
     text-align: center;
 }
 
+.check-in h2 {
+    margin-top: 0;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+}
+
+/* SLIDER PERSONALIZADO */
 input[type=range] {
     width: 100%;
-    margin: 20px 0;
+    margin: 25px 0;
+    cursor: pointer;
+    accent-color: var(--secondary-color);
 }
 
 .btn-save {
-    background-color: var(--azul-mente-clara);
+    background: var(--primary-color);
     color: white;
     border: none;
-    padding: 12px 25px;
-    border-radius: 8px;
+    padding: 15px 30px;
+    border-radius: 30px;
     font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.2);
+    transition: background 0.3s;
 }
 
+.btn-save:hover {
+    background: #43a047;
+}
+
+/* FOOTER - LIMPIO */
 footer {
-    margin-top: 40px;
+    margin-top: auto;
     width: 100%;
     text-align: center;
-    padding-bottom: 20px;
+    padding: 30px 0 20px 0;
 }
 
 .btn-export {
     background: none;
-    border: 1px solid #999;
-    color: #666;
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-size: 0.8rem;
+    border: 2px solid #bdc3c7;
+    color: #7f8c8d;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-export:hover {
+    border-color: #34495e;
+    color: #34495e;
 }
