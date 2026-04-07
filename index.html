@@ -363,6 +363,42 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
 #timer-stop{padding:12px 28px;background:var(--rust-dim);border:1px solid rgba(192,88,64,.3);border-radius:20px;color:var(--rust);font-family:var(--font-body);font-size:14px;font-weight:500;cursor:pointer}
 #toast{position:fixed;bottom:96px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--moss);border-radius:20px;padding:10px 20px;font-size:13px;font-weight:500;color:white;opacity:0;transition:all .25s;z-index:50;white-space:nowrap;pointer-events:none}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* MURO DE SINCERIDAD */
+#muro-overlay{display:none;position:fixed;inset:0;background:#fff;z-index:500;flex-direction:column;align-items:center;justify-content:center;padding:32px;text-align:center}
+#muro-overlay.open{display:flex}
+.muro-icon{font-size:52px;margin-bottom:20px}
+.muro-title{font-family:var(--font-display);font-size:26px;color:var(--earth);margin-bottom:12px;line-height:1.2}
+.muro-body{font-size:15px;color:var(--text-mid);line-height:1.75;margin-bottom:28px;max-width:360px}
+.muro-actions{display:flex;flex-direction:column;gap:10px;width:100%;max-width:340px}
+.muro-call{display:block;padding:16px;background:var(--rust);border-radius:var(--radius);font-family:var(--font-body);font-size:15px;font-weight:600;color:white;text-decoration:none;text-align:center}
+.muro-unlock-row{display:flex;gap:8px}
+.muro-unlock-input{flex:1;padding:13px 14px;background:var(--warm);border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:18px;color:var(--text);letter-spacing:.15em;text-align:center}
+.muro-unlock-btn{padding:13px 18px;background:var(--moss);border:none;border-radius:var(--radius-sm);color:white;font-family:var(--font-body);font-size:14px;font-weight:600;cursor:pointer}
+.muro-note{font-size:12px;color:var(--text-dim);margin-top:8px;line-height:1.5}
+.consumo-btn{margin:8px 20px 0;width:calc(100% - 40px);padding:13px;background:none;border:1.5px solid rgba(122,92,58,.3);border-radius:var(--radius);font-family:var(--font-body);font-size:13px;font-weight:500;color:var(--earth);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .15s}
+.consumo-btn:active{background:var(--earth-dim)}
+
+/* SURF TIMER */
+#surf-timer-overlay{display:none;position:fixed;inset:0;background:rgba(46,36,24,.88);z-index:130;align-items:center;justify-content:center;padding:24px}
+#surf-timer-overlay.open{display:flex}
+#surf-timer-modal{background:var(--cream);border-radius:var(--radius);padding:30px 24px;width:100%;max-width:400px;text-align:center;animation:fadeIn .2s ease}
+.surf-wave{font-size:44px;display:block;animation:wv 3s ease-in-out infinite;margin-bottom:8px}
+@keyframes wv{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.surf-time-display{font-family:var(--font-display);font-size:54px;color:var(--earth);line-height:1;margin-bottom:8px}
+.surf-progress{width:100%;height:6px;background:var(--sand);border-radius:3px;margin-bottom:16px;overflow:hidden}
+.surf-progress-bar{height:100%;background:var(--moss);border-radius:3px;transition:width 1s linear;width:100%}
+.surf-phrase{background:var(--moss-dim);border:1px solid rgba(74,124,89,.2);border-radius:var(--radius-sm);padding:14px 16px;font-size:14px;color:var(--moss);font-style:italic;line-height:1.65;margin-bottom:18px;min-height:68px;display:flex;align-items:center;justify-content:center;transition:opacity .4s}
+.surf-phrase.fade{opacity:0}
+.surf-stop-btn{padding:11px 28px;background:var(--warm);border:1px solid var(--border);border-radius:20px;color:var(--text-dim);font-family:var(--font-body);font-size:14px;cursor:pointer}
+
+/* HABILIDADES USADAS HOY */
+.skills-today-box{margin:14px 20px 0;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
+.skills-today-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.skills-today-val{font-family:var(--font-display);font-size:46px;color:var(--moss);line-height:1}
+.skills-today-label{font-size:12px;color:var(--text-dim);line-height:1.45;text-align:right;max-width:160px}
+.skills-today-list{display:flex;gap:6px;flex-wrap:wrap}
+.skill-chip{padding:4px 10px;background:var(--moss-dim);border-radius:20px;font-size:12px;color:var(--moss)}
 </style>
 </head>
 <body>
@@ -413,6 +449,8 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
     Necesito ayuda ahora
   </button>
+
+  <button class="consumo-btn" onclick="abrirMuro()">📋 Registrar consumo — Muro de Sinceridad</button>
 
   <div class="prevention-card">
     <div class="prevention-title">Recordatorio preventivo</div>
@@ -538,6 +576,14 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
 <div id="progreso" class="screen">
   <div class="screen-header"><div class="screen-label">Tu evolución</div><div class="screen-title">Progreso</div></div>
   <div class="stat-row" id="stat-row"></div>
+  <div class="skills-today-box">
+    <div class="chart-title">Habilidades usadas hoy</div>
+    <div class="skills-today-top">
+      <div class="skills-today-val" id="skills-count">0</div>
+      <div class="skills-today-label">Cada habilidad usada refuerza el proceso, no solo el resultado</div>
+    </div>
+    <div class="skills-today-list" id="skills-list"><span style="font-size:13px;color:var(--text-dim)">Ninguna todavía — usa un ejercicio para registrarla</span></div>
+  </div>
   <div class="mini-chart"><div class="chart-title">Craving — últimos 7 días</div><div class="bar-chart" id="bar-chart"></div></div>
   <div class="halt-week-box"><div class="chart-title">Perfil HALT semanal</div><div style="font-size:12px;color:var(--text-dim);margin-bottom:4px">Factores de riesgo emocional detectados esta semana.</div><div class="halt-row" id="halt-row"></div></div>
   <div class="mente-week-box"><div class="chart-title">Mente Clara — esta semana</div><div class="mente-week-row" id="mente-week-row"></div></div>
@@ -550,7 +596,7 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
   <div class="screen-header"><div class="screen-label">Mi perfil</div><div class="screen-title">Ajustes</div></div>
   <div class="profile-box"><div class="profile-avatar">🌿</div><div class="profile-name">Usuario</div><div class="profile-id" id="profile-id">ID: —</div></div>
   <div class="settings-section"><div class="settings-section-title">Emergencia</div><div class="settings-row" onclick="editContact()"><div><div class="settings-row-label">Contacto de confianza</div><div class="settings-row-val" id="contact-display">No configurado</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
-  <div class="settings-section"><div class="settings-section-title">Terapeuta</div><div class="settings-row" onclick="openTerapeuta()"><div><div class="settings-row-label">Acceso del terapeuta</div><div class="settings-row-val">Informe semanal protegido</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div><div class="settings-row" onclick="changePin()"><div><div class="settings-row-label">Cambiar PIN</div><div class="settings-row-val">4 dígitos</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
+  <div class="settings-section"><div class="settings-section-title">Terapeuta</div><div class="settings-row" onclick="openTerapeuta()"><div><div class="settings-row-label">Acceso del terapeuta</div><div class="settings-row-val">Informe semanal protegido</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div><div class="settings-row" onclick="changePin()"><div><div class="settings-row-label">Cambiar PIN</div><div class="settings-row-val">4 dígitos</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div><div class="settings-row" onclick="cambiarCodigoMuro()"><div><div class="settings-row-label">Código del Muro de Sinceridad</div><div class="settings-row-val" id="muro-code-display">TERAPIA (defecto)</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
   <div class="settings-section"><div class="settings-section-title">Datos</div><div class="settings-row" onclick="exportData()"><div class="settings-row-label">Exportar mis datos</div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div><div class="settings-row" onclick="if(confirm('¿Borrar todos los datos?'))clearData()"><div class="settings-row-label" style="color:var(--rust)">Borrar todos mis datos</div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
   <div class="data-note"><strong>Privacidad:</strong> Todos tus datos se almacenan únicamente en este dispositivo. No se envían a ningún servidor externo. Tu identidad está protegida por un código UUID anónimo.</div>
 </div>
@@ -599,6 +645,7 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
   <div class="sos-techniques">
     <button class="technique-btn" onclick="showTechnique('temp')"><span class="technique-icon">🧊</span><div><div class="technique-name">Técnica TIP — Temperatura (DBT)</div><div class="technique-desc">Activa el reflejo de buceo. Reduce el craving en 30 seg.</div></div></button>
     <button class="technique-btn" onclick="showTechnique('surf')"><span class="technique-icon">🌊</span><div><div class="technique-name">Surf del craving (ACT)</div><div class="technique-desc">Observa el impulso sin actuar. Dura solo 15-20 minutos.</div></div></button>
+    <button class="technique-btn" onclick="abrirSurfTimer()"><span class="technique-icon">⏱️</span><div><div class="technique-name">Cronómetro de surf — 15 min</div><div class="technique-desc">Frases de aceptación mientras cabalgas la ola.</div></div></button>
     <button class="technique-btn" onclick="showTechnique('distrae')"><span class="technique-icon">🔄</span><div><div class="technique-name">Distráete (TM Ficha 6)</div><div class="technique-desc">Cambia la atención. Sal de la situación un momento.</div></div></button>
   </div>
 
@@ -645,6 +692,34 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
     <div class="terap-section"><div class="terap-section-title">Adherencia PLEASE</div><div style="background:var(--sky-dim);border:1px solid rgba(74,143,168,.2);border-radius:var(--radius-sm);padding:14px 16px" id="terap-please"></div></div>
     <div class="terap-section"><div class="terap-section-title">Registros diarios</div><div style="background:var(--warm);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden"><table class="terap-table"><thead><tr><th>Fecha</th><th>C</th><th>Mente</th><th>HALT</th><th>E</th><th>PL</th><th>Apoyo</th></tr></thead><tbody id="terap-tbody"></tbody></table></div></div>
     <div class="terap-section"><div class="terap-section-title">Identificación</div><div style="background:var(--warm);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px"><div class="code-label">UUID anónimo</div><div class="code-val" id="terap-uuid">—</div><div class="code-note">La correspondencia UUID ↔ identidad real está en el registro físico del centro.</div></div><button class="export-btn" onclick="exportTerapeutaData()">⬇ Exportar informe (JSON)</button></div>
+  </div>
+</div>
+
+<!-- MURO DE SINCERIDAD -->
+<div id="muro-overlay">
+  <div class="muro-icon">🤝</div>
+  <div class="muro-title">Acción Opuesta:<br>Transparencia</div>
+  <div class="muro-body">El seguimiento autónomo queda pausado. La acción opuesta a la vergüenza es la sinceridad. Tu prioridad ahora es contactar con tu terapeuta para tratar este episodio.<br><br><em>Una caída no te condena. Lo que importa es lo que haces a continuación.</em></div>
+  <div class="muro-actions">
+    <a class="muro-call" href="tel:900161515">📞 Llamar al Centro de Día</a>
+    <div>
+      <div class="muro-unlock-row">
+        <input class="muro-unlock-input" type="text" id="muro-codigo" placeholder="Código" maxlength="6">
+        <button class="muro-unlock-btn" onclick="intentarDesbloqueo()">Desbloquear</button>
+      </div>
+      <div class="muro-note">El código de desbloqueo lo proporciona tu terapeuta en la sesión individual.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SURF TIMER -->
+<div id="surf-timer-overlay">
+  <div id="surf-timer-modal">
+    <span class="surf-wave">🌊</span>
+    <div class="surf-time-display" id="surf-display">15:00</div>
+    <div class="surf-progress"><div class="surf-progress-bar" id="surf-bar"></div></div>
+    <div class="surf-phrase" id="surf-phrase">Preparándote para surfear la ola...</div>
+    <button class="surf-stop-btn" onclick="detenerSurf()">He superado la ola — cerrar</button>
   </div>
 </div>
 
@@ -752,7 +827,7 @@ const BP=[{n:'Inhala',d:4000,c:'inhale'},{n:'Mantén',d:7000,c:'hold'},{n:'Exhal
 function openSOS(){document.getElementById('sos-overlay').classList.add('open');const mc=db.contact;document.getElementById('my-contact-display').textContent=mc?mc.name+' · '+mc.phone:'Configurar en Ajustes';stopBreathing()}
 function closeSOS(e){if(e&&e.target!==document.getElementById('sos-overlay'))return;document.getElementById('sos-overlay').classList.remove('open');stopBreathing()}
 function startBreathing(){if(breathing)return;breathing=true;breathCycle=0;breathPhaseIdx=0;document.getElementById('breath-start').style.display='none';runBP()}
-function runBP(){if(!breathing)return;const p=BP[breathPhaseIdx],c=document.getElementById('breath-circle');c.className=p.c;document.getElementById('breath-phase').textContent=p.n+' ('+p.d/1000+'s)';document.getElementById('breath-count').textContent='Ciclo '+(breathCycle+1)+' de 4';breathInterval=setTimeout(()=>{breathPhaseIdx++;if(breathPhaseIdx>=BP.length){breathPhaseIdx=0;breathCycle++;if(breathCycle>=4){stopBreathing();showToast('¡4 ciclos completados! 🌿');return}}runBP()},p.d)}
+function runBP(){if(!breathing)return;const p=BP[breathPhaseIdx],c=document.getElementById('breath-circle');c.className=p.c;document.getElementById('breath-phase').textContent=p.n+' ('+p.d/1000+'s)';document.getElementById('breath-count').textContent='Ciclo '+(breathCycle+1)+' de 4';breathInterval=setTimeout(()=>{breathPhaseIdx++;if(breathPhaseIdx>=BP.length){breathPhaseIdx=0;breathCycle++;if(breathCycle>=4){stopBreathing();showToast('¡4 ciclos completados! 🌿');registrarHabilidad('Respiración 4-7-8');return}}runBP()},p.d)}
 function stopBreathing(){breathing=false;clearTimeout(breathInterval);const c=document.getElementById('breath-circle');c.className='';c.textContent='🫁';document.getElementById('breath-phase').textContent='Respiración 4-7-8';document.getElementById('breath-count').textContent='Reduce la activación del sistema nervioso';document.getElementById('breath-start').style.display='inline-block'}
 
 const TECH={
@@ -876,7 +951,7 @@ function renderTareas(uso){
 }
 function toggleTarea(id){const b=document.getElementById('tb-'+id),o=b.classList.contains('open');document.querySelectorAll('.tarea-body').forEach(x=>x.classList.remove('open'));if(!o)b.classList.add('open')}
 document.getElementById('tareas-list').addEventListener('click',e=>{const b=e.target.closest('.tarea-timer-btn');if(b){e.stopPropagation();startTimer(b.dataset.id,b.dataset.name,+b.dataset.min)}});
-function startTimer(id,name,mins){timerSec=mins*60;document.getElementById('timer-name').textContent=name;document.getElementById('timer-overlay').classList.add('open');clearInterval(timerInterval);updateTD();timerInterval=setInterval(()=>{timerSec--;updateTD();if(timerSec<=0){stopTimer();showToast('¡Ejercicio completado! 🌿')}},1000)}
+function startTimer(id,name,mins){timerSec=mins*60;document.getElementById('timer-name').textContent=name;document.getElementById('timer-overlay').classList.add('open');clearInterval(timerInterval);updateTD();registrarHabilidad(name);timerInterval=setInterval(()=>{timerSec--;updateTD();if(timerSec<=0){stopTimer();showToast('¡Ejercicio completado! 🌿')}},1000)}
 function updateTD(){const m=Math.floor(timerSec/60),s=timerSec%60;document.getElementById('timer-display').textContent=m+':'+String(s).padStart(2,'0')}
 function stopTimer(){clearInterval(timerInterval);document.getElementById('timer-overlay').classList.remove('open')}
 
@@ -906,10 +981,23 @@ function renderProgreso(){
   document.getElementById('please-row').innerHTML=pK.map((k,i)=>{const cnt=week.filter(x=>x.please&&x.please[k]).length;return`<div class="halt-item"><div class="halt-letter" style="font-size:12px;color:var(--sky)">${pL[i].split(' ')[0]}</div><div class="halt-name">${pL[i].split(' ')[1]}</div><div class="halt-count" style="color:${cnt>=5?'var(--moss)':cnt>=3?'var(--amber)':'var(--rust)'}">${cnt}/${week.length||7}d</div></div>`}).join('');
   const L=[{e:'🌱',n:'Primer día',r:days>=1},{e:'⭐',n:'3 días',r:days>=3},{e:'🌿',n:'1 semana',r:days>=7},{e:'🌸',n:'2 semanas',r:days>=14},{e:'🏆',n:'1 mes',r:days>=30},{e:'📓',n:'5 registros',r:r.length>=5},{e:'📊',n:'10 registros',r:r.length>=10},{e:'🦋',n:'3 meses',r:days>=90},{e:'🎯',n:'1 año',r:days>=365}];
   document.getElementById('logros-grid').innerHTML=L.map(l=>`<div class="logro ${l.r?'':'locked'}"><div class="logro-icon">${l.e}</div><div class="logro-name">${l.n}</div></div>`).join('');
+  actualizarSkillsUI();
 }
 
 // ── AJUSTES ──
-function renderAjustes(){document.getElementById('profile-id').textContent='ID: '+db.uuid;document.getElementById('contact-display').textContent=db.contact?db.contact.name:'No configurado'}
+function renderAjustes(){
+  document.getElementById('profile-id').textContent='ID: '+db.uuid;
+  document.getElementById('contact-display').textContent=db.contact?db.contact.name:'No configurado';
+  const muroEl=document.getElementById('muro-code-display');
+  if(muroEl)muroEl.textContent=db.muroCodigo?db.muroCodigo+' (personalizado)':'TERAPIA (defecto)';
+}
+function cambiarCodigoMuro(){
+  const actual=prompt('PIN del terapeuta (para verificar identidad):');
+  if(actual!==db.pin){alert('PIN incorrecto');return}
+  const nuevo=prompt('Nuevo código del Muro (el paciente no lo verá):');
+  if(!nuevo||nuevo.length<4){alert('El código debe tener al menos 4 caracteres');return}
+  db.muroCodigo=nuevo.toUpperCase().trim();saveDB();renderAjustes();showToast('Código del Muro actualizado ✓');
+}
 function editContact(){const n=prompt('Nombre del contacto de confianza:');if(!n)return;const p=prompt('Teléfono (ej: 612345678):');if(!p)return;db.contact={name:n,phone:p};saveDB();renderAjustes();showToast('Contacto guardado ✓')}
 function exportData(){const b=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='sendadigital-'+new Date().toISOString().split('T')[0]+'.json';a.click();showToast('Datos exportados ✓')}
 function clearData(){localStorage.removeItem(DB_KEY);db={uuid:'SD-'+Math.random().toString(36).substr(2,8).toUpperCase(),registros:[],soberDate:null,contact:null,pin:'1234',prevTime:null,evaShown:false};saveDB();showToast('Datos borrados');renderAjustes();renderHome()}
@@ -971,6 +1059,12 @@ function renderTerap(){
     return`<tr><td>${d}</td><td style="${cc}">${reg.craving}</td><td>${me}</td><td style="color:var(--rust)">${reg.halt&&reg.halt!=='-'?reg.halt:'—'}</td><td style="${ec}">${reg.eficacia}</td><td>${reg.pleaseScore||0}/5</td><td>${reg.apoyo==='si'?'✓':'✗'}</td></tr>`;
   }).join('');
   document.getElementById('terap-uuid').textContent=db.uuid;
+  // Consumos registrados
+  const consumos=db.consumos||[];
+  const consumosSemana=consumos.filter(c=>new Date(c.fecha)>=weekAgo);
+  if(consumosSemana.length>0&&!alerts.find(a=>a.t.includes('consumo'))){
+    alerts.unshift({t:`🚨 ${consumosSemana.length} consumo${consumosSemana.length>1?'s':''} registrado${consumosSemana.length>1?'s':''} esta semana`,b:'El Muro de Sinceridad fue activado. Revisar en sesión individual.'});
+  }
 }
 
 function exportTerapeutaData(){
@@ -980,6 +1074,99 @@ function exportTerapeutaData(){
 
 let toastTimer;
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2500)}
+
+// ── MURO DE SINCERIDAD ──
+const MURO_PIN_DEFAULT='TERAPIA'; // El terapeuta lo personaliza
+function abrirMuro(){
+  if(!confirm('¿Has aplicado la Mente Sabia antes de confirmar?\n\nEsta acción pausará tu proceso digital y activará el protocolo de sinceridad clínica.')){return}
+  // Guardar evento de consumo
+  if(!db.consumos)db.consumos=[];
+  db.consumos.push({fecha:new Date().toISOString(),mente:db.menteHoy||'no registrada'});
+  saveDB();
+  document.getElementById('muro-overlay').classList.add('open');
+  document.getElementById('muro-codigo').value='';
+}
+function intentarDesbloqueo(){
+  const codigo=document.getElementById('muro-codigo').value.toUpperCase().trim();
+  const pin=db.muroCodigo||MURO_PIN_DEFAULT;
+  if(codigo===pin){
+    document.getElementById('muro-overlay').classList.remove('open');
+    showToast('Acceso restaurado. Bienvenido/a de vuelta 🌿');
+  } else {
+    document.getElementById('muro-codigo').value='';
+    document.getElementById('muro-codigo').placeholder='Incorrecto — pide el código a tu terapeuta';
+    setTimeout(()=>{document.getElementById('muro-codigo').placeholder='Código'},2000);
+  }
+}
+
+// ── SURF TIMER ──
+const SURF_FRASES=[
+  'El impulso es como una ola. No te ahogará — solo subirá y bajará.',
+  'Observa la sensación sin juzgarla. No eres tus pensamientos.',
+  'Respira. El craving alcanza su pico y luego baja. Siempre baja.',
+  'Estás surfeando, no ahogándote. Cada segundo que pasa, la ola pierde fuerza.',
+  'Tú no eres el impulso. Tú eres quien lo observa.'
+];
+let surfInterval=null, surfSegsRestantes=900, surfFraseIdx=0;
+
+function abrirSurfTimer(){
+  surfSegsRestantes=900;
+  surfFraseIdx=0;
+  document.getElementById('surf-display').textContent='15:00';
+  document.getElementById('surf-bar').style.width='100%';
+  document.getElementById('surf-phrase').textContent=SURF_FRASES[0];
+  document.getElementById('surf-timer-overlay').classList.add('open');
+  clearInterval(surfInterval);
+  surfInterval=setInterval(tickSurf,1000);
+  registrarHabilidad('Surf del craving');
+}
+function tickSurf(){
+  surfSegsRestantes--;
+  const m=Math.floor(surfSegsRestantes/60),s=surfSegsRestantes%60;
+  document.getElementById('surf-display').textContent=m+':'+String(s).padStart(2,'0');
+  document.getElementById('surf-bar').style.width=(surfSegsRestantes/900*100)+'%';
+  // Cambiar frase cada 3 minutos (180 seg)
+  const nuevaIdx=Math.floor((900-surfSegsRestantes)/180);
+  if(nuevaIdx!==surfFraseIdx&&nuevaIdx<SURF_FRASES.length){
+    const el=document.getElementById('surf-phrase');
+    el.classList.add('fade');
+    setTimeout(()=>{el.textContent=SURF_FRASES[nuevaIdx];el.classList.remove('fade')},400);
+    surfFraseIdx=nuevaIdx;
+  }
+  if(surfSegsRestantes<=0){
+    clearInterval(surfInterval);
+    document.getElementById('surf-phrase').textContent='¡Lo has conseguido! Has surfeado la ola entera. 🌿';
+    document.getElementById('surf-display').textContent='0:00';
+    showToast('¡15 minutos superados! La ola ha pasado 🌊');
+  }
+}
+function detenerSurf(){
+  clearInterval(surfInterval);
+  document.getElementById('surf-timer-overlay').classList.remove('open');
+}
+
+// ── HABILIDADES USADAS HOY ──
+function registrarHabilidad(nombre){
+  const today=new Date().toISOString().split('T')[0];
+  if(!db.habilidadesHoy)db.habilidadesHoy={fecha:'',lista:[]};
+  if(db.habilidadesHoy.fecha!==today){db.habilidadesHoy={fecha:today,lista:[]}}
+  if(!db.habilidadesHoy.lista.includes(nombre)){
+    db.habilidadesHoy.lista.push(nombre);
+    saveDB();
+  }
+  actualizarSkillsUI();
+}
+function actualizarSkillsUI(){
+  const today=new Date().toISOString().split('T')[0];
+  const lista=db.habilidadesHoy&&db.habilidadesHoy.fecha===today?db.habilidadesHoy.lista:[];
+  const countEl=document.getElementById('skills-count');
+  const listEl=document.getElementById('skills-list');
+  if(!countEl||!listEl)return;
+  countEl.textContent=lista.length;
+  listEl.innerHTML=lista.length
+    ?lista.map(h=>`<span class="skill-chip">${h}</span>`).join('')
+    :'<span style="font-size:13px;color:var(--text-dim)">Ninguna todavía — usa un ejercicio para registrarla</span>';
+}
 
 renderHome();renderRegistros();renderTareas('crisis');
 
