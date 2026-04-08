@@ -40,8 +40,30 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
 .screen-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:4px}
 .screen-title{font-family:var(--font-display);font-size:30px;color:var(--text);line-height:1.1}
 
-/* ── HOME ── */
-#home .brand{padding:28px 20px 0;display:flex;align-items:center;gap:12px}
+/* ── HOME ADAPTATIVO ── */
+.sober-days-mini{font-family:var(--font-display);font-size:28px;color:var(--moss);line-height:1}
+.brand{padding:20px 20px 0;display:flex;align-items:center;gap:12px}
+
+.termometro-card{margin:14px 20px 0;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
+.termometro-label{font-size:15px;font-weight:500;color:var(--text);margin-bottom:12px}
+.termometro-val-row{display:flex;align-items:baseline;gap:10px;margin-bottom:10px}
+.termometro-val{font-family:var(--font-display);font-size:48px;color:var(--moss);line-height:1;transition:color .3s}
+.termometro-val.alto{color:var(--rust)}
+.termometro-val.medio{color:var(--amber)}
+.termometro-desc{font-size:14px;color:var(--text-dim);line-height:1.4}
+.termometro-slider{margin-top:4px}
+
+.crisis-banner{margin:12px 20px 0;background:var(--rust-dim);border:1px solid rgba(192,88,64,.3);border-radius:var(--radius-sm);padding:12px 16px}
+.crisis-banner-text{font-size:13px;font-weight:600;color:var(--rust);line-height:1.4}
+.crisis-shortcuts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 20px 0}
+.crisis-sc-btn{padding:14px 10px;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:13px;font-weight:500;color:var(--text);cursor:pointer;text-align:center;transition:background .15s}
+.crisis-sc-btn:active{background:var(--sand)}
+
+.sos-btn-secondary{margin:14px 20px 0;width:calc(100% - 40px);padding:14px;background:var(--rust-dim);border:1.5px solid rgba(192,88,64,.3);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(--font-body);font-size:14px;font-weight:500;color:var(--rust);cursor:pointer;transition:all .15s}
+.sos-btn-secondary svg{width:18px;height:18px}
+
+/* Editar fecha — compacto en la cabecera */
+.sober-edit-mini{margin-top:2px;font-size:10px;color:var(--text-dim);background:none;border:none;cursor:pointer;padding:0;font-family:var(--font-body);text-decoration:underline}
 .brand-logo{width:44px;height:44px;background:var(--moss-dim);border:1.5px solid rgba(74,124,89,.3);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px}
 .brand-name{font-family:var(--font-display);font-size:22px;color:var(--text)}
 .brand-sub{font-size:12px;color:var(--text-dim);margin-top:2px}
@@ -406,68 +428,94 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
 
 <!-- HOME -->
 <div id="home" class="screen active">
-  <div class="brand"><div class="brand-logo">🌿</div><div><div class="brand-name">SendaDigital</div><div class="brand-sub">Tu camino de recuperación</div></div></div>
 
-  <div class="sobriety-card">
-    <div class="sober-days" id="sober-days">—</div>
-    <div class="sober-label">días de sobriedad</div>
-    <div class="sober-since" id="sober-since">Establece tu fecha de inicio</div>
-    <button class="sober-edit" onclick="openFechaModal()">✎ Editar fecha</button>
-  </div>
+  <!-- CABECERA COMPACTA -->
+  <div class="brand"><div class="brand-logo">🌿</div><div><div class="brand-name">SendaDigital</div><div class="brand-sub" id="sober-since">Establece tu fecha de inicio</div></div><div style="margin-left:auto;text-align:right"><div class="sober-days-mini" id="sober-days">—</div><div style="font-size:10px;color:var(--text-dim);letter-spacing:.04em">días · <button class="sober-edit-mini" onclick="openFechaModal()">editar</button></div></div></div>
 
   <div class="eva-msg" id="eva-msg">
     <div class="eva-msg-title">🌱 Empezamos de nuevo</div>
     <div class="eva-msg-body">Una caída no te condena a no dejarlo nunca. Has vuelto — eso es lo que importa. Lo que has aprendido permanece.</div>
   </div>
 
-  <!-- MENTE CLARA -->
-  <div class="mente-card">
-    <div class="mente-title">¿Cómo está tu mente hoy?</div>
-    <div class="mente-btns">
-      <button class="mente-btn m-adicta" onclick="selectMente('adicta',this)">
-        <div class="mente-btn-icon">🌀</div>
-        <div class="mente-btn-label">Adicta</div>
-        <div class="mente-btn-desc">El impulso me gobierna</div>
-      </button>
-      <button class="mente-btn m-clara" onclick="selectMente('clara',this)">
-        <div class="mente-btn-icon">🌿</div>
-        <div class="mente-btn-label">Clara</div>
-        <div class="mente-btn-desc">Limpia y alerta al riesgo</div>
-      </button>
-      <button class="mente-btn m-limpia" onclick="selectMente('limpia',this)">
-        <div class="mente-btn-icon">☀️</div>
-        <div class="mente-btn-label">Limpia</div>
-        <div class="mente-btn-desc">Bien, pero sin guardia</div>
-      </button>
+  <!-- TERMÓMETRO EMA — entrada principal -->
+  <div class="termometro-card">
+    <div class="termometro-label">¿Cómo estás ahora mismo?</div>
+    <div class="termometro-val-row">
+      <div class="termometro-val" id="termo-val">5</div>
+      <div class="termometro-desc" id="termo-desc">Pulsa el deslizador</div>
     </div>
-    <div class="mente-nota" id="mente-nota"></div>
+    <input type="range" class="ema-slider termometro-slider" id="termo-slider" min="1" max="10" value="5" oninput="onTermometro(this.value)">
+    <div class="slider-labels"><span>1 Tranquilo/a</span><span>10 Crisis</span></div>
   </div>
 
-  <div class="milestones" id="milestones-row"></div>
-
-  <button id="sos-btn" onclick="openSOS()">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-    Necesito ayuda ahora
-  </button>
-
-  <button class="consumo-btn" onclick="abrirMuro()">📋 Registrar consumo — Muro de Sinceridad</button>
-
-  <div class="prevention-card">
-    <div class="prevention-title">Recordatorio preventivo</div>
-    <div class="prevention-row">
-      <div class="prevention-label">¿Cuál es tu hora de mayor riesgo?</div>
-      <button class="prevention-time-btn" onclick="setPreventionTime()" id="prev-time-btn">Configurar</button>
+  <!-- ZONA ADAPTATIVA: cambia según el termómetro -->
+  <!-- CRISIS (≥7): visible solo en estado alto -->
+  <div id="zona-crisis" style="display:none">
+    <div class="crisis-banner">
+      <div class="crisis-banner-text">⚠️ Vulnerabilidad alta detectada — activa una habilidad ahora</div>
     </div>
-    <div class="prevention-note" id="prev-note">Recibirás un aviso diario a esa hora para registrar tu estado antes de que el craving llegue a su pico.</div>
+    <button id="sos-btn" onclick="openSOS()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Necesito ayuda ahora
+    </button>
+    <button class="consumo-btn" onclick="abrirMuro()">📋 Registrar consumo — Muro de Sinceridad</button>
+    <div class="crisis-shortcuts">
+      <button class="crisis-sc-btn" onclick="goTo('tareas');switchUso('crisis',document.getElementById('tab-crisis'))">🔴 Ejercicios de crisis</button>
+      <button class="crisis-sc-btn" onclick="abrirSurfTimer()">🌊 Surf 15 min</button>
+    </div>
   </div>
 
-  <div class="quick-title">Accesos rápidos</div>
-  <div class="quick-grid">
-    <button class="quick-btn" onclick="goTo('diario')"><div class="q-icon" style="background:var(--moss-dim)">📓</div><div class="q-label">Diario de hoy</div><div class="q-sub">Registro EMA</div></button>
-    <button class="quick-btn" onclick="goTo('tareas')"><div class="q-icon" style="background:var(--amber-dim)">🧘</div><div class="q-label">Ejercicios</div><div class="q-sub">Por momento de uso</div></button>
-    <button class="quick-btn" onclick="goTo('progreso')"><div class="q-icon" style="background:var(--bark-dim)">📈</div><div class="q-label">Mi progreso</div><div class="q-sub">Estadísticas</div></button>
-    <button class="quick-btn" onclick="goTo('ajustes')"><div class="q-icon" style="background:var(--earth-dim)">⚙️</div><div class="q-label">Ajustes</div><div class="q-sub">Perfil y datos</div></button>
+  <!-- MANTENIMIENTO (<7): visible en estado normal -->
+  <div id="zona-normal">
+    <!-- MENTE CLARA -->
+    <div class="mente-card">
+      <div class="mente-title">¿Cómo está tu mente hoy?</div>
+      <div class="mente-btns">
+        <button class="mente-btn m-adicta" onclick="selectMente('adicta',this)">
+          <div class="mente-btn-icon">🌀</div>
+          <div class="mente-btn-label">Adicta</div>
+          <div class="mente-btn-desc">El impulso me gobierna</div>
+        </button>
+        <button class="mente-btn m-clara" onclick="selectMente('clara',this)">
+          <div class="mente-btn-icon">🌿</div>
+          <div class="mente-btn-label">Clara</div>
+          <div class="mente-btn-desc">Limpia y alerta al riesgo</div>
+        </button>
+        <button class="mente-btn m-limpia" onclick="selectMente('limpia',this)">
+          <div class="mente-btn-icon">☀️</div>
+          <div class="mente-btn-label">Limpia</div>
+          <div class="mente-btn-desc">Bien, pero sin guardia</div>
+        </button>
+      </div>
+      <div class="mente-nota" id="mente-nota"></div>
+    </div>
+
+    <div class="milestones" id="milestones-row"></div>
+
+    <button id="sos-btn-normal" class="sos-btn-secondary" onclick="openSOS()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Necesito ayuda
+    </button>
+    <button class="consumo-btn" onclick="abrirMuro()">📋 Registrar consumo — Muro de Sinceridad</button>
+
+    <div class="prevention-card">
+      <div class="prevention-title">Recordatorio preventivo</div>
+      <div class="prevention-row">
+        <div class="prevention-label">¿Cuál es tu hora de mayor riesgo?</div>
+        <button class="prevention-time-btn" onclick="setPreventionTime()" id="prev-time-btn">Configurar</button>
+      </div>
+      <div class="prevention-note" id="prev-note">Recibirás un aviso diario a esa hora para registrar tu estado antes de que el craving llegue a su pico.</div>
+    </div>
+
+    <div class="quick-title">Accesos rápidos</div>
+    <div class="quick-grid">
+      <button class="quick-btn" onclick="goTo('diario')"><div class="q-icon" style="background:var(--moss-dim)">📓</div><div class="q-label">Diario de hoy</div><div class="q-sub">Registro EMA</div></button>
+      <button class="quick-btn" onclick="goTo('tareas')"><div class="q-icon" style="background:var(--amber-dim)">🧘</div><div class="q-label">Ejercicios</div><div class="q-sub">Por momento de uso</div></button>
+      <button class="quick-btn" onclick="goTo('progreso')"><div class="q-icon" style="background:var(--bark-dim)">📈</div><div class="q-label">Mi progreso</div><div class="q-sub">Estadísticas</div></button>
+      <button class="quick-btn" onclick="goTo('ajustes')"><div class="q-icon" style="background:var(--earth-dim)">⚙️</div><div class="q-label">Ajustes</div><div class="q-sub">Perfil y datos</div></button>
+    </div>
   </div>
+
 </div>
 
 <!-- DIARIO -->
@@ -754,12 +802,61 @@ function goTo(s){
 }
 
 // ── HOME ──
-function renderHome(){updateSobriety();renderMilestones();renderPreventionCard();document.getElementById('eva-msg').classList.toggle('show',!!db.evaShown);if(db.menteHoy)restoreMente()}
+function renderHome(){
+  updateSobriety();
+  renderMilestones();
+  renderPreventionCard();
+  document.getElementById('eva-msg').classList.toggle('show',!!db.evaShown);
+  if(db.menteHoy)restoreMente();
+  // Restaurar termómetro
+  const termoGuardado=db.termoHoy||5;
+  const slider=document.getElementById('termo-slider');
+  if(slider){slider.value=termoGuardado;onTermometro(termoGuardado,false);}
+}
+
+const TERMO_DESCS=[
+  '','Tranquilo/a y centrado/a','Con alguna tensión','Estado moderado',
+  'Algo de malestar','Tensión notable','Malestar importante',
+  '⚠️ Vulnerabilidad alta','⚠️ Craving intenso','⚠️ Crisis — actúa ahora','🆘 Máxima urgencia'
+];
+
+function onTermometro(v, guardar=true){
+  v=+v;
+  const valEl=document.getElementById('termo-val');
+  const descEl=document.getElementById('termo-desc');
+  const crisis=document.getElementById('zona-crisis');
+  const normal=document.getElementById('zona-normal');
+  if(!valEl)return;
+  valEl.textContent=v;
+  valEl.className='termometro-val'+(v>=7?' alto':v>=5?' medio':'');
+  descEl.textContent=TERMO_DESCS[v]||'';
+  const esCrisis=v>=7;
+  crisis.style.display=esCrisis?'block':'none';
+  normal.style.display=esCrisis?'none':'block';
+  if(guardar){
+    db.termoHoy=v;
+    // Guardar en el registro del día
+    const today=new Date().toISOString().split('T')[0];
+    if(!db.termoRegistros)db.termoRegistros=[];
+    db.termoRegistros=db.termoRegistros.filter(r=>r.date!==today);
+    db.termoRegistros.push({date:today,valor:v});
+    saveDB();
+    // Sincronizar con slider de craving del diario
+    const slCraving=document.getElementById('sl-craving');
+    if(slCraving){slCraving.value=v;onCravingChange(v);}
+  }
+}
 
 function updateSobriety(){
   const el=document.getElementById('sober-days'),si=document.getElementById('sober-since');
-  if(db.soberDate){const d=Math.floor((new Date()-new Date(db.soberDate))/86400000);el.textContent=d;si.textContent='Desde el '+new Date(db.soberDate+'T12:00').toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'})}
-  else{el.textContent='—';si.textContent='Toca "Editar fecha" para empezar'}
+  if(db.soberDate){
+    const d=Math.floor((new Date()-new Date(db.soberDate))/86400000);
+    el.textContent=d;
+    si.textContent='Desde el '+new Date(db.soberDate+'T12:00').toLocaleDateString('es-ES',{day:'numeric',month:'long'});
+  } else {
+    el.textContent='—';
+    si.textContent='Tu camino de recuperación';
+  }
 }
 
 const MILESTONES=[{d:1,e:'🌱',l:'1 día'},{d:3,e:'⭐',l:'3 días'},{d:7,e:'🌿',l:'1 semana'},{d:14,e:'🌸',l:'2 semanas'},{d:30,e:'🏆',l:'1 mes'},{d:60,e:'🌙',l:'2 meses'},{d:90,e:'🌅',l:'3 meses'},{d:180,e:'🦋',l:'6 meses'},{d:365,e:'🎯',l:'1 año'}];
