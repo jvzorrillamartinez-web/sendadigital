@@ -645,8 +645,14 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
   <div class="profile-box"><div class="profile-avatar">🌿</div><div class="profile-name">Usuario</div><div class="profile-id" id="profile-id">ID: —</div></div>
   <div class="settings-section"><div class="settings-section-title">Emergencia</div><div class="settings-row" onclick="editContact()"><div><div class="settings-row-label">Contacto de confianza</div><div class="settings-row-val" id="contact-display">No configurado</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
   <div class="settings-section"><div class="settings-section-title">Terapeuta</div><div class="settings-row" onclick="openTerapeuta()"><div><div class="settings-row-label">Acceso del terapeuta</div><div class="settings-row-val">Informe semanal protegido</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div><div class="settings-row" onclick="changePin()"><div><div class="settings-row-label">Cambiar PIN</div><div class="settings-row-val">4 dígitos</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div><div class="settings-row" onclick="cambiarCodigoMuro()"><div><div class="settings-row-label">Código del Muro de Sinceridad</div><div class="settings-row-val" id="muro-code-display">TERAPIA (defecto)</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
+  <div class="settings-section"><div class="settings-section-title">Comunicación con tu psicólogo/a</div><div class="settings-row" onclick="generarResumenPsicologo()"><div><div class="settings-row-label">Compartir mi estado con mi psicólogo/a</div><div class="settings-row-val">Genera un resumen que puedes enviarle</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
   <div class="settings-section"><div class="settings-section-title">Datos</div><div class="settings-row" onclick="exportData()"><div class="settings-row-label">Exportar mis datos</div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div><div class="settings-row" onclick="if(confirm('¿Borrar todos los datos?'))clearData()"><div class="settings-row-label" style="color:var(--rust)">Borrar todos mis datos</div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
-  <div class="data-note"><strong>Privacidad:</strong> Todos tus datos se almacenan únicamente en este dispositivo. No se envían a ningún servidor externo. Tu identidad está protegida por un código UUID anónimo.</div>
+  <div class="data-note">
+    <strong>Tu diario es solo tuyo.</strong> Tu psicólogo/a solo ve el informe semanal cuando tú lo exportas o cuando accede al panel con su PIN en sesión contigo.<br><br>
+    <strong>Lo que ve tu psicólogo/a:</strong> semáforo de estado, craving medio, HALT semanal, adherencia PLEASE, alertas de riesgo y Mente Clara semanal.<br><br>
+    <strong>Lo que nunca ve:</strong> el contenido de tus respuestas en "Verificar los hechos", tus notas personales ni ningún dato que no hayas exportado explícitamente.<br><br>
+    <strong>Privacidad técnica:</strong> todos los datos se almacenan únicamente en este dispositivo. No se envían a ningún servidor. Tu identidad está protegida por un UUID anónimo — la correspondencia con tu nombre real solo existe en el registro físico del Centro.
+  </div>
 </div>
 
 <nav id="nav">
@@ -1096,6 +1102,57 @@ function cambiarCodigoMuro(){
   db.muroCodigo=nuevo.toUpperCase().trim();saveDB();renderAjustes();showToast('Código del Muro actualizado ✓');
 }
 function editContact(){const n=prompt('Nombre del contacto de confianza:');if(!n)return;const p=prompt('Teléfono (ej: 612345678):');if(!p)return;db.contact={name:n,phone:p};saveDB();renderAjustes();showToast('Contacto guardado ✓')}
+function generarResumenPsicologo(){
+  const r=db.registros;
+  const now=new Date();
+  const weekAgo=new Date(now-7*86400000);
+  const week=r.filter(x=>new Date(x.date+'T12:00')>=weekAgo);
+  const days=db.soberDate?Math.floor((now-new Date(db.soberDate))/86400000):'no establecido';
+  const avgC=week.length?(week.reduce((s,x)=>s+x.craving,0)/week.length).toFixed(1):'sin datos';
+  const avgE=week.length?(week.reduce((s,x)=>s+x.eficacia,0)/week.length).toFixed(1):'sin datos';
+  const mr=db.menteRegistros||[];
+  const mWeek=mr.filter(x=>new Date(x.date+'T12:00')>=weekAgo);
+  const mAdicta=mWeek.filter(x=>x.mente==='adicta').length;
+  const mLimpia=mWeek.filter(x=>x.mente==='limpia').length;
+  const ultimoReg=r.length?new Date(r[0].date+'T12:00').toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'}):'nunca';
+
+  const texto=`RESUMEN DE ESTADO — SendaDigital
+Fecha: ${now.toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'})}
+ID: ${db.uuid}
+
+ESTA SEMANA (últimos 7 días):
+• Registros completados: ${week.length}/7 días
+• Último registro: ${ultimoReg}
+• Craving medio: ${avgC}/10
+• Autoeficacia media: ${avgE}/10
+• Días de sobriedad: ${days}
+• Mente Adicta: ${mAdicta} día${mAdicta!==1?'s':''}
+• Mente Limpia: ${mLimpia} día${mLimpia!==1?'s':''}
+
+SEMÁFORO PERSONAL:
+${avgC!=='sin datos'&&+avgC>=7?'🔴 Craving alto esta semana':+avgC>=4?'🟡 Craving moderado':'🟢 Craving bajo'}
+${mAdicta>=2?'🔴 Días con Mente Adicta — necesito apoyo':''}
+${week.length<=2?'🟡 Pocos registros esta semana':''}
+
+Envío este resumen porque quiero que sepas cómo estoy.`;
+
+  // Copiar al portapapeles y abrir WhatsApp/email si está configurado
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(texto).then(()=>{
+      showToast('Resumen copiado — pégalo en tu mensaje al psicólogo/a');
+      if(db.contact&&db.contact.phone){
+        setTimeout(()=>{
+          if(confirm('¿Quieres abrir WhatsApp para enviárselo a tu contacto de confianza?')){
+            window.open('https://wa.me/34'+db.contact.phone.replace(/\D/g,'')+'?text='+encodeURIComponent(texto));
+          }
+        },500);
+      }
+    });
+  } else {
+    prompt('Copia este texto y envíaselo a tu psicólogo/a:',texto);
+  }
+}
+
 function exportData(){const b=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='sendadigital-'+new Date().toISOString().split('T')[0]+'.json';a.click();showToast('Datos exportados ✓')}
 function clearData(){localStorage.removeItem(DB_KEY);db={uuid:'SD-'+Math.random().toString(36).substr(2,8).toUpperCase(),registros:[],soberDate:null,contact:null,pin:'1234',prevTime:null,evaShown:false};saveDB();showToast('Datos borrados');renderAjustes();renderHome()}
 function changePin(){const p=prompt('PIN actual:');if(p!==db.pin){alert('PIN incorrecto');return}const n=prompt('Nuevo PIN de 4 dígitos:');if(!n||!/^\d{4}$/.test(n)){alert('Debe tener 4 dígitos');return}db.pin=n;saveDB();showToast('PIN actualizado ✓')}
@@ -1132,6 +1189,14 @@ function renderTerap(){
   if(mAdicta>=2)alerts.push({t:'⚠️ Mente Adicta detectada',b:`${mAdicta} días con mente adicta registrada. Revisar urgentemente.`});
   if(mLimpia>=3)alerts.push({t:'⚠️ Mente Limpia persistente',b:`${mLimpia} días con mente limpia. Riesgo de sobreconfianza — trabajar Mente Clara.`});
   if(!week.length)alerts.push({t:'ℹ️ Sin registros esta semana',b:'El participante no ha completado ningún diario en los últimos 7 días.'});
+  // Alerta de silencio prolongado
+  const ahora=new Date();
+  const ultimoRegistro=r.length?new Date(r[0].date+'T12:00'):null;
+  if(ultimoRegistro){
+    const horasSilencio=Math.floor((ahora-ultimoRegistro)/3600000);
+    if(horasSilencio>=72)alerts.unshift({t:'🔴 Silencio prolongado — '+Math.floor(horasSilencio/24)+' días sin registro',b:'El participante lleva más de 72 horas sin registrar. Contacto proactivo recomendado según protocolo de alertas.'});
+    else if(horasSilencio>=48)alerts.unshift({t:'🟡 Sin registro en '+Math.floor(horasSilencio/24)+' días',b:'El participante lleva más de 48 horas sin registrar. Verificar si hay dificultades de uso o cambio de estado.'});
+  }
   const semColor=alerts.length>=3||hC.length>=2||mAdicta>=2?'🔴 Rojo — contacto urgente recomendado':alerts.length>=1?'🟡 Ámbar — refuerzo motivacional':'🟢 Verde — seguimiento rutinario';
   const ae=document.getElementById('terap-alerts');
   ae.innerHTML=`<div style="font-weight:600;font-size:14px;margin-bottom:10px">${semColor}</div>`+(alerts.length?alerts.map(a=>`<div class="alert-box"><div class="alert-title">${a.t}</div><div class="alert-body">${a.b}</div></div>`).join(''):`<div class="alert-box" style="background:var(--moss-dim);border-color:rgba(74,124,89,.25)"><div class="alert-title" style="color:var(--moss)">✓ Sin alertas esta semana</div></div>`);
