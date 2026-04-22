@@ -40,45 +40,56 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
 .screen-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:4px}
 .screen-title{font-family:var(--font-display);font-size:30px;color:var(--text);line-height:1.1}
 
-/* ── HOME ADAPTATIVO ── */
-.sober-days-mini{font-family:var(--font-display);font-size:28px;color:var(--moss);line-height:1}
-.brand{padding:20px 20px 0;display:flex;align-items:center;gap:12px}
-
-.termometro-card{margin:14px 20px 0;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
-.termometro-label{font-size:15px;font-weight:500;color:var(--text);margin-bottom:12px}
-.termometro-val-row{display:flex;align-items:baseline;gap:10px;margin-bottom:10px}
-.termometro-val{font-family:var(--font-display);font-size:48px;color:var(--moss);line-height:1;transition:color .3s}
-.termometro-val.alto{color:var(--rust)}
-.termometro-val.medio{color:var(--amber)}
-.termometro-desc{font-size:14px;color:var(--text-dim);line-height:1.4}
-.termometro-slider{margin-top:4px}
-
-.crisis-banner{margin:12px 20px 0;background:var(--rust-dim);border:1px solid rgba(192,88,64,.3);border-radius:var(--radius-sm);padding:12px 16px}
-.crisis-banner-text{font-size:13px;font-weight:600;color:var(--rust);line-height:1.4}
-.crisis-shortcuts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 20px 0}
-.crisis-sc-btn{padding:14px 10px;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:13px;font-weight:500;color:var(--text);cursor:pointer;text-align:center;transition:background .15s}
-.crisis-sc-btn:active{background:var(--sand)}
-
-.sos-btn-secondary{margin:14px 20px 0;width:calc(100% - 40px);padding:14px;background:var(--rust-dim);border:1.5px solid rgba(192,88,64,.3);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(--font-body);font-size:14px;font-weight:500;color:var(--rust);cursor:pointer;transition:all .15s}
-.sos-btn-secondary svg{width:18px;height:18px}
-
-/* Editar fecha — compacto en la cabecera */
-.sober-edit-mini{margin-top:2px;font-size:10px;color:var(--text-dim);background:none;border:none;cursor:pointer;padding:0;font-family:var(--font-body);text-decoration:underline}
+/* ── HOME ── */
+#home .brand{padding:24px 20px 0;display:flex;align-items:center;gap:12px}
 .brand-logo{width:44px;height:44px;background:var(--moss-dim);border:1.5px solid rgba(74,124,89,.3);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px}
 .brand-name{font-family:var(--font-display);font-size:22px;color:var(--text)}
 .brand-sub{font-size:12px;color:var(--text-dim);margin-top:2px}
 
-.sobriety-card{margin:18px 20px 0;background:var(--moss);border-radius:var(--radius);padding:24px 20px;text-align:center;position:relative;overflow:hidden}
+.sobriety-card{margin:14px 20px 0;background:var(--moss);border-radius:var(--radius);padding:20px 20px 18px;text-align:center;position:relative;overflow:hidden}
 .sobriety-card::before{content:'';position:absolute;top:-30px;right:-30px;width:110px;height:110px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);border-radius:50%}
-.sober-days{font-family:var(--font-display);font-size:68px;line-height:1;color:#fff}
+.sober-days{font-family:var(--font-display);font-size:62px;line-height:1;color:#fff}
 .sober-label{font-size:13px;color:rgba(255,255,255,.75);margin-top:4px;letter-spacing:.05em;text-transform:uppercase}
-.sober-since{font-size:12px;color:rgba(255,255,255,.6);margin-top:10px}
-.sober-edit{margin-top:14px;display:inline-block;padding:7px 18px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;font-size:12px;color:#fff;cursor:pointer;font-family:var(--font-body);font-weight:500}
+.sober-since{font-size:12px;color:rgba(255,255,255,.6);margin-top:8px}
+.sober-edit{margin-top:12px;display:inline-block;padding:7px 18px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;font-size:12px;color:#fff;cursor:pointer;font-family:var(--font-body);font-weight:500}
 
 .eva-msg{margin:10px 20px 0;background:var(--moss-dim);border:1px solid rgba(74,124,89,.25);border-radius:var(--radius-sm);padding:14px 16px;display:none}
 .eva-msg.show{display:block}
 .eva-msg-title{font-size:14px;font-weight:600;color:var(--moss);margin-bottom:4px}
 .eva-msg-body{font-size:13px;color:var(--text-mid);line-height:1.6}
+
+/* ── SLIDERS HOME ── */
+.home-sliders{margin:14px 20px 0;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
+.home-sliders-title{font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px}
+.slider-block{margin-bottom:14px}
+.slider-block:last-child{margin-bottom:0}
+.slider-row-label{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.slider-name{font-size:14px;font-weight:500;color:var(--text)}
+.slider-num{font-family:var(--font-display);font-size:22px;line-height:1}
+.slider-num.low{color:var(--moss)}
+.slider-num.mid{color:var(--amber)}
+.slider-num.high{color:var(--rust)}
+.home-slider{width:100%;height:6px;-webkit-appearance:none;appearance:none;border-radius:3px;outline:none;cursor:pointer;transition:background .3s}
+.home-slider.malestar{background:var(--sand)}
+.home-slider.craving{background:var(--sand)}
+.home-slider::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.home-slider.malestar::-webkit-slider-thumb{background:var(--sky)}
+.home-slider.craving::-webkit-slider-thumb{background:var(--rust)}
+.slider-labels-row{display:flex;justify-content:space-between;margin-top:5px;font-size:10px;color:var(--text-dim)}
+.slider-hint{margin-top:10px;padding:10px 12px;border-radius:var(--radius-sm);font-size:12px;line-height:1.55;display:none;animation:fadeSlide .25s ease}
+.slider-hint.show{display:block}
+.slider-hint.level-mid{background:var(--amber-dim);border:1px solid rgba(200,132,58,.25);color:var(--amber)}
+.slider-hint.level-high{background:var(--rust-dim);border:1px solid rgba(192,88,64,.25);color:var(--rust)}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── VERIFICAR LOS HECHOS INLINE HOME ── */
+.vh-inline{margin:10px 20px 0;background:rgba(192,88,64,.06);border:1px solid rgba(192,88,64,.22);border-radius:var(--radius);padding:16px;display:none;animation:fadeSlide .3s ease}
+.vh-inline.show{display:block}
+.vh-inline-title{font-size:13px;font-weight:600;color:var(--rust);margin-bottom:4px}
+.vh-inline-sub{font-size:12px;color:var(--text-dim);margin-bottom:12px;line-height:1.5}
+.vh-q{margin-bottom:10px}
+.vh-q-label{font-size:12px;font-weight:600;color:var(--text-mid);margin-bottom:5px}
+.vh-input{width:100%;padding:9px 12px;background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:13px;color:var(--text);resize:none;min-height:50px}
 
 /* ── MENTE CLARA ── */
 .mente-card{margin:14px 20px 0;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
@@ -99,6 +110,14 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
 .mente-nota{margin-top:10px;font-size:12px;color:var(--text-dim);line-height:1.5;display:none}
 .mente-nota.show{display:block}
 
+/* Expandible detalle Mente Clara */
+.mente-detail{margin-top:10px;display:none;animation:fadeSlide .2s ease}
+.mente-detail.show{display:block}
+.mente-detail-box{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px}
+.mente-detail-title{font-size:12px;font-weight:600;margin-bottom:6px}
+.mente-detail-body{font-size:12px;color:var(--text-mid);line-height:1.65}
+.mente-detail-link{font-size:11px;color:var(--moss);margin-top:8px;cursor:pointer;text-decoration:underline}
+
 .milestones{margin:14px 20px 0;display:flex;gap:10px;overflow-x:auto;scrollbar-width:none}
 .milestones::-webkit-scrollbar{display:none}
 .milestone{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:5px;width:72px}
@@ -109,6 +128,8 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
 
 #sos-btn{margin:14px 20px 0;width:calc(100% - 40px);padding:18px;background:var(--rust);border:none;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(--font-body);font-size:16px;font-weight:600;color:white;cursor:pointer;box-shadow:0 4px 18px rgba(192,88,64,.28);transition:transform .1s}
 #sos-btn:active{transform:scale(.98)}
+#sos-btn.urgent{animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 4px 18px rgba(192,88,64,.28)}50%{box-shadow:0 4px 28px rgba(192,88,64,.55)}}
 #sos-btn svg{width:22px;height:22px}
 
 .prevention-card{margin:14px 20px 0;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
@@ -135,7 +156,6 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
 .sos-title{font-family:var(--font-display);font-size:26px;color:var(--rust);margin-bottom:6px}
 .sos-sub{font-size:14px;color:var(--text-mid);margin-bottom:18px}
 
-/* Pros y Contras dentro del SOS */
 .pros-contras-box{background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:16px}
 .pc-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px}
 .pc-sub{font-size:12px;color:var(--text-dim);margin-bottom:12px;line-height:1.5}
@@ -191,12 +211,10 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
 .mood-grid{display:flex;flex-wrap:wrap;gap:8px}
 .mood-chip{padding:7px 14px;background:var(--cream);border:1px solid var(--border);border-radius:20px;font-size:13px;color:var(--text-mid);cursor:pointer;transition:all .15s;font-family:var(--font-body)}
 .mood-chip.selected{background:var(--moss-dim);border-color:rgba(74,124,89,.45);color:var(--moss)}
-.halt-badge{display:inline-block;margin-left:6px;padding:2px 7px;background:var(--rust-dim);border-radius:8px;font-size:10px;font-weight:700;color:var(--rust);letter-spacing:.04em;vertical-align:middle}
 .apoyo-btns{display:flex;gap:10px}
 .apoyo-btn{flex:1;padding:12px;background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:14px;font-weight:500;color:var(--text-mid);cursor:pointer;transition:all .15s;text-align:center}
 .apoyo-btn.selected{background:var(--moss-dim);border-color:rgba(74,124,89,.4);color:var(--moss)}
 
-/* Verificar los hechos - aparece si craving ≥7 */
 .verificar-box{margin:14px 20px 0;background:rgba(192,88,64,.06);border:1px solid rgba(192,88,64,.22);border-radius:var(--radius);padding:18px;display:none}
 .verificar-box.show{display:block}
 .verificar-title{font-size:13px;font-weight:600;color:var(--rust);margin-bottom:4px}
@@ -231,7 +249,7 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
 .chip-red{background:var(--rust-dim);color:var(--rust)}
 .chip-sky{background:var(--sky-dim);color:var(--sky)}
 
-/* ── TAREAS - por momento de uso ── */
+/* ── TAREAS ── */
 .uso-tabs{display:flex;gap:0;margin:14px 20px 0;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
 .uso-tab{flex:1;padding:11px 6px;text-align:center;cursor:pointer;font-family:var(--font-body);font-size:11px;font-weight:600;color:var(--text-dim);border:none;background:none;transition:all .15s;letter-spacing:.03em;border-right:1px solid var(--border)}
 .uso-tab:last-child{border-right:none}
@@ -239,13 +257,11 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
 .uso-tab.crisis.active{background:var(--rust)}
 .uso-tab.vulnerable.active{background:var(--amber)}
 .uso-tab.construir.active{background:var(--moss)}
-
 .uso-context{margin:10px 20px 0;padding:10px 14px;border-radius:var(--radius-sm);font-size:12px;line-height:1.55;display:none}
 .uso-context.show{display:block}
 .uso-context.crisis{background:var(--rust-dim);border:1px solid rgba(192,88,64,.2);color:var(--rust)}
 .uso-context.vulnerable{background:var(--amber-dim);border:1px solid rgba(200,132,58,.2);color:var(--amber)}
 .uso-context.construir{background:var(--moss-dim);border:1px solid rgba(74,124,89,.2);color:var(--moss)}
-
 .tarea-card{margin:12px 20px 0;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer}
 .tarea-card:active{border-color:rgba(74,124,89,.4)}
 .tarea-header{padding:16px;display:flex;align-items:flex-start;gap:12px}
@@ -281,6 +297,7 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
 .bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px}
 .bar{width:100%;border-radius:4px 4px 0 0;min-height:4px}
 .bar.craving{background:var(--rust);opacity:.65}
+.bar.malestar{background:var(--sky);opacity:.55}
 .bar-day{font-size:10px;color:var(--text-dim)}
 .legend{display:flex;gap:16px;margin-top:12px}
 .legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-dim)}
@@ -383,44 +400,31 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
 #timer-name{font-family:var(--font-display);font-size:20px;margin-bottom:6px;color:var(--text)}
 #timer-display{font-family:var(--font-display);font-size:58px;color:var(--moss);line-height:1;margin:20px 0}
 #timer-stop{padding:12px 28px;background:var(--rust-dim);border:1px solid rgba(192,88,64,.3);border-radius:20px;color:var(--rust);font-family:var(--font-body);font-size:14px;font-weight:500;cursor:pointer}
+
+/* ── MENTE SABIA MODAL ── */
+#mente-sabia-overlay{display:none;position:fixed;inset:0;background:rgba(46,36,24,.8);z-index:110;align-items:center;justify-content:center;padding:24px}
+#mente-sabia-overlay.open{display:flex}
+#mente-sabia-modal{background:var(--cream);border-radius:var(--radius);padding:28px 24px;width:100%;max-width:440px;max-height:85vh;overflow-y:auto;animation:fadeIn .2s ease}
+.ms-title{font-family:var(--font-display);font-size:22px;color:var(--text);margin-bottom:6px}
+.ms-sub{font-size:13px;color:var(--text-dim);margin-bottom:18px;line-height:1.55}
+.ms-venn{display:flex;justify-content:space-between;gap:8px;margin-bottom:18px}
+.ms-state{flex:1;border-radius:var(--radius-sm);padding:14px 10px;text-align:center}
+.ms-state.adicta{background:var(--rust-dim);border:1.5px solid rgba(192,88,64,.3)}
+.ms-state.clara{background:var(--moss-dim);border:1.5px solid rgba(74,124,89,.4)}
+.ms-state.limpia{background:var(--amber-dim);border:1.5px solid rgba(200,132,58,.3)}
+.ms-state-icon{font-size:24px;margin-bottom:6px}
+.ms-state-name{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px}
+.ms-state.adicta .ms-state-name{color:var(--rust)}
+.ms-state.clara .ms-state-name{color:var(--moss)}
+.ms-state.limpia .ms-state-name{color:var(--amber)}
+.ms-state-desc{font-size:11px;color:var(--text-mid);line-height:1.45}
+.ms-section{margin-bottom:16px}
+.ms-section-title{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
+.ms-section-body{font-size:13px;color:var(--text-mid);line-height:1.65}
+.ms-close{margin-top:4px;width:100%;padding:13px;background:var(--moss-dim);border:1px solid rgba(74,124,89,.3);border-radius:var(--radius-sm);color:var(--moss);font-family:var(--font-body);font-size:14px;font-weight:500;cursor:pointer}
+
 #toast{position:fixed;bottom:96px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--moss);border-radius:20px;padding:10px 20px;font-size:13px;font-weight:500;color:white;opacity:0;transition:all .25s;z-index:50;white-space:nowrap;pointer-events:none}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-/* MURO DE SINCERIDAD */
-#muro-overlay{display:none;position:fixed;inset:0;background:#fff;z-index:500;flex-direction:column;align-items:center;justify-content:center;padding:32px;text-align:center}
-#muro-overlay.open{display:flex}
-.muro-icon{font-size:52px;margin-bottom:20px}
-.muro-title{font-family:var(--font-display);font-size:26px;color:var(--earth);margin-bottom:12px;line-height:1.2}
-.muro-body{font-size:15px;color:var(--text-mid);line-height:1.75;margin-bottom:28px;max-width:360px}
-.muro-actions{display:flex;flex-direction:column;gap:10px;width:100%;max-width:340px}
-.muro-call{display:block;padding:16px;background:var(--rust);border-radius:var(--radius);font-family:var(--font-body);font-size:15px;font-weight:600;color:white;text-decoration:none;text-align:center}
-.muro-unlock-row{display:flex;gap:8px}
-.muro-unlock-input{flex:1;padding:13px 14px;background:var(--warm);border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:18px;color:var(--text);letter-spacing:.15em;text-align:center}
-.muro-unlock-btn{padding:13px 18px;background:var(--moss);border:none;border-radius:var(--radius-sm);color:white;font-family:var(--font-body);font-size:14px;font-weight:600;cursor:pointer}
-.muro-note{font-size:12px;color:var(--text-dim);margin-top:8px;line-height:1.5}
-.consumo-btn{margin:8px 20px 0;width:calc(100% - 40px);padding:13px;background:none;border:1.5px solid rgba(122,92,58,.3);border-radius:var(--radius);font-family:var(--font-body);font-size:13px;font-weight:500;color:var(--earth);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .15s}
-.consumo-btn:active{background:var(--earth-dim)}
-
-/* SURF TIMER */
-#surf-timer-overlay{display:none;position:fixed;inset:0;background:rgba(46,36,24,.88);z-index:130;align-items:center;justify-content:center;padding:24px}
-#surf-timer-overlay.open{display:flex}
-#surf-timer-modal{background:var(--cream);border-radius:var(--radius);padding:30px 24px;width:100%;max-width:400px;text-align:center;animation:fadeIn .2s ease}
-.surf-wave{font-size:44px;display:block;animation:wv 3s ease-in-out infinite;margin-bottom:8px}
-@keyframes wv{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.surf-time-display{font-family:var(--font-display);font-size:54px;color:var(--earth);line-height:1;margin-bottom:8px}
-.surf-progress{width:100%;height:6px;background:var(--sand);border-radius:3px;margin-bottom:16px;overflow:hidden}
-.surf-progress-bar{height:100%;background:var(--moss);border-radius:3px;transition:width 1s linear;width:100%}
-.surf-phrase{background:var(--moss-dim);border:1px solid rgba(74,124,89,.2);border-radius:var(--radius-sm);padding:14px 16px;font-size:14px;color:var(--moss);font-style:italic;line-height:1.65;margin-bottom:18px;min-height:68px;display:flex;align-items:center;justify-content:center;transition:opacity .4s}
-.surf-phrase.fade{opacity:0}
-.surf-stop-btn{padding:11px 28px;background:var(--warm);border:1px solid var(--border);border-radius:20px;color:var(--text-dim);font-family:var(--font-body);font-size:14px;cursor:pointer}
-
-/* HABILIDADES USADAS HOY */
-.skills-today-box{margin:14px 20px 0;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
-.skills-today-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.skills-today-val{font-family:var(--font-display);font-size:46px;color:var(--moss);line-height:1}
-.skills-today-label{font-size:12px;color:var(--text-dim);line-height:1.45;text-align:right;max-width:160px}
-.skills-today-list{display:flex;gap:6px;flex-wrap:wrap}
-.skill-chip{padding:4px 10px;background:var(--moss-dim);border-radius:20px;font-size:12px;color:var(--moss)}
 </style>
 </head>
 <body>
@@ -428,120 +432,158 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
 
 <!-- HOME -->
 <div id="home" class="screen active">
+  <div class="brand"><div class="brand-logo">🌿</div><div><div class="brand-name">SendaDigital</div><div class="brand-sub">Tu camino de recuperación</div></div></div>
 
-  <!-- CABECERA COMPACTA -->
-  <div class="brand"><div class="brand-logo">🌿</div><div><div class="brand-name">SendaDigital</div><div class="brand-sub" id="sober-since">Establece tu fecha de inicio</div></div><div style="margin-left:auto;text-align:right"><div class="sober-days-mini" id="sober-days">—</div><div style="font-size:10px;color:var(--text-dim);letter-spacing:.04em">días · <button class="sober-edit-mini" onclick="openFechaModal()">editar</button></div></div></div>
+  <div class="sobriety-card">
+    <div class="sober-days" id="sober-days">—</div>
+    <div class="sober-label">días de sobriedad</div>
+    <div class="sober-since" id="sober-since">Establece tu fecha de inicio</div>
+    <button class="sober-edit" onclick="openFechaModal()">✎ Editar fecha</button>
+  </div>
 
   <div class="eva-msg" id="eva-msg">
     <div class="eva-msg-title">🌱 Empezamos de nuevo</div>
     <div class="eva-msg-body">Una caída no te condena a no dejarlo nunca. Has vuelto — eso es lo que importa. Lo que has aprendido permanece.</div>
   </div>
 
-  <!-- TERMÓMETRO EMA — entrada principal -->
-  <div class="termometro-card">
-    <div class="termometro-label">¿Cómo estás ahora mismo?</div>
-    <div class="termometro-val-row">
-      <div class="termometro-val" id="termo-val">5</div>
-      <div class="termometro-desc" id="termo-desc">Pulsa el deslizador</div>
-    </div>
-    <input type="range" class="ema-slider termometro-slider" id="termo-slider" min="1" max="10" value="5" oninput="onTermometro(this.value)">
-    <div class="slider-labels"><span>1 Tranquilo/a</span><span>10 Crisis</span></div>
-  </div>
+  <!-- SLIDERS HOME -->
+  <div class="home-sliders">
+    <div class="home-sliders-title">¿Cómo estás ahora mismo?</div>
 
-  <!-- ZONA ADAPTATIVA: cambia según el termómetro -->
-  <!-- CRISIS (≥7): visible solo en estado alto -->
-  <div id="zona-crisis" style="display:none">
-    <div class="crisis-banner">
-      <div class="crisis-banner-text">⚠️ Vulnerabilidad alta detectada — activa una habilidad ahora</div>
-    </div>
-    <button id="sos-btn" onclick="openSOS()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      Necesito ayuda ahora
-    </button>
-    <button class="consumo-btn" onclick="abrirMuro()">📋 Registrar consumo — Muro de Sinceridad</button>
-    <div class="crisis-shortcuts">
-      <button class="crisis-sc-btn" onclick="goTo('tareas');switchUso('crisis',document.getElementById('tab-crisis'))">🔴 Ejercicios de crisis</button>
-      <button class="crisis-sc-btn" onclick="abrirSurfTimer()">🌊 Surf 15 min</button>
-    </div>
-  </div>
-
-  <!-- MANTENIMIENTO (<7): visible en estado normal -->
-  <div id="zona-normal">
-    <!-- MENTE CLARA -->
-    <div class="mente-card">
-      <div class="mente-title">¿Cómo está tu mente hoy?</div>
-      <div class="mente-btns">
-        <button class="mente-btn m-adicta" onclick="selectMente('adicta',this)">
-          <div class="mente-btn-icon">🌀</div>
-          <div class="mente-btn-label">Adicta</div>
-          <div class="mente-btn-desc">El impulso me gobierna</div>
-        </button>
-        <button class="mente-btn m-clara" onclick="selectMente('clara',this)">
-          <div class="mente-btn-icon">🌿</div>
-          <div class="mente-btn-label">Clara</div>
-          <div class="mente-btn-desc">Limpia y alerta al riesgo</div>
-        </button>
-        <button class="mente-btn m-limpia" onclick="selectMente('limpia',this)">
-          <div class="mente-btn-icon">☀️</div>
-          <div class="mente-btn-label">Limpia</div>
-          <div class="mente-btn-desc">Bien, pero sin guardia</div>
-        </button>
+    <div class="slider-block">
+      <div class="slider-row-label">
+        <span class="slider-name">Malestar emocional</span>
+        <span class="slider-num low" id="home-val-malestar">1</span>
       </div>
-      <div class="mente-nota" id="mente-nota"></div>
+      <input type="range" class="home-slider malestar" id="home-sl-malestar" min="1" max="10" value="1" oninput="onHomeMalestarChange(this.value)">
+      <div class="slider-labels-row"><span>1 Bien</span><span>10 Muy mal</span></div>
     </div>
 
-    <div class="milestones" id="milestones-row"></div>
+    <div class="slider-hint" id="hint-malestar-mid">
+      🟡 Detectas malestar moderado. Antes de que suba, prueba un ejercicio del módulo Vulnerable.
+      <button onclick="goTo('tareas');switchUsoExternal('vulnerable')" style="margin-top:6px;display:block;padding:6px 14px;background:var(--amber-dim);border:1px solid rgba(200,132,58,.3);border-radius:12px;font-family:var(--font-body);font-size:12px;color:var(--amber);cursor:pointer">Ver ejercicios preventivos →</button>
+    </div>
+    <div class="slider-hint" id="hint-malestar-high">
+      🔴 Malestar alto. <strong>Abre el SOS</strong> o usa Verificar los hechos ahora.
+    </div>
 
-    <button id="sos-btn-normal" class="sos-btn-secondary" onclick="openSOS()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      Necesito ayuda
-    </button>
-    <button class="consumo-btn" onclick="abrirMuro()">📋 Registrar consumo — Muro de Sinceridad</button>
-
-    <div class="prevention-card">
-      <div class="prevention-title">Recordatorio preventivo</div>
-      <div class="prevention-row">
-        <div class="prevention-label">¿Cuál es tu hora de mayor riesgo?</div>
-        <button class="prevention-time-btn" onclick="setPreventionTime()" id="prev-time-btn">Configurar</button>
+    <div class="slider-block" style="margin-top:14px">
+      <div class="slider-row-label">
+        <span class="slider-name">Urgencia de consumir (craving)</span>
+        <span class="slider-num low" id="home-val-craving">1</span>
       </div>
-      <div class="prevention-note" id="prev-note">Recibirás un aviso diario a esa hora para registrar tu estado antes de que el craving llegue a su pico.</div>
+      <input type="range" class="home-slider craving" id="home-sl-craving" min="1" max="10" value="1" oninput="onHomeCravingChange(this.value)">
+      <div class="slider-labels-row"><span>1 Sin impulso</span><span>10 Muy intenso</span></div>
     </div>
 
-    <div class="quick-title">Accesos rápidos</div>
-    <div class="quick-grid">
-      <button class="quick-btn" onclick="goTo('diario')"><div class="q-icon" style="background:var(--moss-dim)">📓</div><div class="q-label">Diario de hoy</div><div class="q-sub">Registro EMA</div></button>
-      <button class="quick-btn" onclick="goTo('tareas')"><div class="q-icon" style="background:var(--amber-dim)">🧘</div><div class="q-label">Ejercicios</div><div class="q-sub">Por momento de uso</div></button>
-      <button class="quick-btn" onclick="goTo('progreso')"><div class="q-icon" style="background:var(--bark-dim)">📈</div><div class="q-label">Mi progreso</div><div class="q-sub">Estadísticas</div></button>
-      <button class="quick-btn" onclick="goTo('ajustes')"><div class="q-icon" style="background:var(--earth-dim)">⚙️</div><div class="q-label">Ajustes</div><div class="q-sub">Perfil y datos</div></button>
+    <div class="slider-hint" id="hint-craving-mid">
+      🟡 Impulso moderado. Recuerda: el craving dura solo 15-20 min. ¿Ya registraste los Pros y Contras?
+    </div>
+    <div class="slider-hint" id="hint-craving-high">
+      🔴 Craving alto. Revisa los hechos — muchas veces el impulso se dispara por cómo interpretamos la situación, no por los hechos reales.
     </div>
   </div>
 
+  <!-- VERIFICAR LOS HECHOS INLINE (aparece si craving ≥7 o malestar ≥7) -->
+  <div class="vh-inline" id="vh-home">
+    <div class="vh-inline-title">⚠️ Verificar los hechos</div>
+    <div class="vh-inline-sub">Tómate un momento. Muchas emociones surgen de cómo interpretamos los eventos, no de los eventos en sí. (RE Ficha 4)</div>
+    <div class="vh-q">
+      <div class="vh-q-label">¿Qué situación ha desencadenado esto?</div>
+      <textarea class="vh-input" id="vh-home-evento" placeholder="Describe brevemente qué pasó..."></textarea>
+    </div>
+    <div class="vh-q">
+      <div class="vh-q-label">¿Hay otra interpretación posible?</div>
+      <textarea class="vh-input" id="vh-home-interp" placeholder="¿Estoy leyendo la situación de forma extrema?..."></textarea>
+    </div>
+  </div>
+
+  <!-- MENTE CLARA -->
+  <div class="mente-card">
+    <div class="mente-title">¿Cómo está tu mente hoy?</div>
+    <div class="mente-btns">
+      <button class="mente-btn m-adicta" onclick="selectMente('adicta',this)">
+        <div class="mente-btn-icon">🌀</div>
+        <div class="mente-btn-label">Adicta</div>
+        <div class="mente-btn-desc">El impulso me gobierna</div>
+      </button>
+      <button class="mente-btn m-clara" onclick="selectMente('clara',this)">
+        <div class="mente-btn-icon">🌿</div>
+        <div class="mente-btn-label">Clara</div>
+        <div class="mente-btn-desc">Limpia y alerta al riesgo</div>
+      </button>
+      <button class="mente-btn m-limpia" onclick="selectMente('limpia',this)">
+        <div class="mente-btn-icon">☀️</div>
+        <div class="mente-btn-label">Limpia</div>
+        <div class="mente-btn-desc">Bien, pero sin guardia</div>
+      </button>
+    </div>
+    <div class="mente-nota" id="mente-nota"></div>
+    <div class="mente-detail" id="mente-detail">
+      <div class="mente-detail-box">
+        <div class="mente-detail-title" id="mente-detail-title"></div>
+        <div class="mente-detail-body" id="mente-detail-body"></div>
+      </div>
+      <div class="mente-detail-link" onclick="openMenteSabia()">¿Qué significa Mente Clara? Ver explicación completa →</div>
+    </div>
+  </div>
+
+  <div class="milestones" id="milestones-row"></div>
+
+  <button id="sos-btn" onclick="openSOS()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    Necesito ayuda ahora
+  </button>
+
+  <div class="prevention-card">
+    <div class="prevention-title">Recordatorio preventivo</div>
+    <div class="prevention-row">
+      <div class="prevention-label">¿Cuál es tu hora de mayor riesgo?</div>
+      <button class="prevention-time-btn" onclick="setPreventionTime()" id="prev-time-btn">Configurar</button>
+    </div>
+    <div class="prevention-note" id="prev-note">Recibirás un aviso diario a esa hora para registrar tu estado antes de que el craving llegue a su pico.</div>
+  </div>
+
+  <div class="quick-title">Accesos rápidos</div>
+  <div class="quick-grid">
+    <button class="quick-btn" onclick="goTo('diario')"><div class="q-icon" style="background:var(--moss-dim)">📓</div><div class="q-label">Diario de hoy</div><div class="q-sub">Registro completo</div></button>
+    <button class="quick-btn" onclick="goTo('tareas')"><div class="q-icon" style="background:var(--amber-dim)">🧘</div><div class="q-label">Ejercicios</div><div class="q-sub">Por momento de uso</div></button>
+    <button class="quick-btn" onclick="goTo('progreso')"><div class="q-icon" style="background:var(--bark-dim)">📈</div><div class="q-label">Mi progreso</div><div class="q-sub">Estadísticas</div></button>
+    <button class="quick-btn" onclick="goTo('ajustes')"><div class="q-icon" style="background:var(--earth-dim)">⚙️</div><div class="q-label">Ajustes</div><div class="q-sub">Perfil y datos</div></button>
+  </div>
 </div>
 
 <!-- DIARIO -->
 <div id="diario" class="screen">
   <div class="screen-header"><div class="screen-label">Evaluación diaria</div><div class="screen-title">¿Cómo estás hoy?</div></div>
-  <p class="ema-intro">Responde con honestidad. Solo tú ves estos datos. Ayudan a entender tu patrón y prevenir recaídas.</p>
+  <p class="ema-intro">Responde con honestidad. Solo tú ves estos datos.</p>
+
+  <div class="ema-question">
+    <div class="ema-q-label">Malestar emocional</div>
+    <div class="ema-q-text">¿Cuál ha sido tu nivel máximo de malestar emocional hoy?</div>
+    <div class="slider-val" id="val-malestar">5</div>
+    <input type="range" class="ema-slider" id="sl-malestar" min="1" max="10" value="5" oninput="document.getElementById('val-malestar').textContent=this.value">
+    <div class="slider-labels"><span>1 Sin malestar</span><span>10 Muy intenso</span></div>
+  </div>
 
   <div class="ema-question">
     <div class="ema-q-label">Craving</div>
     <div class="ema-q-text">¿Cuál ha sido tu nivel máximo de urgencia por consumir hoy?</div>
     <div class="slider-val" id="val-craving">5</div>
-    <input type="range" class="ema-slider" id="sl-craving" min="0" max="10" value="5" oninput="onCravingChange(this.value)">
-    <div class="slider-labels"><span>0 Sin impulso</span><span>10 Muy intenso</span></div>
+    <input type="range" class="ema-slider" id="sl-craving" min="1" max="10" value="5" oninput="onCravingChange(this.value)">
+    <div class="slider-labels"><span>1 Sin impulso</span><span>10 Muy intenso</span></div>
   </div>
 
-  <!-- Verificar los hechos aparece si craving ≥7 -->
   <div class="verificar-box" id="verificar-box">
     <div class="verificar-title">⚠️ Craving alto — Verificar los hechos</div>
-    <div class="verificar-sub">Antes de continuar, tómate un momento. Muchas veces el craving se dispara por cómo interpretamos los eventos, no por los eventos en sí. (Regulación Emocional Ficha 4)</div>
+    <div class="verificar-sub">Tómate un momento. Muchas veces el craving se dispara por cómo interpretamos los eventos. (RE Ficha 4)</div>
     <div class="verificar-q">
       <div class="verificar-q-label">¿Qué evento o situación ha desencadenado este impulso?</div>
       <textarea class="verificar-input" id="vh-evento" placeholder="Describe brevemente qué pasó (quién, qué, cuándo)..."></textarea>
     </div>
     <div class="verificar-q">
-      <div class="verificar-q-label">¿Hay alguna interpretación diferente posible de lo que pasó?</div>
-      <textarea class="verificar-input" id="vh-interpretacion" placeholder="¿Podría estar leyendo la situación de forma extrema o parcial?..."></textarea>
+      <div class="verificar-q-label">¿Hay alguna interpretación diferente posible?</div>
+      <textarea class="verificar-input" id="vh-interpretacion" placeholder="¿Podría estar leyendo la situación de forma extrema?..."></textarea>
     </div>
     <div class="verificar-q">
       <div class="verificar-q-label">¿Cuál es la probabilidad real de que ocurra lo que temes?</div>
@@ -553,20 +595,20 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
     <div class="ema-q-label">Estado emocional</div>
     <div class="ema-q-text">¿Cuál ha sido tu estado predominante en las últimas horas?</div>
     <div class="mood-grid">
-      <button class="mood-chip" data-halt="-" onclick="selectMood(this)">😌 Calma</button>
-      <button class="mood-chip" data-halt="A" onclick="selectMood(this)">😰 Ansiedad <span class="halt-badge">A</span></button>
-      <button class="mood-chip" data-halt="A" onclick="selectMood(this)">😔 Tristeza <span class="halt-badge">A</span></button>
-      <button class="mood-chip" data-halt="A" onclick="selectMood(this)">😠 Irritabilidad <span class="halt-badge">A</span></button>
-      <button class="mood-chip" data-halt="-" onclick="selectMood(this)">😊 Alegría</button>
-      <button class="mood-chip" data-halt="T" onclick="selectMood(this)">😴 Agotamiento <span class="halt-badge">T</span></button>
-      <button class="mood-chip" data-halt="L" onclick="selectMood(this)">🫤 Vacío <span class="halt-badge">L</span></button>
-      <button class="mood-chip" data-halt="H" onclick="selectMood(this)">🤢 Malestar físico <span class="halt-badge">H</span></button>
+      <button class="mood-chip" onclick="selectMood(this)">😌 Calma</button>
+      <button class="mood-chip" onclick="selectMood(this)">😰 Ansiedad</button>
+      <button class="mood-chip" onclick="selectMood(this)">😔 Tristeza</button>
+      <button class="mood-chip" onclick="selectMood(this)">😠 Irritabilidad</button>
+      <button class="mood-chip" onclick="selectMood(this)">😊 Alegría</button>
+      <button class="mood-chip" onclick="selectMood(this)">😴 Agotamiento</button>
+      <button class="mood-chip" onclick="selectMood(this)">🫤 Vacío</button>
+      <button class="mood-chip" onclick="selectMood(this)">🤢 Malestar físico</button>
     </div>
   </div>
 
   <div class="ema-question">
     <div class="ema-q-label">Autoeficacia</div>
-    <div class="ema-q-text">¿Cuánto confías ahora en mantener tu abstinencia las próximas 24 horas?</div>
+    <div class="ema-q-text">¿Cuánto confías en mantener tu abstinencia las próximas 24 horas?</div>
     <div class="slider-val" id="val-eficacia">7</div>
     <input type="range" class="ema-slider" id="sl-eficacia" min="1" max="10" value="7" oninput="document.getElementById('val-eficacia').textContent=this.value">
     <div class="slider-labels"><span>1 Muy difícil</span><span>10 Muy seguro/a</span></div>
@@ -574,7 +616,7 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
 
   <div class="ema-question">
     <div class="ema-q-label">Descanso</div>
-    <div class="ema-q-text">¿Cuántas horas dormiste y cómo calificarías la calidad?</div>
+    <div class="ema-q-text">¿Cuántas horas dormiste y cómo fue la calidad?</div>
     <div style="display:flex;gap:14px">
       <div style="flex:1"><div class="ema-q-label" style="margin-bottom:4px">Horas</div><div class="slider-val" id="val-horas">7</div><input type="range" class="ema-slider" id="sl-horas" min="0" max="12" value="7" oninput="document.getElementById('val-horas').textContent=this.value"></div>
       <div style="flex:1"><div class="ema-q-label" style="margin-bottom:4px">Calidad</div><div class="slider-val" id="val-calidad">3</div><input type="range" class="ema-slider" id="sl-calidad" min="1" max="5" value="3" oninput="document.getElementById('val-calidad').textContent=this.value"></div>
@@ -589,7 +631,7 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
 
   <div class="please-section">
     <div class="please-title-row"><div class="please-badge">PLEASE</div><div class="ema-q-label" style="margin:0">Vulnerabilidad biológica</div></div>
-    <div class="please-desc">Estos hábitos reducen tu umbral de resistencia al craving. Marca lo que has cuidado hoy. (RE Ficha 14)</div>
+    <div class="please-desc">Estos hábitos reducen tu umbral de resistencia. Marca lo que has cuidado hoy. (RE Ficha 14)</div>
     <div class="please-grid">
       <div class="please-item"><span class="please-letter">PL</span><span class="please-label">He atendido algún malestar físico</span><label class="toggle-wrap"><input type="checkbox" id="pl-enfermedad"><span class="toggle-track"></span><span class="toggle-thumb"></span></label></div>
       <div class="please-item"><span class="please-letter">E</span><span class="please-label">He evitado otras sustancias</span><label class="toggle-wrap"><input type="checkbox" id="pl-sustancias"><span class="toggle-track"></span><span class="toggle-thumb"></span></label></div>
@@ -606,17 +648,14 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
 <!-- TAREAS -->
 <div id="tareas" class="screen">
   <div class="screen-header"><div class="screen-label">Habilidades DBT</div><div class="screen-title">Ejercicios</div></div>
-
   <div class="uso-tabs">
     <button class="uso-tab crisis active" id="tab-crisis" onclick="switchUso('crisis',this)">🔴 Crisis</button>
     <button class="uso-tab vulnerable" id="tab-vulnerable" onclick="switchUso('vulnerable',this)">🟡 Vulnerable</button>
     <button class="uso-tab construir" id="tab-construir" onclick="switchUso('construir',this)">🟢 Construir</button>
   </div>
-
   <div class="uso-context crisis show" id="ctx-crisis">Para cuando el craving aprieta ahora mismo y necesitas reducir la activación. Tolerancia al malestar sesiones 3-4.</div>
   <div class="uso-context vulnerable" id="ctx-vulnerable">Para cuando detectas señales de riesgo moderado. Actúa antes de llegar al pico. Regulación emocional sesiones 11-12.</div>
   <div class="uso-context construir" id="ctx-construir">Para el día a día sin urgencia. Construye resiliencia a largo plazo. Adicciones sesión 7-9 y Regulación emocional sesión 13.</div>
-
   <div id="tareas-list"></div>
 </div>
 
@@ -624,16 +663,14 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
 <div id="progreso" class="screen">
   <div class="screen-header"><div class="screen-label">Tu evolución</div><div class="screen-title">Progreso</div></div>
   <div class="stat-row" id="stat-row"></div>
-  <div class="skills-today-box">
-    <div class="chart-title">Habilidades usadas hoy</div>
-    <div class="skills-today-top">
-      <div class="skills-today-val" id="skills-count">0</div>
-      <div class="skills-today-label">Cada habilidad usada refuerza el proceso, no solo el resultado</div>
+  <div class="mini-chart">
+    <div class="chart-title">Craving y malestar — últimos 7 días</div>
+    <div class="bar-chart" id="bar-chart"></div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--rust)"></div>Craving</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--sky)"></div>Malestar</div>
     </div>
-    <div class="skills-today-list" id="skills-list"><span style="font-size:13px;color:var(--text-dim)">Ninguna todavía — usa un ejercicio para registrarla</span></div>
   </div>
-  <div class="mini-chart"><div class="chart-title">Craving — últimos 7 días</div><div class="bar-chart" id="bar-chart"></div></div>
-  <div class="halt-week-box"><div class="chart-title">Perfil HALT semanal</div><div style="font-size:12px;color:var(--text-dim);margin-bottom:4px">Factores de riesgo emocional detectados esta semana.</div><div class="halt-row" id="halt-row"></div></div>
   <div class="mente-week-box"><div class="chart-title">Mente Clara — esta semana</div><div class="mente-week-row" id="mente-week-row"></div></div>
   <div class="halt-week-box" style="border-color:rgba(74,143,168,.2);background:var(--sky-dim)"><div class="chart-title" style="color:var(--sky)">PLEASE — adherencia semanal</div><div class="halt-row" id="please-row"></div></div>
   <div style="padding:14px 20px 0"><div class="screen-label" style="margin-bottom:10px">Logros</div><div class="logros-grid" id="logros-grid"></div></div>
@@ -644,15 +681,9 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
   <div class="screen-header"><div class="screen-label">Mi perfil</div><div class="screen-title">Ajustes</div></div>
   <div class="profile-box"><div class="profile-avatar">🌿</div><div class="profile-name">Usuario</div><div class="profile-id" id="profile-id">ID: —</div></div>
   <div class="settings-section"><div class="settings-section-title">Emergencia</div><div class="settings-row" onclick="editContact()"><div><div class="settings-row-label">Contacto de confianza</div><div class="settings-row-val" id="contact-display">No configurado</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
-  <div class="settings-section"><div class="settings-section-title">Terapeuta</div><div class="settings-row" onclick="openTerapeuta()"><div><div class="settings-row-label">Acceso del terapeuta</div><div class="settings-row-val">Informe semanal protegido</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div><div class="settings-row" onclick="changePin()"><div><div class="settings-row-label">Cambiar PIN</div><div class="settings-row-val">4 dígitos</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div><div class="settings-row" onclick="cambiarCodigoMuro()"><div><div class="settings-row-label">Código del Muro de Sinceridad</div><div class="settings-row-val" id="muro-code-display">TERAPIA (defecto)</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
-  <div class="settings-section"><div class="settings-section-title">Comunicación con tu psicólogo/a</div><div class="settings-row" onclick="generarResumenPsicologo()"><div><div class="settings-row-label">Compartir mi estado con mi psicólogo/a</div><div class="settings-row-val">Genera un resumen que puedes enviarle</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
+  <div class="settings-section"><div class="settings-section-title">Terapeuta</div><div class="settings-row" onclick="openTerapeuta()"><div><div class="settings-row-label">Acceso del terapeuta</div><div class="settings-row-val">Informe semanal protegido</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div><div class="settings-row" onclick="changePin()"><div><div class="settings-row-label">Cambiar PIN</div><div class="settings-row-val">4 dígitos</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
   <div class="settings-section"><div class="settings-section-title">Datos</div><div class="settings-row" onclick="exportData()"><div class="settings-row-label">Exportar mis datos</div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div><div class="settings-row" onclick="if(confirm('¿Borrar todos los datos?'))clearData()"><div class="settings-row-label" style="color:var(--rust)">Borrar todos mis datos</div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
-  <div class="data-note">
-    <strong>Tu diario es solo tuyo.</strong> Tu psicólogo/a solo ve el informe semanal cuando tú lo exportas o cuando accede al panel con su PIN en sesión contigo.<br><br>
-    <strong>Lo que ve tu psicólogo/a:</strong> semáforo de estado, craving medio, HALT semanal, adherencia PLEASE, alertas de riesgo y Mente Clara semanal.<br><br>
-    <strong>Lo que nunca ve:</strong> el contenido de tus respuestas en "Verificar los hechos", tus notas personales ni ningún dato que no hayas exportado explícitamente.<br><br>
-    <strong>Privacidad técnica:</strong> todos los datos se almacenan únicamente en este dispositivo. No se envían a ningún servidor. Tu identidad está protegida por un UUID anónimo — la correspondencia con tu nombre real solo existe en el registro físico del Centro.
-  </div>
+  <div class="data-note"><strong>Privacidad:</strong> Todos tus datos se almacenan únicamente en este dispositivo. No se envían a ningún servidor externo.</div>
 </div>
 
 <nav id="nav">
@@ -670,43 +701,37 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
   <div class="sos-handle"></div>
   <div class="sos-title">Estás a salvo 🌿</div>
   <div class="sos-sub">El impulso pasará. Empieza por los pros y contras — te ayuda a ganar tiempo.</div>
-
-  <!-- PROS Y CONTRAS -->
   <div class="pros-contras-box">
     <div class="pc-title">Pros y Contras ante el impulso</div>
-    <div class="pc-sub">Antes de actuar sobre el craving, mira esta balanza. Llevarla siempre en el móvil es parte del plan. (Tolerancia al malestar Ficha 4)</div>
+    <div class="pc-sub">Antes de actuar sobre el craving, mira esta balanza. (TM Ficha 4)</div>
     <div class="pc-grid">
       <div class="pc-col pros">
         <div class="pc-col-title">✓ Si no bebo</div>
         <div class="pc-item">Mantengo mi sobriedad y mis logros</div>
-        <div class="pc-item">Mañana me sentiré bien conmigo mismo/a</div>
+        <div class="pc-item">Mañana me sentiré bien conmigo</div>
         <div class="pc-item">Protejo mis relaciones y mi salud</div>
-        <div class="pc-item">El impulso durará solo 15-20 minutos</div>
+        <div class="pc-item">El impulso dura solo 15-20 minutos</div>
       </div>
       <div class="pc-col cons">
         <div class="pc-col-title">✗ Si bebo</div>
         <div class="pc-item">Vuelvo a cero en el contador</div>
-        <div class="pc-item">La culpa y vergüenza empeorarán el estado</div>
+        <div class="pc-item">La culpa empeorará el estado</div>
         <div class="pc-item">Un trago nunca se queda solo</div>
         <div class="pc-item">Rompo la promesa que me hice</div>
       </div>
     </div>
     <div class="pc-reflect">Recuerda: beber no resuelve el problema que generó el craving. Solo lo pospone y lo complica.</div>
   </div>
-
-  <div class="breathing-box"><div id="breath-circle">🫁</div><div id="breath-phase">Respiración 4-7-8</div><div id="breath-count">Reduce la activación del sistema nervioso</div><button id="breath-start" onclick="startBreathing()">Iniciar ejercicio</button></div>
-
+  <div class="breathing-box"><div id="breath-circle">🫁</div><div id="breath-phase">Respiración 4-6-8</div><div id="breath-count">Reduce la activación del sistema nervioso</div><button id="breath-start" onclick="startBreathing()">Iniciar ejercicio</button></div>
   <div class="sos-techniques">
-    <button class="technique-btn" onclick="showTechnique('temp')"><span class="technique-icon">🧊</span><div><div class="technique-name">Técnica TIP — Temperatura (DBT)</div><div class="technique-desc">Activa el reflejo de buceo. Reduce el craving en 30 seg.</div></div></button>
-    <button class="technique-btn" onclick="showTechnique('surf')"><span class="technique-icon">🌊</span><div><div class="technique-name">Surf del craving (ACT)</div><div class="technique-desc">Observa el impulso sin actuar. Dura solo 15-20 minutos.</div></div></button>
-    <button class="technique-btn" onclick="abrirSurfTimer()"><span class="technique-icon">⏱️</span><div><div class="technique-name">Cronómetro de surf — 15 min</div><div class="technique-desc">Frases de aceptación mientras cabalgas la ola.</div></div></button>
-    <button class="technique-btn" onclick="showTechnique('distrae')"><span class="technique-icon">🔄</span><div><div class="technique-name">Distráete (TM Ficha 6)</div><div class="technique-desc">Cambia la atención. Sal de la situación un momento.</div></div></button>
+    <button class="technique-btn" onclick="showTechnique('temp')"><span class="technique-icon">🧊</span><div><div class="technique-name">Técnica TIP — Temperatura</div><div class="technique-desc">Activa el reflejo de buceo. Reduce el craving en 30 seg.</div></div></button>
+    <button class="technique-btn" onclick="showTechnique('surf')"><span class="technique-icon">🌊</span><div><div class="technique-name">Surf del craving</div><div class="technique-desc">Observa el impulso sin actuar. Dura solo 15-20 minutos.</div></div></button>
+    <button class="technique-btn" onclick="showTechnique('distrae')"><span class="technique-icon">🔄</span><div><div class="technique-name">Distráete</div><div class="technique-desc">Cambia la atención. Sal de la situación un momento.</div></div></button>
   </div>
-
   <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase">Llamar ahora</div>
   <div class="sos-contacts">
     <a class="contact-btn urgent" href="tel:900161515"><svg viewBox="0 0 24 24" fill="none" stroke="var(--rust)" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.6 4.18 2 2 0 015.59 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.91 9.91a16 16 0 006.18 6.18l.91-.91a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><div><div class="contact-name" style="color:var(--rust)">Línea de adicciones</div><div class="contact-num">900 161 515 · Gratuito 24h</div></div></a>
-    <a class="contact-btn" href="tel:024"><svg viewBox="0 0 24 24" fill="none" stroke="var(--moss)" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.6 4.18 2 2 0 015.59 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.91 9.91a16 16 0 006.18 6.18l.91-.91a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><div><div class="contact-name">Línea atención conducta suicida</div><div class="contact-num">024 · Gratuito 24h</div></div></a>
+    <a class="contact-btn" href="tel:024"><svg viewBox="0 0 24 24" fill="none" stroke="var(--moss)" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.6 4.18 2 2 0 015.59 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.91 9.91a16 16 0 006.18 6.18l.91-.91a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><div><div class="contact-name">Línea conducta suicida</div><div class="contact-num">024 · Gratuito 24h</div></div></a>
     <button class="contact-btn" onclick="callMyContact()"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><div><div class="contact-name" style="color:var(--amber)">Mi contacto de confianza</div><div class="contact-num" id="my-contact-display">Configurar en Ajustes</div></div></button>
   </div>
   <button id="sos-close" onclick="document.getElementById('sos-overlay').classList.remove('open');stopBreathing()">Ya estoy mejor, cerrar</button>
@@ -716,6 +741,45 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
 <div id="technique-overlay" onclick="if(event.target===this)closeTechnique()">
   <div id="technique-modal"><div id="technique-title"></div><div id="technique-body"></div><button id="technique-close" onclick="closeTechnique()">Entendido</button></div>
 </div>
+
+<!-- MENTE SABIA MODAL -->
+<div id="mente-sabia-overlay" onclick="if(event.target===this)document.getElementById('mente-sabia-overlay').classList.remove('open')">
+<div id="mente-sabia-modal">
+  <div class="ms-title">Mente Sabia y Mente Clara</div>
+  <div class="ms-sub">En DBT, todos tenemos una <em>Mente Racional</em> (fría, lógica) y una <em>Mente Emocional</em> (caliente, impulsiva). La <strong>Mente Sabia</strong> es el punto intermedio — integra razón y emoción. Para quienes trabajamos la adicción, esta integración se adapta en tres estados específicos. (CP Ficha 2 · Adicciones Ficha 3)</div>
+  <div class="ms-venn">
+    <div class="ms-state adicta">
+      <div class="ms-state-icon">🌀</div>
+      <div class="ms-state-name">Adicta</div>
+      <div class="ms-state-desc">Te gobierna el impulso. Los pensamientos, emociones y conductas están determinados por la adicción.</div>
+    </div>
+    <div class="ms-state clara">
+      <div class="ms-state-icon">🌿</div>
+      <div class="ms-state-name">Clara ✓</div>
+      <div class="ms-state-desc">El lugar más seguro. Estás limpio/a <em>y</em> recuerdas que la adicción sigue siendo posible.</div>
+    </div>
+    <div class="ms-state limpia">
+      <div class="ms-state-icon">☀️</div>
+      <div class="ms-state-name">Limpia</div>
+      <div class="ms-state-desc">Estás bien, pero sin guardia. Piensas "ya lo controlo" o "ya aprendí la lección". Peligroso.</div>
+    </div>
+  </div>
+  <div class="ms-section">
+    <div class="ms-section-title">¿Por qué Mente Clara es el objetivo?</div>
+    <div class="ms-section-body">No basta con estar limpio/a — eso es Mente Limpia, y sobreestima el control. Mente Clara significa aceptar radicalmente que la caída no es imposible, disfrutar del éxito <em>y a la vez</em> planear para cuando lleguen los impulsos. Es la síntesis de sobriedad y humildad.</div>
+  </div>
+  <div class="ms-section">
+    <div class="ms-section-title">Señales de Mente Limpia (atención)</div>
+    <div class="ms-section-body">• "He aprendido la lección, ya no tengo problema"<br>• "Puedo controlar el hábito"<br>• Dejar la terapia o las reuniones<br>• Juntarse con personas que consumen<br>• Llevar dinero encima sin necesidad<br>• No confrontar los problemas que desencadenaban la adicción</div>
+  </div>
+  <div class="ms-section">
+    <div class="ms-section-title">Cómo practicar desde la app</div>
+    <div class="ms-section-body">Cada mañana, marca tu estado en la pantalla de inicio. Si detectas Mente Limpia, ve a los ejercicios 🟢 Construir y practica "De mente limpia a mente clara".</div>
+  </div>
+  <button class="ms-close" onclick="document.getElementById('mente-sabia-overlay').classList.remove('open')">Entendido</button>
+</div>
+</div>
+
 <div id="fecha-overlay"><div id="fecha-modal"><h3>Fecha de inicio de sobriedad</h3><p class="eva-note">Si estás cambiando la fecha tras una caída: una caída no te condena. Lo que importa es que has vuelto.</p><input type="date" id="fecha-input"><div class="fecha-btns"><button class="fecha-btn cancel" onclick="closeFecha()">Cancelar</button><button class="fecha-btn confirm" onclick="saveFecha()">Guardar</button></div></div></div>
 <div id="timer-overlay"><div id="timer-modal"><div id="timer-name"></div><div id="timer-display">0:00</div><button id="timer-stop" onclick="stopTimer()">Terminar ejercicio</button></div></div>
 
@@ -737,51 +801,27 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
     <div class="terap-section"><div class="terap-section-title">Resumen semanal</div><div class="terap-stat-row" id="terap-stats"></div></div>
     <div class="terap-section"><div class="terap-section-title">Protocolo revisión semanal</div>
       <div class="review-protocol"><div class="review-title">📋 Revisión cada lunes</div><div class="review-body">Próxima revisión sugerida: <strong id="next-review-date">—</strong></div>
-        <div class="semaforo-row"><div class="semaforo-item sem-verde"><div class="sem-color">🟢</div><div class="sem-label">Verde</div><div class="sem-desc">Craving &lt;4 · Sin alertas</div></div><div class="semaforo-item sem-ambar"><div class="sem-color">🟡</div><div class="sem-label">Ámbar</div><div class="sem-desc">1-2 alertas</div></div><div class="semaforo-item sem-rojo"><div class="sem-color">🔴</div><div class="sem-label">Rojo</div><div class="sem-desc">≥3 alertas o craving &gt;7</div></div></div>
+        <div class="semaforo-row"><div class="semaforo-item sem-verde"><div class="sem-color">🟢</div><div class="sem-label">Verde</div><div class="sem-desc">C/M &lt;4 · Sin alertas</div></div><div class="semaforo-item sem-ambar"><div class="sem-color">🟡</div><div class="sem-label">Ámbar</div><div class="sem-desc">1-2 alertas</div></div><div class="semaforo-item sem-rojo"><div class="sem-color">🔴</div><div class="sem-label">Rojo</div><div class="sem-desc">≥3 alertas o C/M &gt;7</div></div></div>
       </div>
     </div>
     <div class="terap-section"><div class="terap-section-title">Alertas clínicas</div><div id="terap-alerts"></div></div>
     <div class="terap-section"><div class="terap-section-title">Mente Clara — esta semana</div><div style="background:var(--warm);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px" id="terap-mente"></div></div>
-    <div class="terap-section"><div class="terap-section-title">Perfil HALT semanal</div><div style="background:var(--warm);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px" id="terap-halt"></div></div>
     <div class="terap-section"><div class="terap-section-title">Adherencia PLEASE</div><div style="background:var(--sky-dim);border:1px solid rgba(74,143,168,.2);border-radius:var(--radius-sm);padding:14px 16px" id="terap-please"></div></div>
-    <div class="terap-section"><div class="terap-section-title">Registros diarios</div><div style="background:var(--warm);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden"><table class="terap-table"><thead><tr><th>Fecha</th><th>C</th><th>Mente</th><th>HALT</th><th>E</th><th>PL</th><th>Apoyo</th></tr></thead><tbody id="terap-tbody"></tbody></table></div></div>
+    <div class="terap-section"><div class="terap-section-title">Registros diarios</div><div style="background:var(--warm);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden"><table class="terap-table"><thead><tr><th>Fecha</th><th>C</th><th>M</th><th>Mente</th><th>E</th><th>PL</th><th>Apoyo</th></tr></thead><tbody id="terap-tbody"></tbody></table></div></div>
     <div class="terap-section"><div class="terap-section-title">Identificación</div><div style="background:var(--warm);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px"><div class="code-label">UUID anónimo</div><div class="code-val" id="terap-uuid">—</div><div class="code-note">La correspondencia UUID ↔ identidad real está en el registro físico del centro.</div></div><button class="export-btn" onclick="exportTerapeutaData()">⬇ Exportar informe (JSON)</button></div>
-  </div>
-</div>
-
-<!-- MURO DE SINCERIDAD -->
-<div id="muro-overlay">
-  <div class="muro-icon">🤝</div>
-  <div class="muro-title">Acción Opuesta:<br>Transparencia</div>
-  <div class="muro-body">El seguimiento autónomo queda pausado. La acción opuesta a la vergüenza es la sinceridad. Tu prioridad ahora es contactar con tu terapeuta para tratar este episodio.<br><br><em>Una caída no te condena. Lo que importa es lo que haces a continuación.</em></div>
-  <div class="muro-actions">
-    <a class="muro-call" href="tel:900161515">📞 Llamar al Centro de Día</a>
-    <div>
-      <div class="muro-unlock-row">
-        <input class="muro-unlock-input" type="text" id="muro-codigo" placeholder="Código" maxlength="6">
-        <button class="muro-unlock-btn" onclick="intentarDesbloqueo()">Desbloquear</button>
-      </div>
-      <div class="muro-note">El código de desbloqueo lo proporciona tu terapeuta en la sesión individual.</div>
-    </div>
-  </div>
-</div>
-
-<!-- SURF TIMER -->
-<div id="surf-timer-overlay">
-  <div id="surf-timer-modal">
-    <span class="surf-wave">🌊</span>
-    <div class="surf-time-display" id="surf-display">15:00</div>
-    <div class="surf-progress"><div class="surf-progress-bar" id="surf-bar"></div></div>
-    <div class="surf-phrase" id="surf-phrase">Preparándote para surfear la ola...</div>
-    <button class="surf-stop-btn" onclick="detenerSurf()">He superado la ola — cerrar</button>
   </div>
 </div>
 
 <div id="toast"></div>
 
 <script>
-const DB_KEY='sendadigital_v4';
+const DB_KEY='sendadigital_v5';
 let db=JSON.parse(localStorage.getItem(DB_KEY)||'{}');
+// Migrar desde v4 si existe
+if(!db.uuid){
+  const old=JSON.parse(localStorage.getItem('sendadigital_v4')||'{}');
+  if(old.uuid){db={...old};showToast&&showToast('Datos migrados de v4 ✓')}
+}
 if(!db.uuid)db.uuid='SD-'+Math.random().toString(36).substr(2,8).toUpperCase();
 if(!db.registros)db.registros=[];
 if(!db.soberDate)db.soberDate=null;
@@ -789,11 +829,11 @@ if(!db.contact)db.contact=null;
 if(!db.pin)db.pin='1234';
 if(!db.prevTime)db.prevTime=null;
 if(!db.evaShown)db.evaShown=false;
+if(!db.menteRegistros)db.menteRegistros=[];
 saveDB();
 function saveDB(){localStorage.setItem(DB_KEY,JSON.stringify(db))}
 
-const HALT_LABELS={H:'Hunger (malestar físico)',A:'Anger/Affect (afecto negativo)',L:'Loneliness (soledad/vacío)',T:'Tired (agotamiento)'};
-
+// ── NAVEGACIÓN ──
 function goTo(s){
   document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(x=>x.classList.remove('active'));
@@ -814,55 +854,23 @@ function renderHome(){
   renderPreventionCard();
   document.getElementById('eva-msg').classList.toggle('show',!!db.evaShown);
   if(db.menteHoy)restoreMente();
-  // Restaurar termómetro
-  const termoGuardado=db.termoHoy||5;
-  const slider=document.getElementById('termo-slider');
-  if(slider){slider.value=termoGuardado;onTermometro(termoGuardado,false);}
-}
-
-const TERMO_DESCS=[
-  '','Tranquilo/a y centrado/a','Con alguna tensión','Estado moderado',
-  'Algo de malestar','Tensión notable','Malestar importante',
-  '⚠️ Vulnerabilidad alta','⚠️ Craving intenso','⚠️ Crisis — actúa ahora','🆘 Máxima urgencia'
-];
-
-function onTermometro(v, guardar=true){
-  v=+v;
-  const valEl=document.getElementById('termo-val');
-  const descEl=document.getElementById('termo-desc');
-  const crisis=document.getElementById('zona-crisis');
-  const normal=document.getElementById('zona-normal');
-  if(!valEl)return;
-  valEl.textContent=v;
-  valEl.className='termometro-val'+(v>=7?' alto':v>=5?' medio':'');
-  descEl.textContent=TERMO_DESCS[v]||'';
-  const esCrisis=v>=7;
-  crisis.style.display=esCrisis?'block':'none';
-  normal.style.display=esCrisis?'none':'block';
-  if(guardar){
-    db.termoHoy=v;
-    // Guardar en el registro del día
-    const today=new Date().toISOString().split('T')[0];
-    if(!db.termoRegistros)db.termoRegistros=[];
-    db.termoRegistros=db.termoRegistros.filter(r=>r.date!==today);
-    db.termoRegistros.push({date:today,valor:v});
-    saveDB();
-    // Sincronizar con slider de craving del diario
-    const slCraving=document.getElementById('sl-craving');
-    if(slCraving){slCraving.value=v;onCravingChange(v);}
+  // Restore slider values from today's registro if exists
+  const today=new Date().toISOString().split('T')[0];
+  const todayReg=db.registros.find(r=>r.date===today);
+  if(todayReg){
+    document.getElementById('home-sl-craving').value=todayReg.craving||1;
+    document.getElementById('home-val-craving').textContent=todayReg.craving||1;
+    document.getElementById('home-sl-malestar').value=todayReg.malestar||1;
+    document.getElementById('home-val-malestar').textContent=todayReg.malestar||1;
+    updateSliderColor('home-val-craving',todayReg.craving||1);
+    updateSliderColor('home-val-malestar',todayReg.malestar||1);
   }
 }
 
 function updateSobriety(){
   const el=document.getElementById('sober-days'),si=document.getElementById('sober-since');
-  if(db.soberDate){
-    const d=Math.floor((new Date()-new Date(db.soberDate))/86400000);
-    el.textContent=d;
-    si.textContent='Desde el '+new Date(db.soberDate+'T12:00').toLocaleDateString('es-ES',{day:'numeric',month:'long'});
-  } else {
-    el.textContent='—';
-    si.textContent='Tu camino de recuperación';
-  }
+  if(db.soberDate){const d=Math.floor((new Date()-new Date(db.soberDate))/86400000);el.textContent=d;si.textContent='Desde el '+new Date(db.soberDate+'T12:00').toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'})}
+  else{el.textContent='—';si.textContent='Toca "Editar fecha" para empezar'}
 }
 
 const MILESTONES=[{d:1,e:'🌱',l:'1 día'},{d:3,e:'⭐',l:'3 días'},{d:7,e:'🌿',l:'1 semana'},{d:14,e:'🌸',l:'2 semanas'},{d:30,e:'🏆',l:'1 mes'},{d:60,e:'🌙',l:'2 meses'},{d:90,e:'🌅',l:'3 meses'},{d:180,e:'🦋',l:'6 meses'},{d:365,e:'🎯',l:'1 año'}];
@@ -871,22 +879,90 @@ function renderMilestones(){
   document.getElementById('milestones-row').innerHTML=MILESTONES.map(m=>`<div class="milestone"><div class="milestone-badge ${days>=m.d?'achieved':'locked'}">${m.e}</div><div class="milestone-label">${m.l}</div></div>`).join('');
 }
 
+// ── HOME SLIDERS ──
+function updateSliderColor(valId, v){
+  const el=document.getElementById(valId);
+  el.className='slider-num '+(v>=7?'high':v>=5?'mid':'low');
+}
+
+function onHomeMalestarChange(v){
+  v=+v;
+  document.getElementById('home-val-malestar').textContent=v;
+  updateSliderColor('home-val-malestar',v);
+  const mid=document.getElementById('hint-malestar-mid');
+  const high=document.getElementById('hint-malestar-high');
+  const vhHome=document.getElementById('vh-home');
+  mid.classList.toggle('show',v>=5&&v<7);
+  high.classList.toggle('show',v>=7);
+  // Update VH inline
+  const cravingVal=+document.getElementById('home-sl-craving').value;
+  vhHome.classList.toggle('show',(v>=7||cravingVal>=7));
+  // Auto-open SOS at ≥9
+  if(v>=9){document.getElementById('sos-btn').classList.add('urgent');openSOS()}
+  else document.getElementById('sos-btn').classList.remove('urgent');
+  syncDiarioSlider('sl-malestar','val-malestar',v);
+}
+
+function onHomeCravingChange(v){
+  v=+v;
+  document.getElementById('home-val-craving').textContent=v;
+  updateSliderColor('home-val-craving',v);
+  const mid=document.getElementById('hint-craving-mid');
+  const high=document.getElementById('hint-craving-high');
+  const vhHome=document.getElementById('vh-home');
+  mid.classList.toggle('show',v>=5&&v<7);
+  high.classList.toggle('show',v>=7);
+  const malestarVal=+document.getElementById('home-sl-malestar').value;
+  vhHome.classList.toggle('show',(v>=7||malestarVal>=7));
+  if(v>=9){document.getElementById('sos-btn').classList.add('urgent');openSOS()}
+  else document.getElementById('sos-btn').classList.remove('urgent');
+  syncDiarioSlider('sl-craving','val-craving',v);
+}
+
+function syncDiarioSlider(sliderId, valId, v){
+  const s=document.getElementById(sliderId);
+  const vEl=document.getElementById(valId);
+  if(s){s.value=v;if(vEl)vEl.textContent=v}
+  // Also trigger verificar box in diario
+  if(sliderId==='sl-craving'){
+    document.getElementById('verificar-box').classList.toggle('show',v>=7);
+  }
+}
+
+function switchUsoExternal(uso){
+  const tabs={crisis:'tab-crisis',vulnerable:'tab-vulnerable',construir:'tab-construir'};
+  document.querySelectorAll('.uso-tab').forEach(t=>t.classList.remove('active'));
+  const btn=document.getElementById(tabs[uso]);
+  if(btn)btn.classList.add('active');
+  document.querySelectorAll('.uso-context').forEach(c=>c.classList.remove('show'));
+  document.getElementById('ctx-'+uso).classList.add('show');
+  currentUso=uso;
+  renderTareas(uso);
+}
+
 // ── MENTE CLARA ──
 const MENTE_NOTAS={
-  adicta:'⚠️ Mente Adicta: el impulso te está gobernando. Abre el botón SOS ahora. No tomes decisiones importantes en este estado.',
-  clara:'✓ Mente Clara: estás sobrio/a y eres consciente del riesgo. Este es el estado más seguro. Mantén los hábitos PLEASE.',
-  limpia:'⚠️ Mente Limpia: estás bien pero sin guardia. Cuidado — la mente limpia sobreestima el control y subestima el riesgo. Revisa tus hábitos protectores.'
+  adicta:'⚠️ Mente Adicta: el impulso te está gobernando. Abre el botón SOS ahora.',
+  clara:'✓ Mente Clara: sobrio/a y consciente del riesgo. El estado más seguro. Mantén los hábitos PLEASE.',
+  limpia:'⚠️ Mente Limpia: estás bien pero sin guardia. Cuidado — la mente limpia sobreestima el control.'
 };
-function selectMente(tipo, btn){
+const MENTE_DETAIL={
+  adicta:{t:'¿Qué significa Mente Adicta?',b:'Los impulsos habituales gobiernan tus pensamientos, emociones y conductas. Estás en mente emocional pura. No tomes decisiones importantes — activa el SOS.'},
+  clara:{t:'¿Qué significa Mente Clara?',b:'Estás limpio/a Y recuerdas que la adicción sigue siendo posible. Aceptas radicalmente que la caída no es imposible. Disfrutas del éxito mientras planeas para las tentaciones. Es la síntesis de sobriedad y humildad.'},
+  limpia:{t:'¿Qué significa Mente Limpia?',b:'Estás limpio/a pero inconsciente del peligro. Piensas "ya aprendí la lección" o "puedo controlarlo". Este estado lleva a conductas aparentemente irrelevantes que abren la puerta a la recaída.'}
+};
+function selectMente(tipo,btn){
   document.querySelectorAll('.mente-btn').forEach(b=>b.classList.remove('selected'));
   btn.classList.add('selected');
   const nota=document.getElementById('mente-nota');
   nota.textContent=MENTE_NOTAS[tipo];
   nota.className='mente-nota show';
+  const det=document.getElementById('mente-detail');
+  document.getElementById('mente-detail-title').textContent=MENTE_DETAIL[tipo].t;
+  document.getElementById('mente-detail-body').textContent=MENTE_DETAIL[tipo].b;
+  det.className='mente-detail show';
   db.menteHoy=tipo;
-  // Guardar con fecha para el informe semanal
   const today=new Date().toISOString().split('T')[0];
-  if(!db.menteRegistros)db.menteRegistros=[];
   db.menteRegistros=db.menteRegistros.filter(r=>r.date!==today);
   db.menteRegistros.push({date:today,mente:tipo});
   saveDB();
@@ -896,9 +972,17 @@ function restoreMente(){
   const tipos=['adicta','clara','limpia'];
   tipos.forEach(t=>{
     const btn=document.querySelector(`.mente-btn.m-${t}`);
-    if(btn&&db.menteHoy===t){btn.classList.add('selected');const nota=document.getElementById('mente-nota');nota.textContent=MENTE_NOTAS[t];nota.className='mente-nota show';}
+    if(btn&&db.menteHoy===t){
+      btn.classList.add('selected');
+      document.getElementById('mente-nota').textContent=MENTE_NOTAS[t];
+      document.getElementById('mente-nota').className='mente-nota show';
+      document.getElementById('mente-detail-title').textContent=MENTE_DETAIL[t].t;
+      document.getElementById('mente-detail-body').textContent=MENTE_DETAIL[t].b;
+      document.getElementById('mente-detail').className='mente-detail show';
+    }
   });
 }
+function openMenteSabia(){document.getElementById('mente-sabia-overlay').classList.add('open')}
 
 // ── FECHA / EVA ──
 function openFechaModal(){if(db.soberDate)document.getElementById('fecha-input').value=db.soberDate;document.getElementById('fecha-overlay').classList.add('open')}
@@ -926,17 +1010,29 @@ function scheduleNotif(ts){const[h,m]=ts.split(':').map(Number),now=new Date(),t
 
 // ── SOS ──
 let breathInterval=null,breathing=false,breathPhaseIdx=0,breathCycle=0;
-const BP=[{n:'Inhala',d:4000,c:'inhale'},{n:'Mantén',d:7000,c:'hold'},{n:'Exhala',d:8000,c:'exhale'}];
+// 4-6-8
+const BP=[{n:'Inhala',d:4000,c:'inhale'},{n:'Mantén',d:6000,c:'hold'},{n:'Exhala',d:8000,c:'exhale'}];
 function openSOS(){document.getElementById('sos-overlay').classList.add('open');const mc=db.contact;document.getElementById('my-contact-display').textContent=mc?mc.name+' · '+mc.phone:'Configurar en Ajustes';stopBreathing()}
-function closeSOS(e){if(e&&e.target!==document.getElementById('sos-overlay'))return;document.getElementById('sos-overlay').classList.remove('open');stopBreathing()}
+function closeSOS(e){if(e&&e.target!==document.getElementById('sos-overlay'))return;document.getElementById('sos-overlay').classList.remove('open');stopBreathing();document.getElementById('sos-btn').classList.remove('urgent')}
 function startBreathing(){if(breathing)return;breathing=true;breathCycle=0;breathPhaseIdx=0;document.getElementById('breath-start').style.display='none';runBP()}
-function runBP(){if(!breathing)return;const p=BP[breathPhaseIdx],c=document.getElementById('breath-circle');c.className=p.c;document.getElementById('breath-phase').textContent=p.n+' ('+p.d/1000+'s)';document.getElementById('breath-count').textContent='Ciclo '+(breathCycle+1)+' de 4';breathInterval=setTimeout(()=>{breathPhaseIdx++;if(breathPhaseIdx>=BP.length){breathPhaseIdx=0;breathCycle++;if(breathCycle>=4){stopBreathing();showToast('¡4 ciclos completados! 🌿');registrarHabilidad('Respiración 4-7-8');return}}runBP()},p.d)}
-function stopBreathing(){breathing=false;clearTimeout(breathInterval);const c=document.getElementById('breath-circle');c.className='';c.textContent='🫁';document.getElementById('breath-phase').textContent='Respiración 4-7-8';document.getElementById('breath-count').textContent='Reduce la activación del sistema nervioso';document.getElementById('breath-start').style.display='inline-block'}
+function runBP(){
+  if(!breathing)return;
+  const p=BP[breathPhaseIdx],c=document.getElementById('breath-circle');
+  c.className=p.c;
+  document.getElementById('breath-phase').textContent=p.n+' ('+p.d/1000+'s)';
+  document.getElementById('breath-count').textContent='Ciclo '+(breathCycle+1)+' de 7';
+  breathInterval=setTimeout(()=>{
+    breathPhaseIdx++;
+    if(breathPhaseIdx>=BP.length){breathPhaseIdx=0;breathCycle++;if(breathCycle>=7){stopBreathing();showToast('¡7 ciclos completados — 3 min! 🌿');return}}
+    runBP()
+  },p.d)
+}
+function stopBreathing(){breathing=false;clearTimeout(breathInterval);const c=document.getElementById('breath-circle');c.className='';c.textContent='🫁';document.getElementById('breath-phase').textContent='Respiración 4-6-8';document.getElementById('breath-count').textContent='Reduce la activación del sistema nervioso';document.getElementById('breath-start').style.display='inline-block'}
 
 const TECH={
-  temp:{t:'🧊 Técnica TIP — Temperatura (DBT)',b:`<b>El reflejo de buceo:</b> Agua muy fría en la cara activa el nervio vago y reduce la frecuencia cardíaca hasta un 25%.<br><br><b>Pasos:</b><br>1. Llena un recipiente con agua fría con hielo.<br>2. Aguanta la respiración y sumerge la cara 30 segundos.<br>3. Repite 2-3 veces.<br><br><em>Es una respuesta biológica involuntaria — no necesitas motivación para que funcione.</em><br><br><small>Fuente: Tolerancia al malestar Ficha 5 — DBT Adicciones Sesión 4</small>`},
-  surf:{t:'🌊 Surf del craving (ACT)',b:`El impulso de consumir es como una ola: sube, alcanza su pico y baja solo. <em>Dura entre 15-20 minutos.</em><br><br>1. Siéntate y localiza el craving en tu cuerpo.<br>2. Descríbelo como fenómeno físico: temperatura, forma, intensidad.<br>3. Respira hacia esa sensación. No la alimentes. Solo obsérvala.<br>4. Observa cómo cambia sin que hagas nada.<br><br><em>Surfear significa que no tienes que caer bajo la ola. Solo cabalgarla.</em>`},
-  distrae:{t:'🔄 Distráete (TM Ficha 6)',b:`Cambia la atención de aquello que te causa malestar. Sal de la situación por un momento.<br><br><b>Con actividades:</b> Camina, llama a alguien, dúchate, limpia, pon música alta.<br><br><b>Con otros pensamientos:</b> Cuenta objetos de un color, resuelve un enigma, lee.<br><br><b>Con emociones opuestas:</b> Mira algo gracioso, escucha música que te eleve.<br><br><b>Ayuda:</b> Haz algo por otra persona — salir de ti mismo/a rompe el bucle.<br><br><small>Fuente: Tolerancia al malestar Ficha 6 — DBT Adicciones Sesión 4</small>`}
+  temp:{t:'🧊 Técnica TIP — Temperatura',b:`<b>El reflejo de buceo:</b> Agua muy fría en la cara activa el nervio vago y reduce la frecuencia cardíaca hasta un 25%.<br><br><b>Pasos (2 minutos):</b><br>1. Llena un recipiente con agua muy fría (con hielo si puedes).<br>2. Aguanta la respiración y sumerge la cara 30 segundos.<br>3. Repite 3-4 veces.<br><br><em>Es una respuesta biológica involuntaria — no necesitas motivación para que funcione.</em><br><br><small>TM Ficha 5 · Sesión 4</small>`},
+  surf:{t:'🌊 Surf del craving',b:`El impulso es como una ola: sube, llega a su pico y baja solo. <em>Dura entre 15-20 minutos.</em><br><br>1. Siéntate y localiza el craving en tu cuerpo.<br>2. Descríbelo: temperatura, forma, intensidad. Sin juzgar.<br>3. Respira hacia esa sensación. No la alimentes. Solo obsérvala.<br>4. Observa cómo cambia sin que hayas hecho nada.<br><br><em>Surfear significa no caer bajo la ola — solo cabalgarla.</em><br><br><small>CP Ficha 5 · Sesión 1</small>`},
+  distrae:{t:'🔄 Distráete',b:`Cambia la atención de lo que te causa malestar. Sal de la situación un momento.<br><br><b>Con actividades:</b> Camina, llama a alguien, dúchate, limpia, pon música alta.<br><br><b>Con emociones opuestas:</b> Mira algo gracioso, escucha música que te eleve.<br><br><b>Con otros pensamientos:</b> Cuenta objetos de un color, resuelve un enigma, lee.<br><br><b>Ayuda:</b> Haz algo por otra persona — salir de ti mismo/a rompe el bucle.<br><br><small>TM Ficha 6 · Sesión 4</small>`}
 };
 function showTechnique(k){document.getElementById('technique-title').textContent=TECH[k].t;document.getElementById('technique-body').innerHTML=TECH[k].b;document.getElementById('technique-overlay').classList.add('open')}
 function closeTechnique(){document.getElementById('technique-overlay').classList.remove('open')}
@@ -947,58 +1043,62 @@ let selMood=null,selApoyo=null;
 function onCravingChange(v){
   document.getElementById('val-craving').textContent=v;
   document.getElementById('verificar-box').classList.toggle('show',+v>=7);
+  // Sync to home slider
+  const hs=document.getElementById('home-sl-craving');
+  if(hs){hs.value=v;document.getElementById('home-val-craving').textContent=v;updateSliderColor('home-val-craving',+v)}
 }
-function selectMood(b){document.querySelectorAll('.mood-chip').forEach(c=>c.classList.remove('selected'));b.classList.add('selected');selMood=b.textContent.replace(/[A-Z]/g,'').trim()}
+function selectMood(b){document.querySelectorAll('.mood-chip').forEach(c=>c.classList.remove('selected'));b.classList.add('selected');selMood=b.textContent.trim()}
 function selectApoyo(v){selApoyo=v;document.getElementById('apoyo-si').classList.toggle('selected',v==='si');document.getElementById('apoyo-no').classList.toggle('selected',v==='no')}
 
 function guardarDiario(){
   const today=new Date().toISOString().split('T')[0];
   if(db.registros.find(r=>r.date===today)){showToast('Ya registraste hoy 📓');return}
-  const moodBtn=document.querySelector('.mood-chip.selected');
-  const haltLetter=moodBtn?moodBtn.dataset.halt:'-';
   const craving=+document.getElementById('sl-craving').value;
+  const malestar=+document.getElementById('sl-malestar').value;
   const please={enfermedad:document.getElementById('pl-enfermedad').checked,sustancias:document.getElementById('pl-sustancias').checked,alimentacion:document.getElementById('pl-alimentacion').checked,sueno:document.getElementById('pl-sueno').checked,ejercicio:document.getElementById('pl-ejercicio').checked};
   const pleaseScore=Object.values(please).filter(Boolean).length;
-  // Verificar los hechos si craving ≥7
   const vh=craving>=7?{evento:document.getElementById('vh-evento').value,interpretacion:document.getElementById('vh-interpretacion').value,probabilidad:document.getElementById('vh-probabilidad').value}:null;
-  db.registros.unshift({date:today,craving,mood:selMood||'Sin selección',halt:haltLetter,eficacia:+document.getElementById('sl-eficacia').value,horas:+document.getElementById('sl-horas').value,calidadSueno:+document.getElementById('sl-calidad').value,apoyo:selApoyo||'sin respuesta',please,pleaseScore,mente:db.menteHoy||null,verificarHechos:vh});
+  // Also capture VH from home if filled
+  const vhHome={evento:document.getElementById('vh-home-evento')?.value||'',interp:document.getElementById('vh-home-interp')?.value||''};
+  db.registros.unshift({date:today,craving,malestar,mood:selMood||'Sin selección',eficacia:+document.getElementById('sl-eficacia').value,horas:+document.getElementById('sl-horas').value,calidadSueno:+document.getElementById('sl-calidad').value,apoyo:selApoyo||'sin respuesta',please,pleaseScore,mente:db.menteHoy||null,verificarHechos:vh,vhHome});
   saveDB();showToast('Registro guardado ✓');renderRegistros();
   // Reset
-  document.getElementById('sl-craving').value=5;document.getElementById('val-craving').textContent='5';document.getElementById('verificar-box').classList.remove('show');
+  document.getElementById('sl-craving').value=5;document.getElementById('val-craving').textContent='5';
+  document.getElementById('sl-malestar').value=5;document.getElementById('val-malestar').textContent='5';
+  document.getElementById('verificar-box').classList.remove('show');
   document.getElementById('sl-eficacia').value=7;document.getElementById('val-eficacia').textContent='7';
   document.querySelectorAll('.mood-chip').forEach(c=>c.classList.remove('selected'));
   selMood=null;selApoyo=null;document.getElementById('apoyo-si').classList.remove('selected');document.getElementById('apoyo-no').classList.remove('selected');
   ['pl-enfermedad','pl-sustancias','pl-alimentacion','pl-sueno','pl-ejercicio'].forEach(id=>{document.getElementById(id).checked=false});
-  if(document.getElementById('vh-evento'))document.getElementById('vh-evento').value='';
-  if(document.getElementById('vh-interpretacion'))document.getElementById('vh-interpretacion').value='';
-  if(document.getElementById('vh-probabilidad'))document.getElementById('vh-probabilidad').value='';
+  ['vh-evento','vh-interpretacion','vh-probabilidad'].forEach(id=>{if(document.getElementById(id))document.getElementById(id).value=''});
 }
+
 function renderRegistros(){
   const list=document.getElementById('registros-list');
   if(!db.registros.length){list.innerHTML='<p style="font-size:13px;color:var(--text-dim);text-align:center;padding:16px 0">Sin registros todavía</p>';return}
   list.innerHTML=db.registros.slice(0,7).map(r=>{
     const d=new Date(r.date+'T12:00'),label=d.toLocaleDateString('es-ES',{weekday:'short',day:'numeric',month:'short'});
-    const cc=r.craving>=7?'chip-red':r.craving>=4?'chip-amber':'chip-green';
-    const ec=r.eficacia>=7?'chip-green':r.eficacia>=4?'chip-amber':'chip-red';
+    const cc=r.craving>=7?'chip-red':r.craving>=5?'chip-amber':'chip-green';
+    const mc=r.malestar>=7?'chip-red':r.malestar>=5?'chip-amber':'chip-green';
+    const ec=r.eficacia>=7?'chip-green':r.eficacia>=5?'chip-amber':'chip-red';
     const menteEmoji=r.mente==='adicta'?'🌀':r.mente==='clara'?'🌿':r.mente==='limpia'?'☀️':'';
-    const haltChip=r.halt&&r.halt!=='-'?`<span class="chip-small chip-red">HALT:${r.halt}</span>`:'';
-    return`<div class="registro-item"><div class="registro-fecha">${label}</div><div class="registro-chips"><span class="chip-small ${cc}">C${r.craving}</span><span class="chip-small ${ec}">E${r.eficacia}</span>${haltChip}${menteEmoji?`<span class="chip-small chip-amber">${menteEmoji}</span>`:''}<span class="chip-small chip-sky">PL${r.pleaseScore||0}/5</span></div></div>`;
+    return`<div class="registro-item"><div class="registro-fecha">${label}</div><div class="registro-chips"><span class="chip-small ${cc}">C${r.craving}</span><span class="chip-small ${mc}">M${r.malestar||'—'}</span><span class="chip-small ${ec}">E${r.eficacia}</span>${menteEmoji?`<span class="chip-small chip-amber">${menteEmoji}</span>`:''}<span class="chip-small chip-sky">PL${r.pleaseScore||0}/5</span></div></div>`;
   }).join('');
 }
 
-// ── TAREAS por momento de uso ──
+// ── TAREAS ──
 let currentUso='crisis';
 const TAREAS_USO={
   crisis:[
-    {id:'resp478',name:'Respiración 4-7-8',duration:'5 min',icon:'🌬️',iconBg:'var(--moss-dim)',tags:[{l:'Respiración',c:'tag-resp'},{l:'TIP',c:'tag-dbt'}],timerMin:5,fuente:'TM Ficha 5 · Sesión 4',
-     steps:['Expulsa todo el aire por la boca con un sonido suave.','Inhala silenciosamente por la nariz contando hasta 4.','Aguanta la respiración contando hasta 7.','Exhala completamente por la boca contando hasta 8. Este es un ciclo.','Repite 4 veces. No hagas más de 4 ciclos seguidos al principio.']},
-    {id:'tipp',name:'Técnica TIP (DBT)',duration:'10 min',icon:'🧊',iconBg:'rgba(160,128,96,.13)',tags:[{l:'DBT',c:'tag-dbt'},{l:'Crisis',c:'tag-motor'}],timerMin:10,fuente:'TM Ficha 5 · Sesión 4',
-     steps:['T — Temperatura: Agua muy fría en la cara o hielo en muñecas. Activa el reflejo de buceo del nervio vago.','I — Ejercicio Intenso: 60 segundos de saltos o sentadillas. Quema el exceso de cortisol.','P — Respiración Pausada: Inhala 4s, exhala 6-8s. Activa el sistema parasimpático.','P — Relajación muscular Progresiva: Tensa y suelta cada grupo muscular de pies a cabeza.']},
+    {id:'resp468',name:'Respiración 4-6-8',duration:'3 min',icon:'🌬️',iconBg:'var(--moss-dim)',tags:[{l:'Respiración',c:'tag-resp'},{l:'TIP',c:'tag-dbt'}],timerMin:3,fuente:'TM Ficha 5 · Sesión 4',
+     steps:['Expulsa todo el aire por la boca con un sonido suave.','Inhala silenciosamente por la nariz contando hasta 4.','Aguanta la respiración contando hasta 6.','Exhala completamente por la boca contando hasta 8. Este es un ciclo.','Repite 7 ciclos (aproximadamente 3 minutos). Este ritmo activa el sistema parasimpático y reduce la frecuencia cardíaca.']},
+    {id:'tipp',name:'Técnica TIP (DBT)',duration:'2 min',icon:'🧊',iconBg:'rgba(160,128,96,.13)',tags:[{l:'DBT',c:'tag-dbt'},{l:'Crisis',c:'tag-motor'}],timerMin:2,fuente:'TM Ficha 5 · Sesión 4',
+     steps:['T — Temperatura: Agua muy fría en la cara o hielo en muñecas. Activa el reflejo de buceo del nervio vago. Mantén 30 segundos, repite 3-4 veces.','I — Ejercicio Intenso: 60 segundos de saltos o sentadillas. Quema el exceso de cortisol.','P — Respiración Pausada: Inhala 4s, exhala 8s. Activa el sistema parasimpático.','P — Relajación muscular Progresiva: Tensa y suelta cada grupo muscular de pies a cabeza.']},
     {id:'pros-contras',name:'Pros y Contras',duration:'5 min',icon:'⚖️',iconBg:'var(--rust-dim)',tags:[{l:'DBT',c:'tag-dbt'},{l:'Adicciones',c:'tag-adicciones'}],timerMin:5,fuente:'TM Ficha 4 · Sesión 3',
-     steps:['Antes de actuar: escribe los pros de NO consumir (mantener sobriedad, bienestar, relaciones) y los contras de consumir (culpa, retroceso, riesgo).','Recuerda consecuencias pasadas de actuar sobre el impulso. ¿Cómo te sentiste después?','Imagina las consecuencias positivas de resistir este impulso ahora mismo.','Lleva siempre este balance en la app — es tu escudo en el momento de mayor vulnerabilidad.','El impulso durará 15-20 minutos. Los pros de resistir duran para siempre.']},
-    {id:'surf',name:'Surf del craving',duration:'15 min',icon:'🌊',iconBg:'var(--amber-dim)',tags:[{l:'Mindfulness',c:'tag-mindful'},{l:'ACT',c:'tag-dbt'}],timerMin:15,fuente:'CP Ficha 5 · Sesión 1',
+     steps:['Antes de actuar: recuerda los pros de NO consumir (sobriedad, bienestar, relaciones) y los contras de consumir (culpa, retroceso, riesgo).','Recuerda consecuencias pasadas de actuar sobre el impulso. ¿Cómo te sentiste después?','Imagina las consecuencias positivas de resistir este impulso ahora mismo.','Lleva siempre este balance en la app — es tu escudo en el momento de mayor vulnerabilidad.','El impulso durará 15-20 minutos. Los pros de resistir duran para siempre.']},
+    {id:'surf',name:'Surf del craving',duration:'20 min',icon:'🌊',iconBg:'var(--amber-dim)',tags:[{l:'Mindfulness',c:'tag-mindful'},{l:'ACT',c:'tag-dbt'}],timerMin:20,fuente:'CP Ficha 5 · Sesión 1',
      steps:['Siéntate cómodamente. Cierra los ojos si quieres.','Localiza el craving en tu cuerpo. ¿Pecho, garganta, estómago?','Descríbelo como fenómeno físico: temperatura, forma, intensidad. Sin juzgar.','El craving dura 15-20 minutos — es una ola. Sube y baja.','Respira hacia esa sensación. No la alimentes. Solo obsérvala.','Observa cómo cambia sin que hayas hecho nada. Puedes tolerar esto.']},
-    {id:'distrae',name:'Distráete',duration:'20 min',icon:'🔄',iconBg:'rgba(160,128,96,.12)',tags:[{l:'DBT',c:'tag-dbt'}],timerMin:20,fuente:'TM Ficha 6 · Sesión 4',
+    {id:'distrae',name:'Distráete',duration:'Variable',icon:'🔄',iconBg:'rgba(160,128,96,.12)',tags:[{l:'DBT',c:'tag-dbt'}],timerMin:null,fuente:'TM Ficha 6 · Sesión 4',
      steps:['Cambia la atención de lo que te causa malestar. Sal de la situación un momento.','Actividades: camina, llama a alguien, dúchate, limpia, pon música alta.','Emociones opuestas: mira algo gracioso, escucha música que te eleve.','Otros pensamientos: cuenta objetos de un color, resuelve un enigma, lee.','Ayuda a alguien: haz algo por otra persona. Salir de ti mismo/a rompe el bucle.']}
   ],
   vulnerable:[
@@ -1008,18 +1108,18 @@ const TAREAS_USO={
      steps:['Identifica la emoción y el impulso de acción que te genera (ej: tristeza → aislarte).','Comprueba si la emoción está justificada por los hechos reales.','Si NO está justificada: haz exactamente lo contrario al impulso. Si quieres aislarte → contacta a alguien.','Hazlo completamente: en postura, expresión facial, tono de voz y pensamientos. No a medias.','Continúa la acción opuesta hasta que la emoción disminuya perceptiblemente.']},
     {id:'mejora',name:'Mejora el momento — ÚSALAS',duration:'10 min',icon:'✨',iconBg:'var(--moss-dim)',tags:[{l:'DBT',c:'tag-dbt'}],timerMin:10,fuente:'TM Ficha 8 · Sesión 5',
      steps:['U — Una cosa a la vez: pon toda la atención en lo que haces ahora. Nada más.','S — Significado: encuentra algo de valor en este momento difícil. Haz virtud de la necesidad.','A — Aliento: repítete "puedo superarlo", "no durará siempre", "estoy haciendo lo mejor que puedo".','L — Lugar seguro: imagina un espacio relajante y seguro solo tuyo.','A — Alto/Vacaciones: tómate 20 minutos de respiro total. Desconecta sin culpa.','S — Sabiduría: abre tu corazón a tu propia mente sabia. Pide fuerzas para tolerar este momento.']},
-    {id:'mente-clara-practica',name:'Pasar de Mente Limpia a Mente Clara',duration:'10 min',icon:'🌿',iconBg:'var(--moss-dim)',tags:[{l:'Adicciones',c:'tag-adicciones'}],timerMin:10,fuente:'Adicciones Fichas 3 y 4 · Sesión 7',
-     steps:['Reconoce si estás en Mente Limpia: "ya no tengo problema", "puedo controlarlo", "he aprendido la lección". Esto es peligroso.','Mente Clara = estar sobrio/a Y recordar que la adicción sigue siendo posible.','Revisa las señales de mente limpia: ¿estás evitando terapia? ¿juntándote con personas que consumen? ¿llevando dinero encima sin necesidad?','Practica la aceptación radical: la caída no es imposible. Planificar para cuando vengan los impulsos es de Mente Clara, no de cobardía.','Identifica una conducta de Mente Limpia que tengas ahora y sustitúyela por una de Mente Clara.']}
+    {id:'mente-clara-practica',name:'De Mente Limpia a Mente Clara',duration:'10 min',icon:'🌿',iconBg:'var(--moss-dim)',tags:[{l:'Adicciones',c:'tag-adicciones'}],timerMin:10,fuente:'Adicciones Fichas 3 y 4 · Sesión 7',
+     steps:['Reconoce si estás en Mente Limpia: "ya no tengo problema", "puedo controlarlo". Esto es peligroso.','Mente Clara = estar sobrio/a Y recordar que la adicción sigue siendo posible.','Revisa señales de mente limpia: ¿evitas la terapia? ¿te juntas con personas que consumen? ¿llevas dinero encima sin necesidad?','Practica la aceptación radical: la caída no es imposible. Planificar para los impulsos es de Mente Clara, no de cobardía.','Identifica una conducta de Mente Limpia que tengas ahora y sustitúyela por una de Mente Clara.']}
   ],
   construir:[
     {id:'please',name:'Revisión PLEASE diaria',duration:'5 min',icon:'🌱',iconBg:'var(--sky-dim)',tags:[{l:'PLEASE',c:'tag-please'},{l:'RE',c:'tag-dbt'}],timerMin:5,fuente:'RE Ficha 14 · Sesión 13',
-     steps:['PL — Salud física: ¿Tienes algún malestar sin atender? La enfermedad no tratada sube la vulnerabilidad al craving.','E — Evitar sustancias: ¿Has evitado otras sustancias que alteren el estado de ánimo (cafeína excesiva, etc.)?','A — Alimentación: ¿Has comido equilibrado? Saltarse comidas baja la glucosa y aumenta la irritabilidad — la H de HALT.','S — Sueño: La desregulación del ritmo circadiano es el biomarcador de vulnerabilidad más consistente en TUA.','E — Ejercicio: 20 minutos de actividad física reduce el cortisol y aumenta la dopamina. No tiene que ser intenso.']},
+     steps:['PL — Salud física: ¿Tienes algún malestar sin atender? La enfermedad no tratada sube la vulnerabilidad al craving.','E — Evitar sustancias: ¿Has evitado otras sustancias que alteren el estado de ánimo?','A — Alimentación: ¿Has comido equilibrado? Saltarse comidas baja la glucosa y aumenta la irritabilidad.','S — Sueño: La desregulación del ritmo circadiano es el biomarcador de vulnerabilidad más consistente en TUA.','E — Ejercicio: 20 minutos de actividad física reduce el cortisol y aumenta la dopamina.']},
+    {id:'mente-sabia-ejercicio',name:'Practicar Mente Sabia / Mente Clara',duration:'10 min',icon:'🪨',iconBg:'var(--bark-dim)',tags:[{l:'Mindfulness',c:'tag-mindful'},{l:'Adicciones',c:'tag-adicciones'}],timerMin:10,fuente:'CP Fichas 2-3 · Adicciones Ficha 3 · Sesiones 1 y 7',
+     steps:['Siéntate cómodamente. Respira profundo tres veces.','Visualización "Una piedra en un lago": imagínate como una piedra que cae suavemente al fondo de un lago tranquilo. Al llegar al fondo, descansa. Eso es tu centro — tu mente sabia.','Inhala diciendo mentalmente "MENTE", exhala diciendo "SABIA". Repite 5 veces.','Desde ese lugar, pregúntate: ¿estoy en Mente Clara ahora mismo? ¿Estoy sobrio/a Y recuerdo que el riesgo sigue existiendo?','Si detectas Mente Limpia (sobreconfianza), identifica una conducta de mente limpia y escribe cómo cambiarla a una de Mente Clara.','Cierra con tres respiraciones conscientes.']},
     {id:'activacion',name:'Activación conductual',duration:'20 min',icon:'🚶',iconBg:'var(--rust-dim)',tags:[{l:'Activación',c:'tag-motor'},{l:'RE',c:'tag-dbt'}],timerMin:20,fuente:'RE Ficha 10-11 · Sesión 13',
      steps:['Elige una actividad incompatible con beber: caminar, llamar a alguien, ducharse, cocinar, voluntariado.','No importa que no tengas ganas. El estado de ánimo sigue a la conducta — no al revés.','20 minutos de actividad física ligera: caminar, estiramientos, yoga.','Centra la atención en sensaciones físicas: pies en el suelo, aire en la piel.','Al terminar, anota en el diario cómo ha cambiado tu craving.']},
     {id:'abstinencia-dialectica',name:'Abstinencia Dialéctica',duration:'10 min',icon:'🔒',iconBg:'var(--earth-dim)',tags:[{l:'Adicciones',c:'tag-adicciones'}],timerMin:10,fuente:'Adicciones Ficha 1 · Sesión 6',
-     steps:['El objetivo es la abstinencia completa. Pero si hay una caída, el objetivo es minimizar el daño y volver al vagón lo antes posible.','Una caída no te condena. Lo que importa es no dejar que la caída se convierta en un desastre. Busca el punto intermedio.','Plan para la abstinencia: planifica actividades incompatibles, rodéate de personas que apoyen tu sobriedad, recuerda tus razones.','Plan para si hay caída: llama a tu terapeuta, elimina las tentaciones, vuelve a las habilidades, anímante ("Una caída no te condena").','Comprométete al 100% con la abstinencia — y si hay caída, vuelve al 100% lo antes posible. No hay vacaciones de la recuperación.']},
-    {id:'dialogo',name:'Diálogo motivacional',duration:'10 min',icon:'💬',iconBg:'rgba(160,128,96,.13)',tags:[{l:'Adicciones',c:'tag-adicciones'},{l:'DBT',c:'tag-dbt'}],timerMin:10,fuente:'Adicciones Ficha 2 · Sesión 6',
-     steps:['Escribe en dos columnas: "Razones para consumir ahora" vs "Razones para no consumir".','Lee la lista de razones para no consumir en voz alta. Escúchate.','Recuerda una vez que superaste un momento difícil sin consumir. ¿Cómo te sentiste después?','Formula una frase de compromiso: "Hoy voy a... porque...".','Ponla en tu pantalla de inicio del móvil o en el espejo del baño.']},
+     steps:['El objetivo es la abstinencia completa. Pero si hay una caída, el objetivo es minimizar el daño y volver al vagón lo antes posible.','Una caída no te condena. Lo que importa es no dejar que se convierta en un desastre.','Plan para la abstinencia: planifica actividades incompatibles, rodéate de personas que apoyen tu sobriedad.','Plan para si hay caída: llama a tu terapeuta, elimina las tentaciones, vuelve a las habilidades, anímate ("Una caída no es un desastre").','Comprométete al 100% con la abstinencia — y si hay caída, vuelve al 100% lo antes posible.']},
     {id:'acumula',name:'Acumular experiencias positivas',duration:'15 min',icon:'🌟',iconBg:'var(--amber-dim)',tags:[{l:'RE',c:'tag-dbt'}],timerMin:15,fuente:'RE Fichas 10-12 · Sesión 13',
      steps:['Haz cosas agradables posibles hoy. Incrementa los sucesos que provocan emociones positivas.','Sé plenamente consciente de la experiencia positiva mientras ocurre. No la dejes pasar.','Observa las preocupaciones como producto de tu mente — déjalas pasar sin engancharte.','A largo plazo: elige un valor importante, identifica metas, da un pequeño paso hoy.','El bienestar no se construye esperando; se construye acumulando momentos buenos de forma consciente.']}
   ]
@@ -1038,8 +1138,9 @@ let timerInterval=null,timerSec=0;
 function renderTareas(uso){
   const list=document.getElementById('tareas-list');
   const tareas=TAREAS_USO[uso]||[];
-  list.innerHTML=tareas.map(t=>`
-    <div class="tarea-card" id="tc-${t.id}" onclick="toggleTarea('${t.id}')">
+  list.innerHTML=tareas.map(t=>{
+    const timerBtn=t.timerMin?`<button class="tarea-timer-btn" data-id="${t.id}" data-name="${t.name}" data-min="${t.timerMin}">▶ Iniciar temporizador (${t.timerMin} min)</button>`:'';
+    return`<div class="tarea-card" id="tc-${t.id}" onclick="toggleTarea('${t.id}')">
       <div class="tarea-header">
         <div class="tarea-icon" style="background:${t.iconBg}">${t.icon}</div>
         <div class="tarea-meta"><div class="tarea-name">${t.name}</div><div class="tarea-tags">${t.tags.map(x=>`<span class="tarea-tag ${x.c}">${x.l}</span>`).join('')}</div></div>
@@ -1047,28 +1148,40 @@ function renderTareas(uso){
       </div>
       <div class="tarea-body" id="tb-${t.id}">
         <div class="tarea-steps">${t.steps.map((s,i)=>`<div class="step"><div class="step-num">${i+1}</div><div class="step-text">${s}</div></div>`).join('')}</div>
-        <button class="tarea-timer-btn" data-id="${t.id}" data-name="${t.name}" data-min="${t.timerMin}">▶ Iniciar temporizador (${t.timerMin} min)</button>
+        ${timerBtn}
         <div class="tarea-fuente">📖 ${t.fuente}</div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 function toggleTarea(id){const b=document.getElementById('tb-'+id),o=b.classList.contains('open');document.querySelectorAll('.tarea-body').forEach(x=>x.classList.remove('open'));if(!o)b.classList.add('open')}
 document.getElementById('tareas-list').addEventListener('click',e=>{const b=e.target.closest('.tarea-timer-btn');if(b){e.stopPropagation();startTimer(b.dataset.id,b.dataset.name,+b.dataset.min)}});
-function startTimer(id,name,mins){timerSec=mins*60;document.getElementById('timer-name').textContent=name;document.getElementById('timer-overlay').classList.add('open');clearInterval(timerInterval);updateTD();registrarHabilidad(name);timerInterval=setInterval(()=>{timerSec--;updateTD();if(timerSec<=0){stopTimer();showToast('¡Ejercicio completado! 🌿')}},1000)}
+function startTimer(id,name,mins){timerSec=mins*60;document.getElementById('timer-name').textContent=name;document.getElementById('timer-overlay').classList.add('open');clearInterval(timerInterval);updateTD();timerInterval=setInterval(()=>{timerSec--;updateTD();if(timerSec<=0){stopTimer();showToast('¡Ejercicio completado! 🌿')}},1000)}
 function updateTD(){const m=Math.floor(timerSec/60),s=timerSec%60;document.getElementById('timer-display').textContent=m+':'+String(s).padStart(2,'0')}
 function stopTimer(){clearInterval(timerInterval);document.getElementById('timer-overlay').classList.remove('open')}
 
 // ── PROGRESO ──
 function renderProgreso(){
   const r=db.registros,days=db.soberDate?Math.floor((new Date()-new Date(db.soberDate))/86400000):0;
-  const avgC=r.length?(r.reduce((s,x)=>s+x.craving,0)/r.length).toFixed(1):'—';
-  const avgE=r.length?(r.reduce((s,x)=>s+x.eficacia,0)/r.length).toFixed(1):'—';
-  document.getElementById('stat-row').innerHTML=`<div class="stat-box"><div class="stat-val">${days}</div><div class="stat-label">Días de sobriedad</div></div><div class="stat-box"><div class="stat-val">${r.length}</div><div class="stat-label">Registros</div></div><div class="stat-box"><div class="stat-val" style="color:var(--rust)">${avgC}</div><div class="stat-label">Craving promedio</div></div><div class="stat-box"><div class="stat-val">${avgE}</div><div class="stat-label">Autoeficacia media</div></div>`;
+  const avgC=r.length?(r.reduce((s,x)=>s+(x.craving||0),0)/r.length).toFixed(1):'—';
+  const avgM=r.length?(r.reduce((s,x)=>s+(x.malestar||0),0)/r.length).toFixed(1):'—';
+  const avgE=r.length?(r.reduce((s,x)=>s+(x.eficacia||0),0)/r.length).toFixed(1):'—';
+  document.getElementById('stat-row').innerHTML=`<div class="stat-box"><div class="stat-val">${days}</div><div class="stat-label">Días de sobriedad</div></div><div class="stat-box"><div class="stat-val">${r.length}</div><div class="stat-label">Registros</div></div><div class="stat-box"><div class="stat-val" style="color:var(--rust)">${avgC}</div><div class="stat-label">Craving promedio</div></div><div class="stat-box"><div class="stat-val" style="color:var(--sky)">${avgM}</div><div class="stat-label">Malestar promedio</div></div>`;
   const k7=Array.from({length:7},(_,i)=>{const d=new Date();d.setDate(d.getDate()-(6-i));return d.toISOString().split('T')[0]});
-  document.getElementById('bar-chart').innerHTML=k7.map(key=>{const reg=r.find(x=>x.date===key),d=new Date(key+'T12:00');return`<div class="bar-col"><div class="bar craving" style="height:${reg?reg.craving*7:4}px;opacity:${reg?.65:.15}"></div><div class="bar-day">${d.toLocaleDateString('es-ES',{weekday:'narrow'})}</div></div>`}).join('');
+  document.getElementById('bar-chart').innerHTML=k7.map(key=>{
+    const reg=r.find(x=>x.date===key);
+    const d=new Date(key+'T12:00');
+    const cH=reg?reg.craving*7:4;
+    const mH=reg?(reg.malestar||0)*7:4;
+    return`<div class="bar-col">
+      <div style="display:flex;gap:2px;align-items:flex-end;height:70px">
+        <div class="bar craving" style="height:${cH}px;opacity:${reg?.65:.15};flex:1"></div>
+        <div class="bar malestar" style="height:${mH}px;opacity:${reg?.55:.15};flex:1"></div>
+      </div>
+      <div class="bar-day">${d.toLocaleDateString('es-ES',{weekday:'narrow'})}</div>
+    </div>`;
+  }).join('');
   const weekAgo=new Date(new Date()-7*86400000),week=r.filter(x=>new Date(x.date+'T12:00')>=weekAgo);
-  const haltC={H:0,A:0,L:0,T:0};week.forEach(x=>{if(x.halt&&haltC[x.halt]!==undefined)haltC[x.halt]++});
-  document.getElementById('halt-row').innerHTML=Object.entries(haltC).map(([k,v])=>`<div class="halt-item"><div class="halt-letter">${k}</div><div class="halt-name">${k==='H'?'Físico':k==='A'?'Negativo':k==='L'?'Soledad':'Cansancio'}</div><div class="halt-count" style="color:${v>=3?'var(--rust)':v>=1?'var(--amber)':'var(--moss)'}">${v}d</div></div>`).join('');
   // Mente Clara semanal
   const mr=db.menteRegistros||[];
   const mWeek=mr.filter(x=>new Date(x.date+'T12:00')>=weekAgo);
@@ -1080,81 +1193,17 @@ function renderProgreso(){
   ].map(m=>`<div class="mente-week-item" style="background:${m.k==='adicta'?'var(--rust-dim)':m.k==='clara'?'var(--moss-dim)':'var(--amber-dim)'}"><div style="font-size:20px">${m.e}</div><div style="font-size:10px;color:var(--text-dim)">${m.l}</div><div style="font-size:18px;font-family:var(--font-display);color:${m.c}">${mCount[m.k]}d</div></div>`).join('');
   // PLEASE
   const pK=['enfermedad','sustancias','alimentacion','sueno','ejercicio'];
-  const pL=['PL Salud','E Sustancias','A Alimentación','S Sueño','E Ejercicio'];
+  const pL=['PL Salud','E Sust.','A Alim.','S Sueño','E Ejerc.'];
   document.getElementById('please-row').innerHTML=pK.map((k,i)=>{const cnt=week.filter(x=>x.please&&x.please[k]).length;return`<div class="halt-item"><div class="halt-letter" style="font-size:12px;color:var(--sky)">${pL[i].split(' ')[0]}</div><div class="halt-name">${pL[i].split(' ')[1]}</div><div class="halt-count" style="color:${cnt>=5?'var(--moss)':cnt>=3?'var(--amber)':'var(--rust)'}">${cnt}/${week.length||7}d</div></div>`}).join('');
   const L=[{e:'🌱',n:'Primer día',r:days>=1},{e:'⭐',n:'3 días',r:days>=3},{e:'🌿',n:'1 semana',r:days>=7},{e:'🌸',n:'2 semanas',r:days>=14},{e:'🏆',n:'1 mes',r:days>=30},{e:'📓',n:'5 registros',r:r.length>=5},{e:'📊',n:'10 registros',r:r.length>=10},{e:'🦋',n:'3 meses',r:days>=90},{e:'🎯',n:'1 año',r:days>=365}];
   document.getElementById('logros-grid').innerHTML=L.map(l=>`<div class="logro ${l.r?'':'locked'}"><div class="logro-icon">${l.e}</div><div class="logro-name">${l.n}</div></div>`).join('');
-  actualizarSkillsUI();
 }
 
 // ── AJUSTES ──
-function renderAjustes(){
-  document.getElementById('profile-id').textContent='ID: '+db.uuid;
-  document.getElementById('contact-display').textContent=db.contact?db.contact.name:'No configurado';
-  const muroEl=document.getElementById('muro-code-display');
-  if(muroEl)muroEl.textContent=db.muroCodigo?db.muroCodigo+' (personalizado)':'TERAPIA (defecto)';
-}
-function cambiarCodigoMuro(){
-  const actual=prompt('PIN del terapeuta (para verificar identidad):');
-  if(actual!==db.pin){alert('PIN incorrecto');return}
-  const nuevo=prompt('Nuevo código del Muro (el paciente no lo verá):');
-  if(!nuevo||nuevo.length<4){alert('El código debe tener al menos 4 caracteres');return}
-  db.muroCodigo=nuevo.toUpperCase().trim();saveDB();renderAjustes();showToast('Código del Muro actualizado ✓');
-}
+function renderAjustes(){document.getElementById('profile-id').textContent='ID: '+db.uuid;document.getElementById('contact-display').textContent=db.contact?db.contact.name:'No configurado'}
 function editContact(){const n=prompt('Nombre del contacto de confianza:');if(!n)return;const p=prompt('Teléfono (ej: 612345678):');if(!p)return;db.contact={name:n,phone:p};saveDB();renderAjustes();showToast('Contacto guardado ✓')}
-function generarResumenPsicologo(){
-  const r=db.registros;
-  const now=new Date();
-  const weekAgo=new Date(now-7*86400000);
-  const week=r.filter(x=>new Date(x.date+'T12:00')>=weekAgo);
-  const days=db.soberDate?Math.floor((now-new Date(db.soberDate))/86400000):'no establecido';
-  const avgC=week.length?(week.reduce((s,x)=>s+x.craving,0)/week.length).toFixed(1):'sin datos';
-  const avgE=week.length?(week.reduce((s,x)=>s+x.eficacia,0)/week.length).toFixed(1):'sin datos';
-  const mr=db.menteRegistros||[];
-  const mWeek=mr.filter(x=>new Date(x.date+'T12:00')>=weekAgo);
-  const mAdicta=mWeek.filter(x=>x.mente==='adicta').length;
-  const mLimpia=mWeek.filter(x=>x.mente==='limpia').length;
-  const ultimoReg=r.length?new Date(r[0].date+'T12:00').toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'}):'nunca';
-
-  const texto=`RESUMEN DE ESTADO — SendaDigital
-Fecha: ${now.toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'})}
-ID: ${db.uuid}
-
-ESTA SEMANA (últimos 7 días):
-• Registros completados: ${week.length}/7 días
-• Último registro: ${ultimoReg}
-• Craving medio: ${avgC}/10
-• Autoeficacia media: ${avgE}/10
-• Días de sobriedad: ${days}
-• Mente Adicta: ${mAdicta} día${mAdicta!==1?'s':''}
-• Mente Limpia: ${mLimpia} día${mLimpia!==1?'s':''}
-
-SEMÁFORO PERSONAL:
-${avgC!=='sin datos'&&+avgC>=7?'🔴 Craving alto esta semana':+avgC>=4?'🟡 Craving moderado':'🟢 Craving bajo'}
-${mAdicta>=2?'🔴 Días con Mente Adicta — necesito apoyo':''}
-${week.length<=2?'🟡 Pocos registros esta semana':''}
-
-Envío este resumen porque quiero que sepas cómo estoy.`;
-
-  // Copiar al portapapeles y abrir WhatsApp/email si está configurado
-  if(navigator.clipboard){
-    navigator.clipboard.writeText(texto).then(()=>{
-      showToast('Resumen copiado — pégalo en tu mensaje al psicólogo/a');
-      if(db.contact&&db.contact.phone){
-        setTimeout(()=>{
-          if(confirm('¿Quieres abrir WhatsApp para enviárselo a tu contacto de confianza?')){
-            window.open('https://wa.me/34'+db.contact.phone.replace(/\D/g,'')+'?text='+encodeURIComponent(texto));
-          }
-        },500);
-      }
-    });
-  } else {
-    prompt('Copia este texto y envíaselo a tu psicólogo/a:',texto);
-  }
-}
-
 function exportData(){const b=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='sendadigital-'+new Date().toISOString().split('T')[0]+'.json';a.click();showToast('Datos exportados ✓')}
-function clearData(){localStorage.removeItem(DB_KEY);db={uuid:'SD-'+Math.random().toString(36).substr(2,8).toUpperCase(),registros:[],soberDate:null,contact:null,pin:'1234',prevTime:null,evaShown:false};saveDB();showToast('Datos borrados');renderAjustes();renderHome()}
+function clearData(){localStorage.removeItem(DB_KEY);db={uuid:'SD-'+Math.random().toString(36).substr(2,8).toUpperCase(),registros:[],soberDate:null,contact:null,pin:'1234',prevTime:null,evaShown:false,menteRegistros:[]};saveDB();showToast('Datos borrados');renderAjustes();renderHome()}
 function changePin(){const p=prompt('PIN actual:');if(p!==db.pin){alert('PIN incorrecto');return}const n=prompt('Nuevo PIN de 4 dígitos:');if(!n||!/^\d{4}$/.test(n)){alert('Debe tener 4 dígitos');return}db.pin=n;saveDB();showToast('PIN actualizado ✓')}
 
 // ── TERAPEUTA ──
@@ -1169,64 +1218,45 @@ function renderTerap(){
   const r=db.registros,now=new Date(),weekAgo=new Date(now-7*86400000);
   const week=r.filter(x=>new Date(x.date+'T12:00')>=weekAgo);
   const days=db.soberDate?Math.floor((now-new Date(db.soberDate))/86400000):'—';
-  const avgC=week.length?(week.reduce((s,x)=>s+x.craving,0)/week.length).toFixed(1):'—';
-  const avgE=week.length?(week.reduce((s,x)=>s+x.eficacia,0)/week.length).toFixed(1):'—';
-  document.getElementById('terap-stats').innerHTML=`<div class="terap-stat"><div class="terap-stat-val">${days}</div><div class="terap-stat-label">Días sobriedad</div></div><div class="terap-stat"><div class="terap-stat-val" style="color:var(--rust)">${avgC}</div><div class="terap-stat-label">Craving medio</div></div><div class="terap-stat"><div class="terap-stat-val">${avgE}</div><div class="terap-stat-label">Autoeficacia</div></div>`;
+  const avgC=week.length?(week.reduce((s,x)=>s+(x.craving||0),0)/week.length).toFixed(1):'—';
+  const avgM=week.length?(week.reduce((s,x)=>s+(x.malestar||0),0)/week.length).toFixed(1):'—';
+  const avgE=week.length?(week.reduce((s,x)=>s+(x.eficacia||0),0)/week.length).toFixed(1):'—';
+  document.getElementById('terap-stats').innerHTML=`<div class="terap-stat"><div class="terap-stat-val">${days}</div><div class="terap-stat-label">Días sobriedad</div></div><div class="terap-stat"><div class="terap-stat-val" style="color:var(--rust)">${avgC}</div><div class="terap-stat-label">Craving medio</div></div><div class="terap-stat"><div class="terap-stat-val" style="color:var(--sky)">${avgM}</div><div class="terap-stat-label">Malestar medio</div></div><div class="terap-stat"><div class="terap-stat-val">${avgE}</div><div class="terap-stat-label">Autoeficacia</div></div>`;
   const nextMonday=new Date();nextMonday.setDate(nextMonday.getDate()+(1+7-nextMonday.getDay())%7||7);
   document.getElementById('next-review-date').textContent=nextMonday.toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'});
   const alerts=[];
-  const hC=week.filter(x=>x.craving>=7);if(hC.length>=2)alerts.push({t:'⚠️ Craving elevado repetido',b:`${hC.length} días con craving ≥ 7.`});
-  const lE=week.filter(x=>x.eficacia<=3);if(lE.length>=2)alerts.push({t:'⚠️ Autoeficacia baja',b:`${lE.length} días con autoeficacia ≤ 3.`});
+  const hC=week.filter(x=>(x.craving||0)>=7);if(hC.length>=2)alerts.push({t:'⚠️ Craving elevado repetido',b:`${hC.length} días con craving ≥ 7.`});
+  const hM=week.filter(x=>(x.malestar||0)>=7);if(hM.length>=2)alerts.push({t:'⚠️ Malestar elevado repetido',b:`${hM.length} días con malestar ≥ 7.`});
+  const lE=week.filter(x=>(x.eficacia||0)<=3);if(lE.length>=2)alerts.push({t:'⚠️ Autoeficacia baja',b:`${lE.length} días con autoeficacia ≤ 3.`});
   const nA=week.filter(x=>x.apoyo==='no');if(nA.length>=4)alerts.push({t:'⚠️ Aislamiento social',b:`${nA.length} días sin contacto con red de apoyo.`});
   const pS=week.filter(x=>x.horas<=4||x.calidadSueno<=2);if(pS.length>=3)alerts.push({t:'⚠️ Descanso deficiente',b:`${pS.length} días con sueño de mala calidad.`});
-  const haltC={H:0,A:0,L:0,T:0};week.forEach(x=>{if(x.halt&&haltC[x.halt]!==undefined)haltC[x.halt]++});
-  if(haltC.A>=4)alerts.push({t:'⚠️ Afecto negativo persistente (HALT-A)',b:`${haltC.A} días. Factor de riesgo elevado.`});
-  if(haltC.L>=4)alerts.push({t:'⚠️ Soledad persistente (HALT-L)',b:`${haltC.L} días. Revisar red de apoyo.`});
   const mr=db.menteRegistros||[];
   const mWeek=mr.filter(x=>new Date(x.date+'T12:00')>=weekAgo);
   const mAdicta=mWeek.filter(x=>x.mente==='adicta').length;
   const mLimpia=mWeek.filter(x=>x.mente==='limpia').length;
-  if(mAdicta>=2)alerts.push({t:'⚠️ Mente Adicta detectada',b:`${mAdicta} días con mente adicta registrada. Revisar urgentemente.`});
-  if(mLimpia>=3)alerts.push({t:'⚠️ Mente Limpia persistente',b:`${mLimpia} días con mente limpia. Riesgo de sobreconfianza — trabajar Mente Clara.`});
+  if(mAdicta>=2)alerts.push({t:'⚠️ Mente Adicta detectada',b:`${mAdicta} días con mente adicta registrada.`});
+  if(mLimpia>=3)alerts.push({t:'⚠️ Mente Limpia persistente',b:`${mLimpia} días con mente limpia. Riesgo de sobreconfianza.`});
   if(!week.length)alerts.push({t:'ℹ️ Sin registros esta semana',b:'El participante no ha completado ningún diario en los últimos 7 días.'});
-  // Alerta de silencio prolongado
-  const ahora=new Date();
-  const ultimoRegistro=r.length?new Date(r[0].date+'T12:00'):null;
-  if(ultimoRegistro){
-    const horasSilencio=Math.floor((ahora-ultimoRegistro)/3600000);
-    if(horasSilencio>=72)alerts.unshift({t:'🔴 Silencio prolongado — '+Math.floor(horasSilencio/24)+' días sin registro',b:'El participante lleva más de 72 horas sin registrar. Contacto proactivo recomendado según protocolo de alertas.'});
-    else if(horasSilencio>=48)alerts.unshift({t:'🟡 Sin registro en '+Math.floor(horasSilencio/24)+' días',b:'El participante lleva más de 48 horas sin registrar. Verificar si hay dificultades de uso o cambio de estado.'});
-  }
   const semColor=alerts.length>=3||hC.length>=2||mAdicta>=2?'🔴 Rojo — contacto urgente recomendado':alerts.length>=1?'🟡 Ámbar — refuerzo motivacional':'🟢 Verde — seguimiento rutinario';
   const ae=document.getElementById('terap-alerts');
   ae.innerHTML=`<div style="font-weight:600;font-size:14px;margin-bottom:10px">${semColor}</div>`+(alerts.length?alerts.map(a=>`<div class="alert-box"><div class="alert-title">${a.t}</div><div class="alert-body">${a.b}</div></div>`).join(''):`<div class="alert-box" style="background:var(--moss-dim);border-color:rgba(74,124,89,.25)"><div class="alert-title" style="color:var(--moss)">✓ Sin alertas esta semana</div></div>`);
-  // Mente Clara informe
   const mCount={adicta:0,clara:0,limpia:0};mWeek.forEach(x=>{if(mCount[x.mente]!==undefined)mCount[x.mente]++});
-  document.getElementById('terap-mente').innerHTML=`<div style="font-size:12px;color:var(--text-dim);margin-bottom:8px">Registro de Mente Clara esta semana (de ${mWeek.length} días registrados):</div>`+
+  document.getElementById('terap-mente').innerHTML=`<div style="font-size:12px;color:var(--text-dim);margin-bottom:8px">Mente Clara esta semana (${mWeek.length} días registrados):</div>`+
     [['🌀 Adicta',mCount.adicta,'var(--rust)'],['🌿 Clara',mCount.clara,'var(--moss)'],['☀️ Limpia',mCount.limpia,'var(--amber)']].map(([l,v,c])=>`<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="flex:1;font-size:13px;color:var(--text-mid)">${l}</span><span style="font-size:14px;font-weight:600;color:${c}">${v} día${v!==1?'s':''}</span></div>`).join('');
-  // HALT informe
-  document.getElementById('terap-halt').innerHTML=`<div style="font-size:12px;color:var(--text-dim);margin-bottom:8px">Días con cada factor HALT esta semana:</div>`+Object.entries(haltC).map(([k,v])=>`<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="font-family:var(--font-display);font-size:15px;color:var(--rust);width:16px">${k}</span><span style="flex:1;font-size:13px;color:var(--text-mid)">${HALT_LABELS[k]}</span><span style="font-size:13px;font-weight:600;color:${v>=3?'var(--rust)':v>=1?'var(--amber)':'var(--moss)'}">${v} día${v!==1?'s':''}</span></div>`).join('');
-  // PLEASE informe
   const pK=['enfermedad','sustancias','alimentacion','sueno','ejercicio'];
   const pL={enfermedad:'PL — Salud física',sustancias:'E — Otras sustancias',alimentacion:'A — Alimentación',sueno:'S — Sueño',ejercicio:'E — Actividad física'};
-  document.getElementById('terap-please').innerHTML=`<div style="font-size:12px;color:var(--text-dim);margin-bottom:8px">Adherencia a hábitos protectores (de ${week.length||0} registros):</div>`+pK.map(k=>{const cnt=week.filter(x=>x.please&&x.please[k]).length;return`<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="flex:1;font-size:13px;color:var(--text-mid)">${pL[k]}</span><span style="font-size:13px;font-weight:600;color:${cnt>=5?'var(--moss)':cnt>=3?'var(--amber)':'var(--rust)'}">${cnt}/${week.length||'—'}</span></div>`}).join('');
-  // Tabla
+  document.getElementById('terap-please').innerHTML=`<div style="font-size:12px;color:var(--text-dim);margin-bottom:8px">Adherencia PLEASE (${week.length||0} registros):</div>`+pK.map(k=>{const cnt=week.filter(x=>x.please&&x.please[k]).length;return`<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="flex:1;font-size:13px;color:var(--text-mid)">${pL[k]}</span><span style="font-size:13px;font-weight:600;color:${cnt>=5?'var(--moss)':cnt>=3?'var(--amber)':'var(--rust)'}">${cnt}/${week.length||'—'}</span></div>`}).join('');
   const k7=Array.from({length:7},(_,i)=>{const d=new Date();d.setDate(d.getDate()-(6-i));return d.toISOString().split('T')[0]}).reverse();
   document.getElementById('terap-tbody').innerHTML=k7.map(key=>{
     const reg=r.find(x=>x.date===key),d=new Date(key+'T12:00').toLocaleDateString('es-ES',{weekday:'short',day:'numeric',month:'short'});
     if(!reg)return`<tr><td>${d}</td><td colspan="6" style="color:var(--text-dim);font-size:11px">Sin registro</td></tr>`;
-    const cc=reg.craving>=7?'color:var(--rust)':reg.craving>=4?'color:var(--amber)':'color:var(--moss)';
-    const ec=reg.eficacia>=7?'color:var(--moss)':reg.eficacia>=4?'color:var(--amber)':'color:var(--rust)';
+    const cc=reg.craving>=7?'color:var(--rust)':reg.craving>=5?'color:var(--amber)':'color:var(--moss)';
+    const mc=(reg.malestar||0)>=7?'color:var(--rust)':(reg.malestar||0)>=5?'color:var(--amber)':'color:var(--moss)';
+    const ec=reg.eficacia>=7?'color:var(--moss)':reg.eficacia>=5?'color:var(--amber)':'color:var(--rust)';
     const me=reg.mente==='adicta'?'🌀':reg.mente==='clara'?'🌿':reg.mente==='limpia'?'☀️':'—';
-    return`<tr><td>${d}</td><td style="${cc}">${reg.craving}</td><td>${me}</td><td style="color:var(--rust)">${reg.halt&&reg.halt!=='-'?reg.halt:'—'}</td><td style="${ec}">${reg.eficacia}</td><td>${reg.pleaseScore||0}/5</td><td>${reg.apoyo==='si'?'✓':'✗'}</td></tr>`;
+    return`<tr><td>${d}</td><td style="${cc}">${reg.craving}</td><td style="${mc}">${reg.malestar||'—'}</td><td>${me}</td><td style="${ec}">${reg.eficacia}</td><td>${reg.pleaseScore||0}/5</td><td>${reg.apoyo==='si'?'✓':'✗'}</td></tr>`;
   }).join('');
   document.getElementById('terap-uuid').textContent=db.uuid;
-  // Consumos registrados
-  const consumos=db.consumos||[];
-  const consumosSemana=consumos.filter(c=>new Date(c.fecha)>=weekAgo);
-  if(consumosSemana.length>0&&!alerts.find(a=>a.t.includes('consumo'))){
-    alerts.unshift({t:`🚨 ${consumosSemana.length} consumo${consumosSemana.length>1?'s':''} registrado${consumosSemana.length>1?'s':''} esta semana`,b:'El Muro de Sinceridad fue activado. Revisar en sesión individual.'});
-  }
 }
 
 function exportTerapeutaData(){
@@ -1237,106 +1267,10 @@ function exportTerapeutaData(){
 let toastTimer;
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2500)}
 
-// ── MURO DE SINCERIDAD ──
-const MURO_PIN_DEFAULT='TERAPIA'; // El terapeuta lo personaliza
-function abrirMuro(){
-  if(!confirm('¿Has aplicado la Mente Sabia antes de confirmar?\n\nEsta acción pausará tu proceso digital y activará el protocolo de sinceridad clínica.')){return}
-  // Guardar evento de consumo
-  if(!db.consumos)db.consumos=[];
-  db.consumos.push({fecha:new Date().toISOString(),mente:db.menteHoy||'no registrada'});
-  saveDB();
-  document.getElementById('muro-overlay').classList.add('open');
-  document.getElementById('muro-codigo').value='';
-}
-function intentarDesbloqueo(){
-  const codigo=document.getElementById('muro-codigo').value.toUpperCase().trim();
-  const pin=db.muroCodigo||MURO_PIN_DEFAULT;
-  if(codigo===pin){
-    document.getElementById('muro-overlay').classList.remove('open');
-    showToast('Acceso restaurado. Bienvenido/a de vuelta 🌿');
-  } else {
-    document.getElementById('muro-codigo').value='';
-    document.getElementById('muro-codigo').placeholder='Incorrecto — pide el código a tu terapeuta';
-    setTimeout(()=>{document.getElementById('muro-codigo').placeholder='Código'},2000);
-  }
-}
-
-// ── SURF TIMER ──
-const SURF_FRASES=[
-  'El impulso es como una ola. No te ahogará — solo subirá y bajará.',
-  'Observa la sensación sin juzgarla. No eres tus pensamientos.',
-  'Respira. El craving alcanza su pico y luego baja. Siempre baja.',
-  'Estás surfeando, no ahogándote. Cada segundo que pasa, la ola pierde fuerza.',
-  'Tú no eres el impulso. Tú eres quien lo observa.'
-];
-let surfInterval=null, surfSegsRestantes=900, surfFraseIdx=0;
-
-function abrirSurfTimer(){
-  surfSegsRestantes=900;
-  surfFraseIdx=0;
-  document.getElementById('surf-display').textContent='15:00';
-  document.getElementById('surf-bar').style.width='100%';
-  document.getElementById('surf-phrase').textContent=SURF_FRASES[0];
-  document.getElementById('surf-timer-overlay').classList.add('open');
-  clearInterval(surfInterval);
-  surfInterval=setInterval(tickSurf,1000);
-  registrarHabilidad('Surf del craving');
-}
-function tickSurf(){
-  surfSegsRestantes--;
-  const m=Math.floor(surfSegsRestantes/60),s=surfSegsRestantes%60;
-  document.getElementById('surf-display').textContent=m+':'+String(s).padStart(2,'0');
-  document.getElementById('surf-bar').style.width=(surfSegsRestantes/900*100)+'%';
-  // Cambiar frase cada 3 minutos (180 seg)
-  const nuevaIdx=Math.floor((900-surfSegsRestantes)/180);
-  if(nuevaIdx!==surfFraseIdx&&nuevaIdx<SURF_FRASES.length){
-    const el=document.getElementById('surf-phrase');
-    el.classList.add('fade');
-    setTimeout(()=>{el.textContent=SURF_FRASES[nuevaIdx];el.classList.remove('fade')},400);
-    surfFraseIdx=nuevaIdx;
-  }
-  if(surfSegsRestantes<=0){
-    clearInterval(surfInterval);
-    document.getElementById('surf-phrase').textContent='¡Lo has conseguido! Has surfeado la ola entera. 🌿';
-    document.getElementById('surf-display').textContent='0:00';
-    showToast('¡15 minutos superados! La ola ha pasado 🌊');
-  }
-}
-function detenerSurf(){
-  clearInterval(surfInterval);
-  document.getElementById('surf-timer-overlay').classList.remove('open');
-}
-
-// ── HABILIDADES USADAS HOY ──
-function registrarHabilidad(nombre){
-  const today=new Date().toISOString().split('T')[0];
-  if(!db.habilidadesHoy)db.habilidadesHoy={fecha:'',lista:[]};
-  if(db.habilidadesHoy.fecha!==today){db.habilidadesHoy={fecha:today,lista:[]}}
-  if(!db.habilidadesHoy.lista.includes(nombre)){
-    db.habilidadesHoy.lista.push(nombre);
-    saveDB();
-  }
-  actualizarSkillsUI();
-}
-function actualizarSkillsUI(){
-  const today=new Date().toISOString().split('T')[0];
-  const lista=db.habilidadesHoy&&db.habilidadesHoy.fecha===today?db.habilidadesHoy.lista:[];
-  const countEl=document.getElementById('skills-count');
-  const listEl=document.getElementById('skills-list');
-  if(!countEl||!listEl)return;
-  countEl.textContent=lista.length;
-  listEl.innerHTML=lista.length
-    ?lista.map(h=>`<span class="skill-chip">${h}</span>`).join('')
-    :'<span style="font-size:13px;color:var(--text-dim)">Ninguna todavía — usa un ejercicio para registrarla</span>';
-}
-
 renderHome();renderRegistros();renderTareas('crisis');
 
-// Service Worker
 if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>{
-    navigator.serviceWorker.register('sw.js').catch(()=>{});
-  });
+  window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{})});
 }
 </script>
 </body>
