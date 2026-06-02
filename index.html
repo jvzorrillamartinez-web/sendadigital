@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#f7f2e8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>SendaDigital</title>
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f7f2e8;--warm:#ede5d4;--sand:#ddd0b8;
+  --moss:#4a7c59;--moss-dim:rgba(74,124,89,.14);--moss-light:#6a9e78;
+  --bark:#a08060;--bark-dim:rgba(160,128,96,.15);
+  --earth:#7a5c3a;--earth-dim:rgba(122,92,58,.12);
+  --amber:#c8843a;--amber-dim:rgba(200,132,58,.14);
+  --rust:#c05840;--rust-dim:rgba(192,88,64,.12);
+  --sky:#4a8fa8;--sky-dim:rgba(74,143,168,.13);
+  --text:#2e2418;--text-mid:#5a4a38;--text-dim:#9a8870;
+  --border:rgba(160,128,96,.22);
+  --radius:18px;--radius-sm:12px;
+  --font-display:'Fraunces',Georgia,serif;
+  --font-body:'DM Sans',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.5;overflow:hidden}
+#app{display:flex;flex-direction:column;height:100%;max-width:480px;margin:0 auto;background:var(--cream)}
+.screen{display:none;flex:1;overflow-y:auto;padding-bottom:84px;scrollbar-width:none}
+.screen::-webkit-scrollbar{display:none}
+.screen.active{display:flex;flex-direction:column}
+#nav{display:flex;background:var(--warm);border-top:1px solid var(--border)}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 0 13px;background:none;border:none;color:var(--text-dim);font-family:var(--font-body);font-size:10px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;transition:color .2s}
+.nav-btn.active{color:var(--moss)}
+.nav-btn svg{width:22px;height:22px}
+.screen-header{padding:24px 20px 0}
+.screen-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:4px}
+.screen-title{font-family:var(--font-display);font-size:30px;color:var(--text);line-height:1.1}
+
+/* ── HOME ── */
+#home .brand{padding:24px 20px 0;display:flex;align-items:center;gap:12px}
+.brand-logo{width:44px;height:44px;background:var(--moss-dim);border:1.5px solid rgba(74,124,89,.3);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.brand-name{font-family:var(--font-display);font-size:22px;color:var(--text)}
+.brand-sub{font-size:12px;color:var(--text-dim);margin-top:2px}
+
+.sobriety-card{margin:14px 20px 0;background:var(--moss);border-radius:var(--radius);padding:20px 20px 18px;text-align:center;position:relative;overflow:hidden}
+.sobriety-card::before{content:'';position:absolute;top:-30px;right:-30px;width:110px;height:110px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);border-radius:50%}
+.sober-days{font-family:var(--font-display);font-size:62px;line-height:1;color:#fff}
+.sober-label{font-size:13px;color:rgba(255,255,255,.75);margin-top:4px;letter-spacing:.05em;text-transform:uppercase}
+.sober-since{font-size:12px;color:rgba(255,255,255,.6);margin-top:8px}
+.sober-edit{margin-top:12px;display:inline-block;padding:7px 18px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;font-size:12px;color:#fff;cursor:pointer;font-family:var(--font-body);font-weight:500}
+
+.eva-msg{margin:10px 20px 0;background:var(--moss-dim);border:1px solid rgba(74,124,89,.25);border-radius:var(--radius-sm);padding:14px 16px;display:none}
+.eva-msg.show{display:block}
+.eva-msg-title{font-size:14px;font-weight:600;color:var(--moss);margin-bottom:4px}
+.eva-msg-body{font-size:13px;color:var(--text-mid);line-height:1.6}
+
+/* ── SLIDERS HOME ── */
+.home-sliders{margin:14px 20px 0;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
+.home-sliders-title{font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px}
+.slider-block{margin-bottom:14px}
+.slider-block:last-child{margin-bottom:0}
+.slider-row-label{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.slider-name{font-size:14px;font-weight:500;color:var(--text)}
+.slider-num{font-family:var(--font-display);font-size:22px;line-height:1}
+.slider-num.low{color:var(--moss)}
+.slider-num.mid{color:var(--amber)}
+.slider-num.high{color:var(--rust)}
+.home-slider{width:100%;height:6px;-webkit-appearance:none;appearance:none;border-radius:3px;outline:none;cursor:pointer;transition:background .3s}
+.home-slider.malestar{background:var(--sand)}
+.home-slider.craving{background:var(--sand)}
+.home-slider::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.home-slider.malestar::-webkit-slider-thumb{background:var(--sky)}
+.home-slider.craving::-webkit-slider-thumb{background:var(--rust)}
+.slider-labels-row{display:flex;justify-content:space-between;margin-top:5px;font-size:10px;color:var(--text-dim)}
+.slider-hint{margin-top:10px;padding:10px 12px;border-radius:var(--radius-sm);font-size:12px;line-height:1.55;display:none;animation:fadeSlide .25s ease}
+.slider-hint.show{display:block}
+.slider-hint.level-mid{background:var(--amber-dim);border:1px solid rgba(200,132,58,.25);color:var(--amber)}
+.slider-hint.level-high{background:var(--rust-dim);border:1px solid rgba(192,88,64,.25);color:var(--rust)}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── VERIFICAR LOS HECHOS INLINE HOME ── */
+.vh-inline{margin:10px 20px 0;background:rgba(192,88,64,.06);border:1px solid rgba(192,88,64,.22);border-radius:var(--radius);padding:16px;display:none;animation:fadeSlide .3s ease}
+.vh-inline.show{display:block}
+.vh-inline-title{font-size:13px;font-weight:600;color:var(--rust);margin-bottom:4px}
+.vh-inline-sub{font-size:12px;color:var(--text-dim);margin-bottom:12px;line-height:1.5}
+.vh-q{margin-bottom:10px}
+.vh-q-label{font-size:12px;font-weight:600;color:var(--text-mid);margin-bottom:5px}
+.vh-input{width:100%;padding:9px 12px;background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:13px;color:var(--text);resize:none;min-height:50px}
+
+/* ── MENTE CLARA ── */
+.mente-card{margin:14px 20px 0;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
+.mente-title{font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px}
+.mente-btns{display:flex;gap:8px}
+.mente-btn{flex:1;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:12px 8px;text-align:center;cursor:pointer;background:var(--cream);transition:all .15s;font-family:var(--font-body)}
+.mente-btn:active{opacity:.8}
+.mente-btn-icon{font-size:20px;margin-bottom:5px}
+.mente-btn-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}
+.mente-btn-desc{font-size:10px;color:var(--text-dim);line-height:1.3}
+.mente-btn.m-adicta{border-color:rgba(192,88,64,.35);background:var(--rust-dim)}
+.mente-btn.m-adicta .mente-btn-label{color:var(--rust)}
+.mente-btn.m-clara{border-color:rgba(74,124,89,.35);background:var(--moss-dim)}
+.mente-btn.m-clara .mente-btn-label{color:var(--moss)}
+.mente-btn.m-limpia{border-color:rgba(200,132,58,.35);background:var(--amber-dim)}
+.mente-btn.m-limpia .mente-btn-label{color:var(--amber)}
+.mente-btn.selected{border-width:2px;transform:scale(1.02)}
+.mente-nota{margin-top:10px;font-size:12px;color:var(--text-dim);line-height:1.5;display:none}
+.mente-nota.show{display:block}
+
+/* Expandible detalle Mente Clara */
+.mente-detail{margin-top:10px;display:none;animation:fadeSlide .2s ease}
+.mente-detail.show{display:block}
+.mente-detail-box{background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px}
+.mente-detail-title{font-size:12px;font-weight:600;margin-bottom:6px}
+.mente-detail-body{font-size:12px;color:var(--text-mid);line-height:1.65}
+.mente-detail-link{font-size:11px;color:var(--moss);margin-top:8px;cursor:pointer;text-decoration:underline}
+
+.milestones{margin:14px 20px 0;display:flex;gap:10px;overflow-x:auto;scrollbar-width:none}
+.milestones::-webkit-scrollbar{display:none}
+.milestone{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:5px;width:72px}
+.milestone-badge{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px}
+.milestone-badge.achieved{background:var(--moss-dim);border:2px solid rgba(74,124,89,.4)}
+.milestone-badge.locked{background:var(--warm);border:2px solid var(--border);filter:grayscale(1) opacity(.4)}
+.milestone-label{font-size:10px;color:var(--text-dim);text-align:center}
+
+#sos-btn{margin:14px 20px 0;width:calc(100% - 40px);padding:18px;background:var(--rust);border:none;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(--font-body);font-size:16px;font-weight:600;color:white;cursor:pointer;box-shadow:0 4px 18px rgba(192,88,64,.28);transition:transform .1s}
+#sos-btn:active{transform:scale(.98)}
+#sos-btn.urgent{animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 4px 18px rgba(192,88,64,.28)}50%{box-shadow:0 4px 28px rgba(192,88,64,.55)}}
+#sos-btn svg{width:22px;height:22px}
+
+.prevention-card{margin:14px 20px 0;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
+.prevention-title{font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px}
+.prevention-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.prevention-label{font-size:14px;color:var(--text-mid);flex:1}
+.prevention-time-btn{padding:7px 14px;background:var(--moss-dim);border:1px solid rgba(74,124,89,.3);border-radius:20px;font-family:var(--font-body);font-size:13px;font-weight:500;color:var(--moss);cursor:pointer}
+.prevention-note{font-size:11px;color:var(--text-dim);margin-top:8px;line-height:1.5}
+
+.quick-title{padding:18px 20px 0;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim)}
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px 20px 0}
+.quick-btn{background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);padding:16px 14px;display:flex;flex-direction:column;gap:8px;cursor:pointer;text-align:left;transition:background .15s}
+.quick-btn:active{background:var(--sand)}
+.q-icon{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.q-label{font-size:13px;font-weight:500;color:var(--text)}
+.q-sub{font-size:11px;color:var(--text-dim)}
+
+/* ── SOS ── */
+#sos-overlay{display:none;position:fixed;inset:0;background:rgba(46,36,24,.7);z-index:100;flex-direction:column;align-items:center;justify-content:flex-end}
+#sos-overlay.open{display:flex}
+#sos-modal{background:var(--cream);border-radius:24px 24px 0 0;padding:12px 20px 36px;width:100%;max-width:480px;max-height:92vh;overflow-y:auto;animation:slideUp .25s ease}
+@keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+.sos-handle{width:36px;height:4px;background:var(--sand);border-radius:2px;margin:0 auto 20px}
+.sos-title{font-family:var(--font-display);font-size:26px;color:var(--rust);margin-bottom:6px}
+.sos-sub{font-size:14px;color:var(--text-mid);margin-bottom:18px}
+
+.pros-contras-box{background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:16px}
+.pc-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px}
+.pc-sub{font-size:12px;color:var(--text-dim);margin-bottom:12px;line-height:1.5}
+.pc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pc-col{background:var(--cream);border-radius:var(--radius-sm);padding:10px}
+.pc-col-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.pc-col.pros .pc-col-title{color:var(--moss)}
+.pc-col.cons .pc-col-title{color:var(--rust)}
+.pc-item{font-size:12px;color:var(--text-mid);padding:4px 0;border-bottom:1px solid var(--border);line-height:1.4}
+.pc-item:last-child{border-bottom:none}
+.pc-reflect{margin-top:10px;font-size:12px;color:var(--moss);font-style:italic;line-height:1.5}
+
+.breathing-box{background:var(--warm);border-radius:var(--radius);padding:22px 18px;text-align:center;margin-bottom:16px;border:1px solid var(--border)}
+#breath-circle{width:80px;height:80px;border-radius:50%;background:var(--moss-dim);border:2px solid rgba(74,124,89,.35);margin:0 auto 14px;transition:transform 1s ease-in-out;display:flex;align-items:center;justify-content:center;font-size:26px}
+#breath-circle.inhale{transform:scale(1.5);background:rgba(74,124,89,.2)}
+#breath-circle.hold{transform:scale(1.5);background:rgba(200,132,58,.18);border-color:rgba(200,132,58,.5)}
+#breath-circle.exhale{transform:scale(1)}
+#breath-phase{font-size:17px;font-weight:500;color:var(--moss)}
+#breath-count{font-size:13px;color:var(--text-dim);margin-top:4px}
+#breath-start{margin-top:14px;padding:10px 24px;background:var(--moss-dim);border:1px solid rgba(74,124,89,.3);border-radius:20px;color:var(--moss);font-family:var(--font-body);font-size:14px;font-weight:500;cursor:pointer}
+.sos-techniques{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.technique-btn{background:var(--warm);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;display:flex;align-items:center;gap:12px;text-align:left;cursor:pointer;transition:background .15s}
+.technique-btn:active{background:var(--sand)}
+.technique-icon{font-size:22px;flex-shrink:0}
+.technique-name{font-size:14px;font-weight:500;color:var(--text)}
+.technique-desc{font-size:12px;color:var(--text-dim);margin-top:2px}
+.sos-contacts{display:flex;flex-direction:column;gap:8px}
+.contact-btn{background:none;border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;color:var(--text);font-family:var(--font-body);text-decoration:none;transition:background .15s}
+.contact-btn:active{background:var(--warm)}
+.contact-btn.urgent{border-color:rgba(192,88,64,.35)}
+.contact-btn svg{width:18px;height:18px;flex-shrink:0}
+.contact-name{font-size:13px;font-weight:500}
+.contact-num{font-size:12px;color:var(--text-dim)}
+#sos-close{margin-top:16px;width:100%;padding:14px;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text-dim);font-family:var(--font-body);font-size:14px;cursor:pointer}
+
+#technique-overlay{display:none;position:fixed;inset:0;background:rgba(46,36,24,.8);z-index:110;align-items:center;justify-content:center;padding:24px}
+#technique-overlay.open{display:flex}
+#technique-modal{background:var(--cream);border-radius:var(--radius);padding:28px 24px;width:100%;max-width:440px;text-align:center;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+#technique-title{font-family:var(--font-display);font-size:22px;margin-bottom:12px;color:var(--text)}
+#technique-body{font-size:15px;color:var(--text-mid);line-height:1.75;text-align:left}
+#technique-close{margin-top:22px;padding:12px 28px;background:var(--moss-dim);border:1px solid rgba(74,124,89,.3);border-radius:20px;color:var(--moss);font-family:var(--font-body);font-size:14px;font-weight:500;cursor:pointer}
+
+/* ── DIARIO ── */
+#diario .ema-intro{margin:14px 20px 0;font-size:14px;color:var(--text-mid);line-height:1.65}
+.ema-question{margin:14px 20px 0;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
+.ema-q-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:6px}
+.ema-q-text{font-size:15px;color:var(--text);margin-bottom:14px;line-height:1.5}
+.slider-val{text-align:right;font-size:24px;font-family:var(--font-display);color:var(--moss);margin-bottom:8px}
+.ema-slider{width:100%;height:6px;-webkit-appearance:none;appearance:none;background:var(--sand);border-radius:3px;outline:none;cursor:pointer}
+.ema-slider::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--moss);cursor:pointer;box-shadow:0 2px 8px rgba(74,124,89,.35)}
+.slider-labels{display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:var(--text-dim)}
+.mood-grid{display:flex;flex-wrap:wrap;gap:8px}
+.mood-chip{padding:7px 14px;background:var(--cream);border:1px solid var(--border);border-radius:20px;font-size:13px;color:var(--text-mid);cursor:pointer;transition:all .15s;font-family:var(--font-body)}
+.mood-chip.selected{background:var(--moss-dim);border-color:rgba(74,124,89,.45);color:var(--moss)}
+.apoyo-btns{display:flex;gap:10px}
+.apoyo-btn{flex:1;padding:12px;background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:14px;font-weight:500;color:var(--text-mid);cursor:pointer;transition:all .15s;text-align:center}
+.apoyo-btn.selected{background:var(--moss-dim);border-color:rgba(74,124,89,.4);color:var(--moss)}
+
+.verificar-box{margin:14px 20px 0;background:rgba(192,88,64,.06);border:1px solid rgba(192,88,64,.22);border-radius:var(--radius);padding:18px;display:none}
+.verificar-box.show{display:block}
+.verificar-title{font-size:13px;font-weight:600;color:var(--rust);margin-bottom:4px}
+.verificar-sub{font-size:12px;color:var(--text-dim);margin-bottom:14px;line-height:1.5}
+.verificar-q{margin-bottom:12px}
+.verificar-q-label{font-size:12px;font-weight:600;color:var(--text-mid);margin-bottom:6px}
+.verificar-input{width:100%;padding:10px 12px;background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:13px;color:var(--text);resize:none;min-height:56px}
+
+.please-section{margin:14px 20px 0;background:var(--sky-dim);border:1px solid rgba(74,143,168,.2);border-radius:var(--radius);padding:18px}
+.please-title-row{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.please-badge{padding:3px 10px;background:var(--sky-dim);border:1px solid rgba(74,143,168,.35);border-radius:10px;font-size:11px;font-weight:700;color:var(--sky);letter-spacing:.06em}
+.please-desc{font-size:13px;color:var(--text-dim);margin-bottom:14px;line-height:1.5}
+.please-grid{display:flex;flex-direction:column;gap:8px}
+.please-item{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.please-label{font-size:14px;color:var(--text-mid);flex:1}
+.please-letter{font-family:var(--font-display);font-size:16px;color:var(--sky);width:18px;flex-shrink:0}
+.toggle-wrap{position:relative;width:44px;height:24px;flex-shrink:0}
+.toggle-wrap input{opacity:0;width:0;height:0;position:absolute}
+.toggle-track{display:block;width:44px;height:24px;background:var(--sand);border-radius:12px;cursor:pointer;transition:background .2s}
+.toggle-wrap input:checked+.toggle-track{background:var(--moss)}
+.toggle-thumb{position:absolute;top:2px;left:2px;width:20px;height:20px;background:white;border-radius:50%;transition:transform .2s;pointer-events:none}
+.toggle-wrap input:checked~.toggle-thumb{transform:translateX(20px)}
+
+.diario-submit{margin:18px 20px 0;width:calc(100% - 40px);padding:16px;background:var(--moss);border:none;border-radius:var(--radius);font-family:var(--font-body);font-size:15px;font-weight:600;color:white;cursor:pointer}
+.diario-submit:active{opacity:.85}
+.registro-item{background:var(--warm);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.registro-fecha{font-size:11px;color:var(--text-dim);min-width:70px}
+.registro-chips{display:flex;gap:6px;flex-wrap:wrap;flex:1}
+.chip-small{padding:3px 8px;border-radius:10px;font-size:11px;font-weight:500}
+.chip-green{background:var(--moss-dim);color:var(--moss)}
+.chip-amber{background:var(--amber-dim);color:var(--amber)}
+.chip-red{background:var(--rust-dim);color:var(--rust)}
+.chip-sky{background:var(--sky-dim);color:var(--sky)}
+
+/* ── TAREAS ── */
+.uso-tabs{display:flex;gap:0;margin:14px 20px 0;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.uso-tab{flex:1;padding:11px 6px;text-align:center;cursor:pointer;font-family:var(--font-body);font-size:11px;font-weight:600;color:var(--text-dim);border:none;background:none;transition:all .15s;letter-spacing:.03em;border-right:1px solid var(--border)}
+.uso-tab:last-child{border-right:none}
+.uso-tab.active{background:var(--moss);color:white}
+.uso-tab.crisis.active{background:var(--rust)}
+.uso-tab.vulnerable.active{background:var(--amber)}
+.uso-tab.construir.active{background:var(--moss)}
+.uso-context{margin:10px 20px 0;padding:10px 14px;border-radius:var(--radius-sm);font-size:12px;line-height:1.55;display:none}
+.uso-context.show{display:block}
+.uso-context.crisis{background:var(--rust-dim);border:1px solid rgba(192,88,64,.2);color:var(--rust)}
+.uso-context.vulnerable{background:var(--amber-dim);border:1px solid rgba(200,132,58,.2);color:var(--amber)}
+.uso-context.construir{background:var(--moss-dim);border:1px solid rgba(74,124,89,.2);color:var(--moss)}
+.tarea-card{margin:12px 20px 0;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer}
+.tarea-card:active{border-color:rgba(74,124,89,.4)}
+.tarea-header{padding:16px;display:flex;align-items:flex-start;gap:12px}
+.tarea-icon{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.tarea-meta{flex:1}
+.tarea-name{font-size:15px;font-weight:500;margin-bottom:4px;color:var(--text)}
+.tarea-tags{display:flex;gap:6px;flex-wrap:wrap}
+.tarea-tag{padding:2px 8px;border-radius:8px;font-size:11px;font-weight:500}
+.tag-dbt{background:rgba(160,128,96,.15);color:var(--bark)}
+.tag-resp{background:var(--moss-dim);color:var(--moss)}
+.tag-mindful{background:var(--amber-dim);color:var(--amber)}
+.tag-motor{background:var(--rust-dim);color:var(--rust)}
+.tag-please{background:var(--sky-dim);color:var(--sky)}
+.tag-adicciones{background:var(--earth-dim);color:var(--earth)}
+.tarea-duration{font-size:12px;color:var(--text-dim);flex-shrink:0}
+.tarea-body{display:none;padding:0 16px 16px;border-top:1px solid var(--border)}
+.tarea-body.open{display:block}
+.tarea-steps{margin-top:14px;display:flex;flex-direction:column;gap:10px}
+.step{display:flex;gap:12px;align-items:flex-start}
+.step-num{width:22px;height:22px;border-radius:50%;background:var(--cream);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--text-dim);flex-shrink:0;margin-top:1px}
+.step-text{font-size:14px;color:var(--text-mid);line-height:1.55;flex:1}
+.tarea-timer-btn{margin-top:14px;width:100%;padding:11px;background:var(--moss-dim);border:1px solid rgba(74,124,89,.3);border-radius:var(--radius-sm);color:var(--moss);font-family:var(--font-body);font-size:13px;font-weight:500;cursor:pointer}
+.tarea-fuente{margin-top:10px;font-size:11px;color:var(--text-dim);font-style:italic;border-top:1px solid var(--border);padding-top:8px}
+
+/* ── PROGRESO ── */
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 20px 0}
+.stat-box{background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);padding:16px 14px;text-align:center}
+.stat-val{font-family:var(--font-display);font-size:34px;color:var(--moss);line-height:1}
+.stat-label{font-size:12px;color:var(--text-dim);margin-top:5px;line-height:1.3}
+.mini-chart{margin:14px 20px 0;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);padding:18px 16px}
+.chart-title{font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px}
+.bar-chart{display:flex;align-items:flex-end;gap:6px;height:80px}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px}
+.bar{width:100%;border-radius:4px 4px 0 0;min-height:4px}
+.bar.craving{background:var(--rust);opacity:.65}
+.bar.malestar{background:var(--sky);opacity:.55}
+.bar-day{font-size:10px;color:var(--text-dim)}
+.legend{display:flex;gap:16px;margin-top:12px}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-dim)}
+.legend-dot{width:8px;height:8px;border-radius:50%}
+.halt-week-box{margin:14px 20px 0;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
+.halt-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.halt-item{flex:1;min-width:80px;background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 8px;text-align:center}
+.halt-letter{font-family:var(--font-display);font-size:20px;color:var(--rust)}
+.halt-name{font-size:10px;color:var(--text-dim);margin-top:2px}
+.halt-count{font-size:13px;font-weight:600;margin-top:4px}
+.mente-week-box{margin:14px 20px 0;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
+.mente-week-row{display:flex;gap:8px;margin-top:10px}
+.mente-week-item{flex:1;border-radius:var(--radius-sm);padding:10px 8px;text-align:center;border:1px solid var(--border)}
+.logros-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 20px 0}
+.logro{background:var(--warm);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 10px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px}
+.logro.locked{opacity:.4;filter:grayscale(1)}
+.logro-icon{font-size:28px}
+.logro-name{font-size:11px;color:var(--text-dim);line-height:1.3}
+
+/* ── AJUSTES ── */
+.profile-box{margin:20px 20px 0;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius);padding:22px;text-align:center}
+.profile-avatar{width:60px;height:60px;border-radius:50%;background:var(--moss-dim);border:2px solid rgba(74,124,89,.3);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:24px}
+.profile-name{font-family:var(--font-display);font-size:20px}
+.profile-id{font-size:12px;color:var(--text-dim);margin-top:4px;font-family:monospace}
+.settings-section{margin:16px 20px 0}
+.settings-section-title{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
+.settings-row{background:var(--warm);border:1px solid var(--border);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:1px;cursor:pointer}
+.settings-row:first-of-type{border-radius:var(--radius-sm) var(--radius-sm) 0 0}
+.settings-row:last-of-type{border-radius:0 0 var(--radius-sm) var(--radius-sm)}
+.settings-row-label{font-size:14px;font-weight:500;color:var(--text)}
+.settings-row-val{font-size:13px;color:var(--text-dim)}
+.settings-row svg{width:16px;height:16px;color:var(--text-dim)}
+.data-note{margin:14px 20px 0;background:var(--moss-dim);border:1px solid rgba(74,124,89,.2);border-radius:var(--radius-sm);padding:14px 16px;font-size:12px;color:var(--text-mid);line-height:1.65}
+.data-note strong{color:var(--moss)}
+
+/* ── TERAPEUTA ── */
+#terapeuta-screen{display:none;position:fixed;inset:0;background:var(--cream);z-index:200;flex-direction:column;overflow-y:auto}
+#terapeuta-screen.open{display:flex}
+.terap-header{padding:20px 20px 16px;background:var(--moss);display:flex;align-items:center;gap:12px;flex-shrink:0}
+.terap-back{background:rgba(255,255,255,.15);border:none;border-radius:10px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.terap-back svg{width:20px;height:20px;color:white}
+.terap-title{font-family:var(--font-display);font-size:22px;color:white}
+.terap-sub{font-size:12px;color:rgba(255,255,255,.7);margin-top:2px}
+#pin-screen{padding:40px 24px;text-align:center;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#pin-screen h2{font-family:var(--font-display);font-size:24px;margin-bottom:8px}
+#pin-screen p{font-size:14px;color:var(--text-dim);margin-bottom:28px;line-height:1.5}
+.pin-dots{display:flex;gap:12px;justify-content:center;margin-bottom:28px}
+.pin-dot{width:14px;height:14px;border-radius:50%;background:var(--sand);border:2px solid var(--bark);transition:background .15s}
+.pin-dot.filled{background:var(--moss);border-color:var(--moss)}
+.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%;max-width:260px}
+.pin-key{padding:18px 10px;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius-sm);font-family:var(--font-display);font-size:22px;color:var(--text);cursor:pointer;text-align:center;transition:background .15s}
+.pin-key:active{background:var(--sand)}
+.pin-key.del{font-size:16px;color:var(--text-dim)}
+.pin-error{color:var(--rust);font-size:13px;margin-top:12px;min-height:20px}
+#terap-dashboard{padding:20px;flex:1;display:none}
+#terap-dashboard.open{display:block}
+.terap-section{margin-bottom:20px}
+.terap-section-title{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px}
+.terap-stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
+.terap-stat{background:var(--warm);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 10px;text-align:center}
+.terap-stat-val{font-family:var(--font-display);font-size:26px;color:var(--moss);line-height:1}
+.terap-stat-label{font-size:11px;color:var(--text-dim);margin-top:4px}
+.alert-box{background:var(--rust-dim);border:1px solid rgba(192,88,64,.25);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:10px}
+.alert-title{font-size:13px;font-weight:600;color:var(--rust);margin-bottom:4px}
+.alert-body{font-size:13px;color:var(--text-mid);line-height:1.5}
+.terap-table{width:100%;border-collapse:collapse}
+.terap-table th{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);padding:6px 8px;text-align:left;border-bottom:1px solid var(--border)}
+.terap-table td{font-size:12px;color:var(--text-mid);padding:8px 8px;border-bottom:1px solid var(--border)}
+.terap-table tr:last-child td{border-bottom:none}
+.review-protocol{background:var(--sky-dim);border:1px solid rgba(74,143,168,.2);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:14px}
+.review-title{font-size:13px;font-weight:600;color:var(--sky);margin-bottom:6px}
+.review-body{font-size:13px;color:var(--text-mid);line-height:1.55}
+.semaforo-row{display:flex;gap:8px;margin-top:10px}
+.semaforo-item{flex:1;border-radius:var(--radius-sm);padding:8px 10px;text-align:center}
+.sem-verde{background:rgba(74,124,89,.12);border:1px solid rgba(74,124,89,.25)}
+.sem-ambar{background:var(--amber-dim);border:1px solid rgba(200,132,58,.3)}
+.sem-rojo{background:var(--rust-dim);border:1px solid rgba(192,88,64,.3)}
+.sem-color{font-size:18px;margin-bottom:4px}
+.sem-label{font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.sem-desc{font-size:10px;color:var(--text-dim);margin-top:3px;line-height:1.4}
+.code-label{font-size:12px;color:var(--text-dim);margin-bottom:4px}
+.code-val{font-family:monospace;font-size:18px;letter-spacing:.1em;color:var(--earth);font-weight:600}
+.code-note{font-size:11px;color:var(--text-dim);line-height:1.4;margin-top:8px}
+.export-btn{width:100%;padding:13px;background:var(--moss);border:none;border-radius:var(--radius-sm);font-family:var(--font-body);font-size:14px;font-weight:600;color:white;cursor:pointer;margin-top:8px}
+
+/* ── MODALES ── */
+#fecha-overlay{display:none;position:fixed;inset:0;background:rgba(46,36,24,.6);z-index:90;align-items:center;justify-content:center;padding:24px}
+#fecha-overlay.open{display:flex}
+#fecha-modal{background:var(--cream);border-radius:var(--radius);padding:28px 24px;width:100%;max-width:380px;animation:fadeIn .2s ease}
+#fecha-modal h3{font-family:var(--font-display);font-size:20px;margin-bottom:8px}
+#fecha-modal .eva-note{font-size:13px;color:var(--text-dim);margin-bottom:16px;line-height:1.5}
+#fecha-input{width:100%;padding:12px 14px;background:var(--warm);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-body);font-size:15px;margin-bottom:16px}
+.fecha-btns{display:flex;gap:10px}
+.fecha-btn{flex:1;padding:12px;border-radius:var(--radius-sm);font-family:var(--font-body);font-size:14px;font-weight:500;cursor:pointer;border:none}
+.fecha-btn.cancel{background:var(--warm);color:var(--text-dim)}
+.fecha-btn.confirm{background:var(--moss);color:white}
+#timer-overlay{display:none;position:fixed;inset:0;background:rgba(46,36,24,.8);z-index:90;align-items:center;justify-content:center;padding:24px}
+#timer-overlay.open{display:flex}
+#timer-modal{background:var(--cream);border-radius:var(--radius);padding:32px 24px;width:100%;max-width:360px;text-align:center;animation:fadeIn .2s ease}
+#timer-name{font-family:var(--font-display);font-size:20px;margin-bottom:6px;color:var(--text)}
+#timer-display{font-family:var(--font-display);font-size:58px;color:var(--moss);line-height:1;margin:20px 0}
+#timer-stop{padding:12px 28px;background:var(--rust-dim);border:1px solid rgba(192,88,64,.3);border-radius:20px;color:var(--rust);font-family:var(--font-body);font-size:14px;font-weight:500;cursor:pointer}
+
+/* ── MENTE SABIA MODAL ── */
+#mente-sabia-overlay{display:none;position:fixed;inset:0;background:rgba(46,36,24,.8);z-index:110;align-items:center;justify-content:center;padding:24px}
+#mente-sabia-overlay.open{display:flex}
+#mente-sabia-modal{background:var(--cream);border-radius:var(--radius);padding:28px 24px;width:100%;max-width:440px;max-height:85vh;overflow-y:auto;animation:fadeIn .2s ease}
+.ms-title{font-family:var(--font-display);font-size:22px;color:var(--text);margin-bottom:6px}
+.ms-sub{font-size:13px;color:var(--text-dim);margin-bottom:18px;line-height:1.55}
+.ms-venn{display:flex;justify-content:space-between;gap:8px;margin-bottom:18px}
+.ms-state{flex:1;border-radius:var(--radius-sm);padding:14px 10px;text-align:center}
+.ms-state.adicta{background:var(--rust-dim);border:1.5px solid rgba(192,88,64,.3)}
+.ms-state.clara{background:var(--moss-dim);border:1.5px solid rgba(74,124,89,.4)}
+.ms-state.limpia{background:var(--amber-dim);border:1.5px solid rgba(200,132,58,.3)}
+.ms-state-icon{font-size:24px;margin-bottom:6px}
+.ms-state-name{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px}
+.ms-state.adicta .ms-state-name{color:var(--rust)}
+.ms-state.clara .ms-state-name{color:var(--moss)}
+.ms-state.limpia .ms-state-name{color:var(--amber)}
+.ms-state-desc{font-size:11px;color:var(--text-mid);line-height:1.45}
+.ms-section{margin-bottom:16px}
+.ms-section-title{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
+.ms-section-body{font-size:13px;color:var(--text-mid);line-height:1.65}
+.ms-close{margin-top:4px;width:100%;padding:13px;background:var(--moss-dim);border:1px solid rgba(74,124,89,.3);border-radius:var(--radius-sm);color:var(--moss);font-family:var(--font-body);font-size:14px;font-weight:500;cursor:pointer}
+
+#toast{position:fixed;bottom:96px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--moss);border-radius:20px;padding:10px 20px;font-size:13px;font-weight:500;color:white;opacity:0;transition:all .25s;z-index:50;white-space:nowrap;pointer-events:none}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- HOME -->
+<div id="home" class="screen active">
+  <div class="brand"><div class="brand-logo">🌿</div><div><div class="brand-name">SendaDigital</div><div class="brand-sub">Tu camino de recuperación</div></div></div>
+
+  <div class="sobriety-card">
+    <div class="sober-days" id="sober-days">—</div>
+    <div class="sober-label">días de sobriedad</div>
+    <div class="sober-since" id="sober-since">Establece tu fecha de inicio</div>
+    <button class="sober-edit" onclick="openFechaModal()">✎ Editar fecha</button>
+  </div>
+
+  <div class="eva-msg" id="eva-msg">
+    <div class="eva-msg-title">🌱 Empezamos de nuevo</div>
+    <div class="eva-msg-body">Una caída no te condena a no dejarlo nunca. Has vuelto — eso es lo que importa. Lo que has aprendido permanece.</div>
+  </div>
+
+  <!-- SLIDERS HOME -->
+  <div class="home-sliders">
+    <div class="home-sliders-title">¿Cómo estás ahora mismo?</div>
+
+    <div class="slider-block">
+      <div class="slider-row-label">
+        <div>
+          <span class="slider-name">😔 Malestar emocional</span>
+          <div style="font-size:11px;color:var(--text-dim);margin-top:2px">Tensión, angustia, agobio general</div>
+        </div>
+        <span class="slider-num low" id="home-val-malestar">1</span>
+      </div>
+      <input type="range" class="home-slider malestar" id="home-sl-malestar" min="1" max="10" value="1" oninput="onHomeMalestarChange(this.value)">
+      <div class="slider-labels-row"><span>1 Sin malestar</span><span>10 Insoportable</span></div>
+    </div>
+
+    <div class="slider-hint" id="hint-malestar-mid">
+      🟡 Malestar moderado. Prueba un ejercicio preventivo antes de que suba.
+      <button onclick="goTo('tareas');switchUsoExternal('vulnerable')" style="margin-top:6px;display:block;padding:6px 14px;background:var(--amber-dim);border:1px solid rgba(200,132,58,.3);border-radius:12px;font-family:var(--font-body);font-size:12px;color:var(--amber);cursor:pointer">Ver ejercicios preventivos →</button>
+    </div>
+    <div class="slider-hint" id="hint-malestar-high">
+      🔴 Malestar alto. Usa el botón SOS o Verificar los hechos abajo.
+    </div>
+
+    <div class="slider-block" style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border)">
+      <div class="slider-row-label">
+        <div>
+          <span class="slider-name">🍷 Urgencia de consumir</span>
+          <div style="font-size:11px;color:var(--text-dim);margin-top:2px">Impulso específico de beber ahora</div>
+        </div>
+        <span class="slider-num low" id="home-val-craving">1</span>
+      </div>
+      <input type="range" class="home-slider craving" id="home-sl-craving" min="1" max="10" value="1" oninput="onHomeCravingChange(this.value)">
+      <div class="slider-labels-row"><span>1 Sin impulso</span><span>10 Muy intenso</span></div>
+    </div>
+
+    <div class="slider-hint" id="hint-craving-mid">
+      🟡 Impulso moderado. El craving dura solo 15-20 min. ¿Ya revisaste los Pros y Contras?
+    </div>
+    <div class="slider-hint" id="hint-craving-high">
+      🔴 Craving alto. Muchas veces el impulso se dispara por cómo interpretamos la situación, no por los hechos.
+    </div>
+  </div>
+
+  <!-- VERIFICAR LOS HECHOS INLINE (aparece si craving ≥7 o malestar ≥7) -->
+  <div class="vh-inline" id="vh-home">
+    <div class="vh-inline-title">⚠️ Verificar los hechos</div>
+    <div class="vh-inline-sub">Tómate un momento. Muchas emociones surgen de cómo interpretamos los eventos, no de los eventos en sí. (RE Ficha 4)</div>
+    <div class="vh-q">
+      <div class="vh-q-label">¿Qué situación ha desencadenado esto?</div>
+      <textarea class="vh-input" id="vh-home-evento" placeholder="Describe brevemente qué pasó..."></textarea>
+    </div>
+    <div class="vh-q">
+      <div class="vh-q-label">¿Hay otra interpretación posible?</div>
+      <textarea class="vh-input" id="vh-home-interp" placeholder="¿Estoy leyendo la situación de forma extrema?..."></textarea>
+    </div>
+  </div>
+
+  <!-- MENTE CLARA -->
+  <div class="mente-card">
+    <div class="mente-title">¿Cómo está tu mente hoy?</div>
+    <div class="mente-btns">
+      <button class="mente-btn m-adicta" onclick="selectMente('adicta',this)">
+        <div class="mente-btn-icon">🌀</div>
+        <div class="mente-btn-label">Adicta</div>
+        <div class="mente-btn-desc">El impulso me gobierna</div>
+      </button>
+      <button class="mente-btn m-clara" onclick="selectMente('clara',this)">
+        <div class="mente-btn-icon">🌿</div>
+        <div class="mente-btn-label">Clara</div>
+        <div class="mente-btn-desc">Limpia y alerta al riesgo</div>
+      </button>
+      <button class="mente-btn m-limpia" onclick="selectMente('limpia',this)">
+        <div class="mente-btn-icon">☀️</div>
+        <div class="mente-btn-label">Limpia</div>
+        <div class="mente-btn-desc">Bien, pero sin guardia</div>
+      </button>
+    </div>
+    <div class="mente-nota" id="mente-nota"></div>
+    <div class="mente-detail" id="mente-detail">
+      <div class="mente-detail-box">
+        <div class="mente-detail-title" id="mente-detail-title"></div>
+        <div class="mente-detail-body" id="mente-detail-body"></div>
+      </div>
+      <div class="mente-detail-link" onclick="openMenteSabia()">¿Qué significa Mente Clara? Ver explicación completa →</div>
+    </div>
+  </div>
+
+  <div class="milestones" id="milestones-row"></div>
+
+  <button id="sos-btn" onclick="openSOS()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    Necesito ayuda ahora
+  </button>
+
+  <div class="prevention-card">
+    <div class="prevention-title">Recordatorio preventivo</div>
+    <div class="prevention-row">
+      <div class="prevention-label">¿Cuál es tu hora de mayor riesgo?</div>
+      <button class="prevention-time-btn" onclick="setPreventionTime()" id="prev-time-btn">Configurar</button>
+    </div>
+    <div class="prevention-note" id="prev-note">Recibirás un aviso diario a esa hora para registrar tu estado antes de que el craving llegue a su pico.</div>
+  </div>
+
+  <div class="quick-title">Accesos rápidos</div>
+  <div class="quick-grid">
+    <button class="quick-btn" onclick="goTo('diario')"><div class="q-icon" style="background:var(--moss-dim)">📓</div><div class="q-label">Diario de hoy</div><div class="q-sub">Registro completo</div></button>
+    <button class="quick-btn" onclick="goTo('tareas')"><div class="q-icon" style="background:var(--amber-dim)">🧘</div><div class="q-label">Ejercicios</div><div class="q-sub">Por momento de uso</div></button>
+    <button class="quick-btn" onclick="goTo('progreso')"><div class="q-icon" style="background:var(--bark-dim)">📈</div><div class="q-label">Mi progreso</div><div class="q-sub">Estadísticas</div></button>
+    <button class="quick-btn" onclick="goTo('ajustes')"><div class="q-icon" style="background:var(--earth-dim)">⚙️</div><div class="q-label">Ajustes</div><div class="q-sub">Perfil y datos</div></button>
+  </div>
+</div>
+
+<!-- DIARIO -->
+<div id="diario" class="screen">
+  <div class="screen-header"><div class="screen-label">Evaluación diaria</div><div class="screen-title">¿Cómo estás hoy?</div></div>
+  <p class="ema-intro">Responde con honestidad. Solo tú ves estos datos.</p>
+
+  <div class="ema-question">
+    <div class="ema-q-label">Malestar emocional</div>
+    <div class="ema-q-text">¿Cuál ha sido tu nivel máximo de malestar emocional hoy?</div>
+    <div class="slider-val" id="val-malestar">5</div>
+    <input type="range" class="ema-slider" id="sl-malestar" min="1" max="10" value="5" oninput="document.getElementById('val-malestar').textContent=this.value">
+    <div class="slider-labels"><span>1 Sin malestar</span><span>10 Muy intenso</span></div>
+  </div>
+
+  <div class="ema-question">
+    <div class="ema-q-label">Craving</div>
+    <div class="ema-q-text">¿Cuál ha sido tu nivel máximo de urgencia por consumir hoy?</div>
+    <div class="slider-val" id="val-craving">5</div>
+    <input type="range" class="ema-slider" id="sl-craving" min="1" max="10" value="5" oninput="onCravingChange(this.value)">
+    <div class="slider-labels"><span>1 Sin impulso</span><span>10 Muy intenso</span></div>
+  </div>
+
+  <div class="verificar-box" id="verificar-box">
+    <div class="verificar-title">⚠️ Craving alto — Verificar los hechos</div>
+    <div class="verificar-sub">Tómate un momento. Muchas veces el craving se dispara por cómo interpretamos los eventos. (RE Ficha 4)</div>
+    <div class="verificar-q">
+      <div class="verificar-q-label">¿Qué evento o situación ha desencadenado este impulso?</div>
+      <textarea class="verificar-input" id="vh-evento" placeholder="Describe brevemente qué pasó (quién, qué, cuándo)..."></textarea>
+    </div>
+    <div class="verificar-q">
+      <div class="verificar-q-label">¿Hay alguna interpretación diferente posible?</div>
+      <textarea class="verificar-input" id="vh-interpretacion" placeholder="¿Podría estar leyendo la situación de forma extrema?..."></textarea>
+    </div>
+    <div class="verificar-q">
+      <div class="verificar-q-label">¿Cuál es la probabilidad real de que ocurra lo que temes?</div>
+      <textarea class="verificar-input" id="vh-probabilidad" placeholder="¿Estás anticipando el peor resultado posible?..."></textarea>
+    </div>
+  </div>
+
+  <div class="ema-question">
+    <div class="ema-q-label">Estado emocional</div>
+    <div class="ema-q-text">¿Cuál ha sido tu estado predominante en las últimas horas?</div>
+    <div class="mood-grid">
+      <button class="mood-chip" onclick="selectMood(this)">😌 Calma</button>
+      <button class="mood-chip" onclick="selectMood(this)">😰 Ansiedad</button>
+      <button class="mood-chip" onclick="selectMood(this)">😔 Tristeza</button>
+      <button class="mood-chip" onclick="selectMood(this)">😠 Irritabilidad</button>
+      <button class="mood-chip" onclick="selectMood(this)">😊 Alegría</button>
+      <button class="mood-chip" onclick="selectMood(this)">😴 Agotamiento</button>
+      <button class="mood-chip" onclick="selectMood(this)">🫤 Vacío</button>
+      <button class="mood-chip" onclick="selectMood(this)">🤢 Malestar físico</button>
+    </div>
+  </div>
+
+  <div class="ema-question">
+    <div class="ema-q-label">Autoeficacia</div>
+    <div class="ema-q-text">¿Cuánto confías en mantener tu abstinencia las próximas 24 horas?</div>
+    <div class="slider-val" id="val-eficacia">7</div>
+    <input type="range" class="ema-slider" id="sl-eficacia" min="1" max="10" value="7" oninput="document.getElementById('val-eficacia').textContent=this.value">
+    <div class="slider-labels"><span>1 Muy difícil</span><span>10 Muy seguro/a</span></div>
+  </div>
+
+  <div class="ema-question">
+    <div class="ema-q-label">Descanso</div>
+    <div class="ema-q-text">¿Cuántas horas dormiste y cómo fue la calidad?</div>
+    <div style="display:flex;gap:14px">
+      <div style="flex:1"><div class="ema-q-label" style="margin-bottom:4px">Horas</div><div class="slider-val" id="val-horas">7</div><input type="range" class="ema-slider" id="sl-horas" min="0" max="12" value="7" oninput="document.getElementById('val-horas').textContent=this.value"></div>
+      <div style="flex:1"><div class="ema-q-label" style="margin-bottom:4px">Calidad</div><div class="slider-val" id="val-calidad">3</div><input type="range" class="ema-slider" id="sl-calidad" min="1" max="5" value="3" oninput="document.getElementById('val-calidad').textContent=this.value"></div>
+    </div>
+  </div>
+
+  <div class="ema-question">
+    <div class="ema-q-label">Red de apoyo</div>
+    <div class="ema-q-text">¿Has tenido contacto hoy con alguien que refuerce tu recuperación?</div>
+    <div class="apoyo-btns"><button class="apoyo-btn" id="apoyo-si" onclick="selectApoyo('si')">✓ Sí</button><button class="apoyo-btn" id="apoyo-no" onclick="selectApoyo('no')">✗ No</button></div>
+  </div>
+
+  <div class="please-section">
+    <div class="please-title-row"><div class="please-badge">PLEASE</div><div class="ema-q-label" style="margin:0">Vulnerabilidad biológica</div></div>
+    <div class="please-desc">Estos hábitos reducen tu umbral de resistencia. Marca lo que has cuidado hoy. (RE Ficha 14)</div>
+    <div class="please-grid">
+      <div class="please-item"><span class="please-letter">PL</span><span class="please-label">He atendido algún malestar físico</span><label class="toggle-wrap"><input type="checkbox" id="pl-enfermedad"><span class="toggle-track"></span><span class="toggle-thumb"></span></label></div>
+      <div class="please-item"><span class="please-letter">E</span><span class="please-label">He evitado otras sustancias</span><label class="toggle-wrap"><input type="checkbox" id="pl-sustancias"><span class="toggle-track"></span><span class="toggle-thumb"></span></label></div>
+      <div class="please-item"><span class="please-letter">A</span><span class="please-label">He comido de forma equilibrada</span><label class="toggle-wrap"><input type="checkbox" id="pl-alimentacion"><span class="toggle-track"></span><span class="toggle-thumb"></span></label></div>
+      <div class="please-item"><span class="please-letter">S</span><span class="please-label">He dormido suficiente</span><label class="toggle-wrap"><input type="checkbox" id="pl-sueno"><span class="toggle-track"></span><span class="toggle-thumb"></span></label></div>
+      <div class="please-item"><span class="please-letter">E</span><span class="please-label">He hecho actividad física</span><label class="toggle-wrap"><input type="checkbox" id="pl-ejercicio"><span class="toggle-track"></span><span class="toggle-thumb"></span></label></div>
+    </div>
+  </div>
+
+  <button class="diario-submit" onclick="guardarDiario()">Guardar registro →</button>
+  <div style="padding:18px 20px 0"><div class="screen-label" style="margin-bottom:10px">Registros anteriores</div><div id="registros-list"></div></div>
+</div>
+
+<!-- TAREAS -->
+<div id="tareas" class="screen">
+  <div class="screen-header"><div class="screen-label">Habilidades DBT</div><div class="screen-title">Ejercicios</div></div>
+  <div class="uso-tabs">
+    <button class="uso-tab crisis active" id="tab-crisis" onclick="switchUso('crisis')">🔴 Crisis</button>
+    <button class="uso-tab vulnerable" id="tab-vulnerable" onclick="switchUso('vulnerable')">🟡 Vulnerable</button>
+    <button class="uso-tab construir" id="tab-construir" onclick="switchUso('construir')">🟢 Construir</button>
+  </div>
+  <div class="uso-context crisis show" id="ctx-crisis">Para cuando el craving aprieta ahora mismo y necesitas reducir la activación. Tolerancia al malestar sesiones 3-4.</div>
+  <div class="uso-context vulnerable" id="ctx-vulnerable">Para cuando detectas señales de riesgo moderado. Actúa antes de llegar al pico. Regulación emocional sesiones 11-12.</div>
+  <div class="uso-context construir" id="ctx-construir">Para el día a día sin urgencia. Construye resiliencia a largo plazo. Adicciones sesión 7-9 y Regulación emocional sesión 13.</div>
+  <div id="tareas-list"></div>
+</div>
+
+<!-- PROGRESO -->
+<div id="progreso" class="screen">
+  <div class="screen-header"><div class="screen-label">Tu evolución</div><div class="screen-title">Progreso</div></div>
+  <div class="stat-row" id="stat-row"></div>
+  <div class="mini-chart">
+    <div class="chart-title">Craving y malestar — últimos 7 días</div>
+    <div class="bar-chart" id="bar-chart"></div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--rust)"></div>Craving</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--sky)"></div>Malestar</div>
+    </div>
+  </div>
+  <div class="mente-week-box"><div class="chart-title">Mente Clara — esta semana</div><div class="mente-week-row" id="mente-week-row"></div></div>
+  <div class="halt-week-box" style="border-color:rgba(74,143,168,.2);background:var(--sky-dim)"><div class="chart-title" style="color:var(--sky)">PLEASE — adherencia semanal</div><div class="halt-row" id="please-row"></div></div>
+  <div style="padding:14px 20px 0"><div class="screen-label" style="margin-bottom:10px">Logros</div><div class="logros-grid" id="logros-grid"></div></div>
+</div>
+
+<!-- AJUSTES -->
+<div id="ajustes" class="screen">
+  <div class="screen-header"><div class="screen-label">Mi perfil</div><div class="screen-title">Ajustes</div></div>
+  <div class="profile-box"><div class="profile-avatar">🌿</div><div class="profile-name">Usuario</div><div class="profile-id" id="profile-id">ID: —</div></div>
+  <div class="settings-section"><div class="settings-section-title">Emergencia</div><div class="settings-row" onclick="editContact()"><div><div class="settings-row-label">Contacto de confianza</div><div class="settings-row-val" id="contact-display">No configurado</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
+  <div class="settings-section"><div class="settings-section-title">Terapeuta</div><div class="settings-row" onclick="openTerapeuta()"><div><div class="settings-row-label">Acceso del terapeuta</div><div class="settings-row-val">Informe semanal protegido</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div><div class="settings-row" onclick="changePin()"><div><div class="settings-row-label">Cambiar PIN</div><div class="settings-row-val">4 dígitos</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
+  <div class="settings-section"><div class="settings-section-title">Datos</div><div class="settings-row" onclick="exportData()"><div class="settings-row-label">Exportar mis datos</div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div><div class="settings-row" onclick="if(confirm('¿Borrar todos los datos?'))clearData()"><div class="settings-row-label" style="color:var(--rust)">Borrar todos mis datos</div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
+  <div class="data-note"><strong>Privacidad:</strong> Todos tus datos se almacenan únicamente en este dispositivo. No se envían a ningún servidor externo.</div>
+</div>
+
+<nav id="nav">
+  <button class="nav-btn active" id="nav-home" onclick="goTo('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Inicio</button>
+  <button class="nav-btn" id="nav-diario" onclick="goTo('diario')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M8 8h8M8 16h5"/></svg>Diario</button>
+  <button class="nav-btn" id="nav-tareas" onclick="goTo('tareas')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2a10 10 0 110 20A10 10 0 0112 2zm0 6v4l3 3"/></svg>Ejercicios</button>
+  <button class="nav-btn" id="nav-progreso" onclick="goTo('progreso')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 18l5-8 4 5 4-7 5 10"/></svg>Progreso</button>
+  <button class="nav-btn" id="nav-ajustes" onclick="goTo('ajustes')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>Ajustes</button>
+</nav>
+</div>
+
+<!-- SOS -->
+<div id="sos-overlay" onclick="closeSOS(event)">
+<div id="sos-modal">
+  <div class="sos-handle"></div>
+  <div class="sos-title">Estás a salvo 🌿</div>
+  <div class="sos-sub">El impulso pasará. Empieza por los pros y contras — te ayuda a ganar tiempo.</div>
+  <div class="pros-contras-box">
+    <div class="pc-title">Pros y Contras ante el impulso</div>
+    <div class="pc-sub">Antes de actuar sobre el craving, mira esta balanza. (TM Ficha 4)</div>
+    <div class="pc-grid">
+      <div class="pc-col pros">
+        <div class="pc-col-title">✓ Si no bebo</div>
+        <div class="pc-item">Mantengo mi sobriedad y mis logros</div>
+        <div class="pc-item">Mañana me sentiré bien conmigo</div>
+        <div class="pc-item">Protejo mis relaciones y mi salud</div>
+        <div class="pc-item">El impulso dura solo 15-20 minutos</div>
+      </div>
+      <div class="pc-col cons">
+        <div class="pc-col-title">✗ Si bebo</div>
+        <div class="pc-item">Vuelvo a cero en el contador</div>
+        <div class="pc-item">La culpa empeorará el estado</div>
+        <div class="pc-item">Un trago nunca se queda solo</div>
+        <div class="pc-item">Rompo la promesa que me hice</div>
+      </div>
+    </div>
+    <div class="pc-reflect">Recuerda: beber no resuelve el problema que generó el craving. Solo lo pospone y lo complica.</div>
+  </div>
+  <div class="breathing-box"><div id="breath-circle">🫁</div><div id="breath-phase">Respiración 4-6-8</div><div id="breath-count">Reduce la activación del sistema nervioso</div><button id="breath-start" onclick="startBreathing()">Iniciar ejercicio</button></div>
+  <div class="sos-techniques">
+    <button class="technique-btn" onclick="showTechnique('temp')"><span class="technique-icon">🧊</span><div><div class="technique-name">Técnica TIP — Temperatura</div><div class="technique-desc">Activa el reflejo de buceo. Reduce el craving en 30 seg.</div></div></button>
+    <button class="technique-btn" onclick="showTechnique('surf')"><span class="technique-icon">🌊</span><div><div class="technique-name">Surf del craving</div><div class="technique-desc">Observa el impulso sin actuar. Dura solo 15-20 minutos.</div></div></button>
+    <button class="technique-btn" onclick="showTechnique('distrae')"><span class="technique-icon">🔄</span><div><div class="technique-name">Distráete</div><div class="technique-desc">Cambia la atención. Sal de la situación un momento.</div></div></button>
+  </div>
+  <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase">Llamar ahora</div>
+  <div class="sos-contacts">
+    <a class="contact-btn urgent" href="tel:900161515"><svg viewBox="0 0 24 24" fill="none" stroke="var(--rust)" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.6 4.18 2 2 0 015.59 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.91 9.91a16 16 0 006.18 6.18l.91-.91a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><div><div class="contact-name" style="color:var(--rust)">Línea de adicciones</div><div class="contact-num">900 161 515 · Gratuito 24h</div></div></a>
+    <a class="contact-btn" href="tel:024"><svg viewBox="0 0 24 24" fill="none" stroke="var(--moss)" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.6 4.18 2 2 0 015.59 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.91 9.91a16 16 0 006.18 6.18l.91-.91a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><div><div class="contact-name">Línea conducta suicida</div><div class="contact-num">024 · Gratuito 24h</div></div></a>
+    <button class="contact-btn" onclick="callMyContact()"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><div><div class="contact-name" style="color:var(--amber)">Mi contacto de confianza</div><div class="contact-num" id="my-contact-display">Configurar en Ajustes</div></div></button>
+  </div>
+  <button id="sos-close" onclick="document.getElementById('sos-overlay').classList.remove('open');stopBreathing()">Ya estoy mejor, cerrar</button>
+</div>
+</div>
+
+<div id="technique-overlay" onclick="if(event.target===this)closeTechnique()">
+  <div id="technique-modal"><div id="technique-title"></div><div id="technique-body"></div><button id="technique-close" onclick="closeTechnique()">Entendido</button></div>
+</div>
+
+<!-- MENTE SABIA MODAL -->
+<div id="mente-sabia-overlay" onclick="if(event.target===this)document.getElementById('mente-sabia-overlay').classList.remove('open')">
+<div id="mente-sabia-modal">
+  <div class="ms-title">Mente Sabia y Mente Clara</div>
+  <div class="ms-sub">En DBT, todos tenemos una <em>Mente Racional</em> (fría, lógica) y una <em>Mente Emocional</em> (caliente, impulsiva). La <strong>Mente Sabia</strong> es el punto intermedio — integra razón y emoción. Para quienes trabajamos la adicción, esta integración se adapta en tres estados específicos. (CP Ficha 2 · Adicciones Ficha 3)</div>
+  <div class="ms-venn">
+    <div class="ms-state adicta">
+      <div class="ms-state-icon">🌀</div>
+      <div class="ms-state-name">Adicta</div>
+      <div class="ms-state-desc">Te gobierna el impulso. Los pensamientos, emociones y conductas están determinados por la adicción.</div>
+    </div>
+    <div class="ms-state clara">
+      <div class="ms-state-icon">🌿</div>
+      <div class="ms-state-name">Clara ✓</div>
+      <div class="ms-state-desc">El lugar más seguro. Estás limpio/a <em>y</em> recuerdas que la adicción sigue siendo posible.</div>
+    </div>
+    <div class="ms-state limpia">
+      <div class="ms-state-icon">☀️</div>
+      <div class="ms-state-name">Limpia</div>
+      <div class="ms-state-desc">Estás bien, pero sin guardia. Piensas "ya lo controlo" o "ya aprendí la lección". Peligroso.</div>
+    </div>
+  </div>
+  <div class="ms-section">
+    <div class="ms-section-title">¿Por qué Mente Clara es el objetivo?</div>
+    <div class="ms-section-body">No basta con estar limpio/a — eso es Mente Limpia, y sobreestima el control. Mente Clara significa aceptar radicalmente que la caída no es imposible, disfrutar del éxito <em>y a la vez</em> planear para cuando lleguen los impulsos. Es la síntesis de sobriedad y humildad.</div>
+  </div>
+  <div class="ms-section">
+    <div class="ms-section-title">Señales de Mente Limpia (atención)</div>
+    <div class="ms-section-body">• "He aprendido la lección, ya no tengo problema"<br>• "Puedo controlar el hábito"<br>• Dejar la terapia o las reuniones<br>• Juntarse con personas que consumen<br>• Llevar dinero encima sin necesidad<br>• No confrontar los problemas que desencadenaban la adicción</div>
+  </div>
+  <div class="ms-section">
+    <div class="ms-section-title">Cómo practicar desde la app</div>
+    <div class="ms-section-body">Cada mañana, marca tu estado en la pantalla de inicio. Si detectas Mente Limpia, ve a los ejercicios 🟢 Construir y practica "De mente limpia a mente clara".</div>
+  </div>
+  <button class="ms-close" onclick="document.getElementById('mente-sabia-overlay').classList.remove('open')">Entendido</button>
+</div>
+</div>
+
+<div id="fecha-overlay"><div id="fecha-modal"><h3>Fecha de inicio de sobriedad</h3><p class="eva-note">Si estás cambiando la fecha tras una caída: una caída no te condena. Lo que importa es que has vuelto.</p><input type="date" id="fecha-input"><div class="fecha-btns"><button class="fecha-btn cancel" onclick="closeFecha()">Cancelar</button><button class="fecha-btn confirm" onclick="saveFecha()">Guardar</button></div></div></div>
+<div id="timer-overlay"><div id="timer-modal"><div id="timer-name"></div><div id="timer-display">0:00</div><button id="timer-stop" onclick="stopTimer()">Terminar ejercicio</button></div></div>
+
+<!-- TERAPEUTA -->
+<div id="terapeuta-screen">
+  <div class="terap-header"><button class="terap-back" onclick="closeTerapeuta()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></button><div><div class="terap-title">Panel del terapeuta</div><div class="terap-sub">Informe semanal protegido</div></div></div>
+  <div id="pin-screen">
+    <h2>Acceso protegido</h2><p>Introduce el PIN de 4 dígitos.</p>
+    <div class="pin-dots"><div class="pin-dot" id="pd0"></div><div class="pin-dot" id="pd1"></div><div class="pin-dot" id="pd2"></div><div class="pin-dot" id="pd3"></div></div>
+    <div class="pin-pad">
+      <button class="pin-key" onclick="pinInput('1')">1</button><button class="pin-key" onclick="pinInput('2')">2</button><button class="pin-key" onclick="pinInput('3')">3</button>
+      <button class="pin-key" onclick="pinInput('4')">4</button><button class="pin-key" onclick="pinInput('5')">5</button><button class="pin-key" onclick="pinInput('6')">6</button>
+      <button class="pin-key" onclick="pinInput('7')">7</button><button class="pin-key" onclick="pinInput('8')">8</button><button class="pin-key" onclick="pinInput('9')">9</button>
+      <div></div><button class="pin-key" onclick="pinInput('0')">0</button><button class="pin-key del" onclick="pinDelete()">⌫</button>
+    </div>
+    <div class="pin-error" id="pin-error"></div>
+  </div>
+  <div id="terap-dashboard">
+    <div class="terap-section"><div class="terap-section-title">Resumen semanal</div><div class="terap-stat-row" id="terap-stats"></div></div>
+    <div class="terap-section"><div class="terap-section-title">Protocolo revisión semanal</div>
+      <div class="review-protocol"><div class="review-title">📋 Revisión cada lunes</div><div class="review-body">Próxima revisión sugerida: <strong id="next-review-date">—</strong></div>
+        <div class="semaforo-row"><div class="semaforo-item sem-verde"><div class="sem-color">🟢</div><div class="sem-label">Verde</div><div class="sem-desc">C/M &lt;4 · Sin alertas</div></div><div class="semaforo-item sem-ambar"><div class="sem-color">🟡</div><div class="sem-label">Ámbar</div><div class="sem-desc">1-2 alertas</div></div><div class="semaforo-item sem-rojo"><div class="sem-color">🔴</div><div class="sem-label">Rojo</div><div class="sem-desc">≥3 alertas o C/M &gt;7</div></div></div>
+      </div>
+    </div>
+    <div class="terap-section"><div class="terap-section-title">Alertas clínicas</div><div id="terap-alerts"></div></div>
+    <div class="terap-section"><div class="terap-section-title">Mente Clara — esta semana</div><div style="background:var(--warm);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px" id="terap-mente"></div></div>
+    <div class="terap-section"><div class="terap-section-title">Adherencia PLEASE</div><div style="background:var(--sky-dim);border:1px solid rgba(74,143,168,.2);border-radius:var(--radius-sm);padding:14px 16px" id="terap-please"></div></div>
+    <div class="terap-section"><div class="terap-section-title">Registros diarios</div><div style="background:var(--warm);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden"><table class="terap-table"><thead><tr><th>Fecha</th><th>C</th><th>M</th><th>Mente</th><th>E</th><th>PL</th><th>Apoyo</th></tr></thead><tbody id="terap-tbody"></tbody></table></div></div>
+    <div class="terap-section"><div class="terap-section-title">Identificación</div><div style="background:var(--warm);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px"><div class="code-label">UUID anónimo</div><div class="code-val" id="terap-uuid">—</div><div class="code-note">La correspondencia UUID ↔ identidad real está en el registro físico del centro.</div></div>
+    <div style="background:var(--moss-dim);border:1px solid rgba(74,124,89,.2);border-radius:var(--radius-sm);padding:14px 16px;margin-top:10px;font-size:13px;color:var(--text-mid);line-height:1.6">
+      📤 <strong>Cómo enviar el informe a la terapeuta:</strong><br>
+      1. Pulsa el botón — se descarga un archivo JSON<br>
+      2. Envíalo por email o WhatsApp a tu terapeuta<br>
+      3. La terapeuta lo abre en SendaDigital (panel terapeuta → importar)
+    </div>
+    <button class="export-btn" onclick="exportTerapeutaData()">⬇ Descargar informe HTML</button></div>
+
+    <div class="terap-section">
+      <div class="terap-section-title">📂 Ver informe de paciente</div>
+      <div style="background:var(--sky-dim);border:1px solid rgba(74,143,168,.2);border-radius:var(--radius-sm);padding:14px 16px;font-size:13px;color:var(--text-mid);line-height:1.6;margin-bottom:10px">
+        Abre el archivo HTML que el paciente te ha enviado — se abre directamente en el navegador, listo para leer o imprimir.
+      </div>
+      <button class="export-btn" style="background:var(--sky)" onclick="importarInforme()">📂 Abrir informe de paciente</button>
+      <div id="imported-panel" style="display:none;margin-top:14px"></div>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const DB_KEY='sendadigital_v5';
+let db=JSON.parse(localStorage.getItem(DB_KEY)||'{}');
+// Migración silenciosa desde v4 (sin toast — showToast no existe aún)
+if(!db.uuid){
+  const old=JSON.parse(localStorage.getItem('sendadigital_v4')||'{}');
+  if(old.uuid){db={...old}}
+}
+if(!db.uuid)db.uuid='SD-'+Math.random().toString(36).substr(2,8).toUpperCase();
+if(!db.registros)db.registros=[];
+if(!db.soberDate)db.soberDate=null;
+if(!db.contact)db.contact=null;
+if(!db.pin)db.pin='1234';
+if(!db.prevTime)db.prevTime=null;
+if(!db.evaShown)db.evaShown=false;
+if(!db.menteRegistros)db.menteRegistros=[];
+saveDB();
+function saveDB(){localStorage.setItem(DB_KEY,JSON.stringify(db))}
+
+// ── NAVEGACIÓN ──
+function goTo(s){
+  document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(x=>x.classList.remove('active'));
+  document.getElementById(s).classList.add('active');
+  const nb=document.getElementById('nav-'+s);if(nb)nb.classList.add('active');
+  if(s==='home')renderHome();
+  if(s==='progreso')renderProgreso();
+  if(s==='tareas')renderTareas(currentUso);
+  if(s==='diario')renderRegistros();
+  if(s==='ajustes')renderAjustes();
+  document.getElementById(s).scrollTop=0;
+}
+
+// ── HOME ──
+function renderHome(){
+  updateSobriety();
+  renderMilestones();
+  renderPreventionCard();
+  document.getElementById('eva-msg').classList.toggle('show',!!db.evaShown);
+  if(db.menteHoy)restoreMente();
+  // Restore slider values from today's registro if exists
+  const today=new Date().toISOString().split('T')[0];
+  const todayReg=db.registros.find(r=>r.date===today);
+  if(todayReg){
+    document.getElementById('home-sl-craving').value=todayReg.craving||1;
+    document.getElementById('home-val-craving').textContent=todayReg.craving||1;
+    document.getElementById('home-sl-malestar').value=todayReg.malestar||1;
+    document.getElementById('home-val-malestar').textContent=todayReg.malestar||1;
+    updateSliderColor('home-val-craving',todayReg.craving||1);
+    updateSliderColor('home-val-malestar',todayReg.malestar||1);
+  }
+}
+
+function updateSobriety(){
+  const el=document.getElementById('sober-days'),si=document.getElementById('sober-since');
+  if(db.soberDate){const d=Math.floor((new Date()-new Date(db.soberDate))/86400000);el.textContent=d;si.textContent='Desde el '+new Date(db.soberDate+'T12:00').toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'})}
+  else{el.textContent='—';si.textContent='Toca "Editar fecha" para empezar'}
+}
+
+const MILESTONES=[{d:1,e:'🌱',l:'1 día'},{d:3,e:'⭐',l:'3 días'},{d:7,e:'🌿',l:'1 semana'},{d:14,e:'🌸',l:'2 semanas'},{d:30,e:'🏆',l:'1 mes'},{d:60,e:'🌙',l:'2 meses'},{d:90,e:'🌅',l:'3 meses'},{d:180,e:'🦋',l:'6 meses'},{d:365,e:'🎯',l:'1 año'}];
+function renderMilestones(){
+  const days=db.soberDate?Math.floor((new Date()-new Date(db.soberDate))/86400000):0;
+  document.getElementById('milestones-row').innerHTML=MILESTONES.map(m=>`<div class="milestone"><div class="milestone-badge ${days>=m.d?'achieved':'locked'}">${m.e}</div><div class="milestone-label">${m.l}</div></div>`).join('');
+}
+
+// ── HOME SLIDERS ──
+function updateSliderColor(valId, v){
+  const el=document.getElementById(valId);
+  el.className='slider-num '+(v>=7?'high':v>=5?'mid':'low');
+}
+
+function onHomeMalestarChange(v){
+  v=+v;
+  document.getElementById('home-val-malestar').textContent=v;
+  updateSliderColor('home-val-malestar',v);
+  const mid=document.getElementById('hint-malestar-mid');
+  const high=document.getElementById('hint-malestar-high');
+  const vhHome=document.getElementById('vh-home');
+  mid.classList.toggle('show',v>=5&&v<7);
+  high.classList.toggle('show',v>=7);
+  // Update VH inline
+  const cravingVal=+document.getElementById('home-sl-craving').value;
+  vhHome.classList.toggle('show',(v>=7||cravingVal>=7));
+  // Auto-open SOS at ≥9
+  if(v>=9){document.getElementById('sos-btn').classList.add('urgent');openSOS()}
+  else document.getElementById('sos-btn').classList.remove('urgent');
+  syncDiarioSlider('sl-malestar','val-malestar',v);
+}
+
+function onHomeCravingChange(v){
+  v=+v;
+  document.getElementById('home-val-craving').textContent=v;
+  updateSliderColor('home-val-craving',v);
+  const mid=document.getElementById('hint-craving-mid');
+  const high=document.getElementById('hint-craving-high');
+  const vhHome=document.getElementById('vh-home');
+  mid.classList.toggle('show',v>=5&&v<7);
+  high.classList.toggle('show',v>=7);
+  const malestarVal=+document.getElementById('home-sl-malestar').value;
+  vhHome.classList.toggle('show',(v>=7||malestarVal>=7));
+  if(v>=9){document.getElementById('sos-btn').classList.add('urgent');openSOS()}
+  else document.getElementById('sos-btn').classList.remove('urgent');
+  syncDiarioSlider('sl-craving','val-craving',v);
+}
+
+function syncDiarioSlider(sliderId, valId, v){
+  const s=document.getElementById(sliderId);
+  const vEl=document.getElementById(valId);
+  if(s){s.value=v;if(vEl)vEl.textContent=v}
+  // Also trigger verificar box in diario
+  if(sliderId==='sl-craving'){
+    document.getElementById('verificar-box').classList.toggle('show',v>=7);
+  }
+}
+
+function switchUsoExternal(uso){switchUso(uso)}
+
+// ── MENTE CLARA ──
+const MENTE_NOTAS={
+  adicta:'⚠️ Mente Adicta: el impulso te está gobernando. Abre el botón SOS ahora.',
+  clara:'✓ Mente Clara: sobrio/a y consciente del riesgo. El estado más seguro. Mantén los hábitos PLEASE.',
+  limpia:'⚠️ Mente Limpia: estás bien pero sin guardia. Cuidado — la mente limpia sobreestima el control.'
+};
+const MENTE_DETAIL={
+  adicta:{t:'¿Qué significa Mente Adicta?',b:'Los impulsos habituales gobiernan tus pensamientos, emociones y conductas. Estás en mente emocional pura. No tomes decisiones importantes — activa el SOS.'},
+  clara:{t:'¿Qué significa Mente Clara?',b:'Estás limpio/a Y recuerdas que la adicción sigue siendo posible. Aceptas radicalmente que la caída no es imposible. Disfrutas del éxito mientras planeas para las tentaciones. Es la síntesis de sobriedad y humildad.'},
+  limpia:{t:'¿Qué significa Mente Limpia?',b:'Estás limpio/a pero inconsciente del peligro. Piensas "ya aprendí la lección" o "puedo controlarlo". Este estado lleva a conductas aparentemente irrelevantes que abren la puerta a la recaída.'}
+};
+function selectMente(tipo,btn){
+  document.querySelectorAll('.mente-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const nota=document.getElementById('mente-nota');
+  nota.textContent=MENTE_NOTAS[tipo];
+  nota.className='mente-nota show';
+  const det=document.getElementById('mente-detail');
+  document.getElementById('mente-detail-title').textContent=MENTE_DETAIL[tipo].t;
+  document.getElementById('mente-detail-body').textContent=MENTE_DETAIL[tipo].b;
+  det.className='mente-detail show';
+  db.menteHoy=tipo;
+  const today=new Date().toISOString().split('T')[0];
+  db.menteRegistros=db.menteRegistros.filter(r=>r.date!==today);
+  db.menteRegistros.push({date:today,mente:tipo});
+  saveDB();
+  if(tipo==='adicta')showToast('Abre el botón SOS 🆘');
+}
+function restoreMente(){
+  const tipos=['adicta','clara','limpia'];
+  tipos.forEach(t=>{
+    const btn=document.querySelector(`.mente-btn.m-${t}`);
+    if(btn&&db.menteHoy===t){
+      btn.classList.add('selected');
+      document.getElementById('mente-nota').textContent=MENTE_NOTAS[t];
+      document.getElementById('mente-nota').className='mente-nota show';
+      document.getElementById('mente-detail-title').textContent=MENTE_DETAIL[t].t;
+      document.getElementById('mente-detail-body').textContent=MENTE_DETAIL[t].b;
+      document.getElementById('mente-detail').className='mente-detail show';
+    }
+  });
+}
+function openMenteSabia(){document.getElementById('mente-sabia-overlay').classList.add('open')}
+
+// ── FECHA / EVA ──
+function openFechaModal(){if(db.soberDate)document.getElementById('fecha-input').value=db.soberDate;document.getElementById('fecha-overlay').classList.add('open')}
+function closeFecha(){document.getElementById('fecha-overlay').classList.remove('open')}
+function saveFecha(){
+  const v=document.getElementById('fecha-input').value;if(!v){closeFecha();return}
+  const isReset=db.soberDate&&new Date(v+'T12:00')>new Date(db.soberDate+'T12:00');
+  db.soberDate=v;db.evaShown=isReset;saveDB();renderHome();
+  showToast(isReset?'Empezamos de nuevo 🌱':'Fecha guardada ✓');closeFecha();
+}
+
+// ── PREVENCIÓN ──
+function renderPreventionCard(){
+  const btn=document.getElementById('prev-time-btn'),note=document.getElementById('prev-note');
+  if(db.prevTime){btn.textContent=db.prevTime;note.textContent='Recordatorio activo a las '+db.prevTime+'. Te avisará para hacer el registro antes del pico de craving.'}
+}
+function setPreventionTime(){
+  const t=prompt('¿A qué hora sueles tener más dificultades? (HH:MM, ej: 20:00)');
+  if(!t||!/^\d{2}:\d{2}$/.test(t)){if(t)alert('Formato inválido. Usa HH:MM');return}
+  db.prevTime=t;saveDB();renderPreventionCard();
+  if('Notification' in window)Notification.requestPermission().then(p=>{if(p==='granted'){scheduleNotif(t);showToast('Recordatorio configurado ✓')}else showToast('Guardado — activa notificaciones en tu navegador')});
+  else showToast('Recordatorio guardado: '+t);
+}
+function scheduleNotif(ts){const[h,m]=ts.split(':').map(Number),now=new Date(),t=new Date();t.setHours(h,m,0,0);if(t<=now)t.setDate(t.getDate()+1);setTimeout(()=>new Notification('SendaDigital 🌿',{body:'Es tu momento de hacer el registro diario. ¿Cómo estás ahora?'}),t-now)}
+
+// ── SOS ──
+let breathInterval=null,breathing=false,breathPhaseIdx=0,breathCycle=0;
+// 4-6-8
+const BP=[{n:'Inhala',d:4000,c:'inhale'},{n:'Mantén',d:6000,c:'hold'},{n:'Exhala',d:8000,c:'exhale'}];
+function openSOS(){document.getElementById('sos-overlay').classList.add('open');const mc=db.contact;document.getElementById('my-contact-display').textContent=mc?mc.name+' · '+mc.phone:'Configurar en Ajustes';stopBreathing()}
+function closeSOS(e){if(e&&e.target!==document.getElementById('sos-overlay'))return;document.getElementById('sos-overlay').classList.remove('open');stopBreathing();document.getElementById('sos-btn').classList.remove('urgent')}
+function startBreathing(){if(breathing)return;breathing=true;breathCycle=0;breathPhaseIdx=0;document.getElementById('breath-start').style.display='none';runBP()}
+function runBP(){
+  if(!breathing)return;
+  const p=BP[breathPhaseIdx],c=document.getElementById('breath-circle');
+  c.className=p.c;
+  document.getElementById('breath-phase').textContent=p.n+' ('+p.d/1000+'s)';
+  document.getElementById('breath-count').textContent='Ciclo '+(breathCycle+1)+' de 7';
+  breathInterval=setTimeout(()=>{
+    breathPhaseIdx++;
+    if(breathPhaseIdx>=BP.length){breathPhaseIdx=0;breathCycle++;if(breathCycle>=7){stopBreathing();showToast('¡7 ciclos completados — 3 min! 🌿');return}}
+    runBP()
+  },p.d)
+}
+function stopBreathing(){breathing=false;clearTimeout(breathInterval);const c=document.getElementById('breath-circle');c.className='';c.textContent='🫁';document.getElementById('breath-phase').textContent='Respiración 4-6-8';document.getElementById('breath-count').textContent='Reduce la activación del sistema nervioso';document.getElementById('breath-start').style.display='inline-block'}
+
+const TECH={
+  temp:{t:'🧊 Técnica TIP — Temperatura',b:`<b>El reflejo de buceo:</b> Agua muy fría en la cara activa el nervio vago y reduce la frecuencia cardíaca hasta un 25%.<br><br><b>Pasos (2 minutos):</b><br>1. Llena un recipiente con agua muy fría (con hielo si puedes).<br>2. Aguanta la respiración y sumerge la cara 30 segundos.<br>3. Repite 3-4 veces.<br><br><em>Es una respuesta biológica involuntaria — no necesitas motivación para que funcione.</em><br><br><small>TM Ficha 5 · Sesión 4</small>`},
+  surf:{t:'🌊 Surf del craving',b:`El impulso es como una ola: sube, llega a su pico y baja solo. <em>Dura entre 15-20 minutos.</em><br><br>1. Siéntate y localiza el craving en tu cuerpo.<br>2. Descríbelo: temperatura, forma, intensidad. Sin juzgar.<br>3. Respira hacia esa sensación. No la alimentes. Solo obsérvala.<br>4. Observa cómo cambia sin que hayas hecho nada.<br><br><em>Surfear significa no caer bajo la ola — solo cabalgarla.</em><br><br><small>CP Ficha 5 · Sesión 1</small>`},
+  distrae:{t:'🔄 Distráete',b:`Cambia la atención de lo que te causa malestar. Sal de la situación un momento.<br><br><b>Con actividades:</b> Camina, llama a alguien, dúchate, limpia, pon música alta.<br><br><b>Con emociones opuestas:</b> Mira algo gracioso, escucha música que te eleve.<br><br><b>Con otros pensamientos:</b> Cuenta objetos de un color, resuelve un enigma, lee.<br><br><b>Ayuda:</b> Haz algo por otra persona — salir de ti mismo/a rompe el bucle.<br><br><small>TM Ficha 6 · Sesión 4</small>`}
+};
+function showTechnique(k){document.getElementById('technique-title').textContent=TECH[k].t;document.getElementById('technique-body').innerHTML=TECH[k].b;document.getElementById('technique-overlay').classList.add('open')}
+function closeTechnique(){document.getElementById('technique-overlay').classList.remove('open')}
+function callMyContact(){if(db.contact?.phone)window.location.href='tel:'+db.contact.phone;else{showToast('Configura tu contacto en Ajustes');document.getElementById('sos-overlay').classList.remove('open');goTo('ajustes')}}
+
+// ── DIARIO ──
+let selMood=null,selApoyo=null;
+function onCravingChange(v){
+  document.getElementById('val-craving').textContent=v;
+  document.getElementById('verificar-box').classList.toggle('show',+v>=7);
+  // Sync to home slider
+  const hs=document.getElementById('home-sl-craving');
+  if(hs){hs.value=v;document.getElementById('home-val-craving').textContent=v;updateSliderColor('home-val-craving',+v)}
+}
+function selectMood(b){document.querySelectorAll('.mood-chip').forEach(c=>c.classList.remove('selected'));b.classList.add('selected');selMood=b.textContent.trim()}
+function selectApoyo(v){selApoyo=v;document.getElementById('apoyo-si').classList.toggle('selected',v==='si');document.getElementById('apoyo-no').classList.toggle('selected',v==='no')}
+
+function guardarDiario(){
+  const today=new Date().toISOString().split('T')[0];
+  const existing=db.registros.findIndex(r=>r.date===today);
+  const craving=+document.getElementById('sl-craving').value;
+  const malestar=+document.getElementById('sl-malestar').value;
+  const please={
+    enfermedad:document.getElementById('pl-enfermedad').checked,
+    sustancias:document.getElementById('pl-sustancias').checked,
+    alimentacion:document.getElementById('pl-alimentacion').checked,
+    sueno:document.getElementById('pl-sueno').checked,
+    ejercicio:document.getElementById('pl-ejercicio').checked
+  };
+  const pleaseScore=Object.values(please).filter(Boolean).length;
+  const vh=craving>=7?{
+    evento:(document.getElementById('vh-evento')||{}).value||'',
+    interpretacion:(document.getElementById('vh-interpretacion')||{}).value||'',
+    probabilidad:(document.getElementById('vh-probabilidad')||{}).value||''
+  }:null;
+  const registro={
+    date:today,craving,malestar,
+    mood:selMood||'Sin selección',
+    eficacia:+document.getElementById('sl-eficacia').value,
+    horas:+document.getElementById('sl-horas').value,
+    calidadSueno:+document.getElementById('sl-calidad').value,
+    apoyo:selApoyo||'sin respuesta',
+    please,pleaseScore,
+    mente:db.menteHoy||null,
+    verificarHechos:vh
+  };
+  if(existing>=0){
+    db.registros[existing]=registro;
+    showToast('Registro actualizado ✓');
+  } else {
+    db.registros.unshift(registro);
+    showToast('Registro guardado ✓');
+  }
+  saveDB();
+  renderRegistros();
+  // Sync home sliders
+  const hsc=document.getElementById('home-sl-craving');
+  const hsm=document.getElementById('home-sl-malestar');
+  if(hsc){hsc.value=craving;document.getElementById('home-val-craving').textContent=craving;updateSliderColor('home-val-craving',craving)}
+  if(hsm){hsm.value=malestar;document.getElementById('home-val-malestar').textContent=malestar;updateSliderColor('home-val-malestar',malestar)}
+  // Reset form
+  document.getElementById('sl-craving').value=5;document.getElementById('val-craving').textContent='5';
+  document.getElementById('sl-malestar').value=5;document.getElementById('val-malestar').textContent='5';
+  document.getElementById('verificar-box').classList.remove('show');
+  document.getElementById('sl-eficacia').value=7;document.getElementById('val-eficacia').textContent='7';
+  document.querySelectorAll('.mood-chip').forEach(c=>c.classList.remove('selected'));
+  selMood=null;selApoyo=null;
+  document.getElementById('apoyo-si').classList.remove('selected');
+  document.getElementById('apoyo-no').classList.remove('selected');
+  ['pl-enfermedad','pl-sustancias','pl-alimentacion','pl-sueno','pl-ejercicio'].forEach(id=>{document.getElementById(id).checked=false});
+  ['vh-evento','vh-interpretacion','vh-probabilidad'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+}
+
+function renderRegistros(){
+  const list=document.getElementById('registros-list');
+  if(!db.registros.length){list.innerHTML='<p style="font-size:13px;color:var(--text-dim);text-align:center;padding:16px 0">Sin registros todavía</p>';return}
+  list.innerHTML=db.registros.slice(0,7).map(r=>{
+    const d=new Date(r.date+'T12:00'),label=d.toLocaleDateString('es-ES',{weekday:'short',day:'numeric',month:'short'});
+    const cc=r.craving>=7?'chip-red':r.craving>=5?'chip-amber':'chip-green';
+    const mc=r.malestar>=7?'chip-red':r.malestar>=5?'chip-amber':'chip-green';
+    const ec=r.eficacia>=7?'chip-green':r.eficacia>=5?'chip-amber':'chip-red';
+    const menteEmoji=r.mente==='adicta'?'🌀':r.mente==='clara'?'🌿':r.mente==='limpia'?'☀️':'';
+    return`<div class="registro-item"><div class="registro-fecha">${label}</div><div class="registro-chips"><span class="chip-small ${cc}">C${r.craving}</span><span class="chip-small ${mc}">M${r.malestar||'—'}</span><span class="chip-small ${ec}">E${r.eficacia}</span>${menteEmoji?`<span class="chip-small chip-amber">${menteEmoji}</span>`:''}<span class="chip-small chip-sky">PL${r.pleaseScore||0}/5</span></div></div>`;
+  }).join('');
+}
+
+// ── TAREAS ──
+let currentUso='crisis';
+const TAREAS_USO={
+  crisis:[
+    {id:'resp468',name:'Respiración 4-6-8',duration:'3 min',icon:'🌬️',iconBg:'var(--moss-dim)',tags:[{l:'Respiración',c:'tag-resp'},{l:'TIP',c:'tag-dbt'}],timerMin:3,fuente:'TM Ficha 5 · Sesión 4',
+     steps:['Expulsa todo el aire por la boca con un sonido suave.','Inhala silenciosamente por la nariz contando hasta 4.','Aguanta la respiración contando hasta 6.','Exhala completamente por la boca contando hasta 8. Este es un ciclo.','Repite 7 ciclos (aproximadamente 3 minutos). Este ritmo activa el sistema parasimpático y reduce la frecuencia cardíaca.']},
+    {id:'tipp',name:'Técnica TIP (DBT)',duration:'2 min',icon:'🧊',iconBg:'rgba(160,128,96,.13)',tags:[{l:'DBT',c:'tag-dbt'},{l:'Crisis',c:'tag-motor'}],timerMin:2,fuente:'TM Ficha 5 · Sesión 4',
+     steps:['T — Temperatura: Agua muy fría en la cara o hielo en muñecas. Activa el reflejo de buceo del nervio vago. Mantén 30 segundos, repite 3-4 veces.','I — Ejercicio Intenso: 60 segundos de saltos o sentadillas. Quema el exceso de cortisol.','P — Respiración Pausada: Inhala 4s, exhala 8s. Activa el sistema parasimpático.','P — Relajación muscular Progresiva: Tensa y suelta cada grupo muscular de pies a cabeza.']},
+    {id:'pros-contras',name:'Pros y Contras',duration:'5 min',icon:'⚖️',iconBg:'var(--rust-dim)',tags:[{l:'DBT',c:'tag-dbt'},{l:'Adicciones',c:'tag-adicciones'}],timerMin:5,fuente:'TM Ficha 4 · Sesión 3',
+     steps:['Antes de actuar: recuerda los pros de NO consumir (sobriedad, bienestar, relaciones) y los contras de consumir (culpa, retroceso, riesgo).','Recuerda consecuencias pasadas de actuar sobre el impulso. ¿Cómo te sentiste después?','Imagina las consecuencias positivas de resistir este impulso ahora mismo.','Lleva siempre este balance en la app — es tu escudo en el momento de mayor vulnerabilidad.','El impulso durará 15-20 minutos. Los pros de resistir duran para siempre.']},
+    {id:'surf',name:'Surf del craving',duration:'20 min',icon:'🌊',iconBg:'var(--amber-dim)',tags:[{l:'Mindfulness',c:'tag-mindful'},{l:'ACT',c:'tag-dbt'}],timerMin:20,fuente:'CP Ficha 5 · Sesión 1',
+     steps:['Siéntate cómodamente. Cierra los ojos si quieres.','Localiza el craving en tu cuerpo. ¿Pecho, garganta, estómago?','Descríbelo como fenómeno físico: temperatura, forma, intensidad. Sin juzgar.','El craving dura 15-20 minutos — es una ola. Sube y baja.','Respira hacia esa sensación. No la alimentes. Solo obsérvala.','Observa cómo cambia sin que hayas hecho nada. Puedes tolerar esto.']},
+    {id:'distrae',name:'Distráete',duration:'Variable',icon:'🔄',iconBg:'rgba(160,128,96,.12)',tags:[{l:'DBT',c:'tag-dbt'}],timerMin:null,fuente:'TM Ficha 6 · Sesión 4',
+     steps:['Cambia la atención de lo que te causa malestar. Sal de la situación un momento.','Actividades: camina, llama a alguien, dúchate, limpia, pon música alta.','Emociones opuestas: mira algo gracioso, escucha música que te eleve.','Otros pensamientos: cuenta objetos de un color, resuelve un enigma, lee.','Ayuda a alguien: haz algo por otra persona. Salir de ti mismo/a rompe el bucle.']}
+  ],
+  vulnerable:[
+    {id:'verificar',name:'Verificar los hechos',duration:'10 min',icon:'🔍',iconBg:'var(--amber-dim)',tags:[{l:'RE',c:'tag-dbt'}],timerMin:10,fuente:'RE Ficha 4 · Sesión 11',
+     steps:['Identifica el evento desencadenante. Describe los hechos tal como los observaste, sin interpretaciones.','¿Cuáles son mis pensamientos sobre este evento? ¿Hay otras interpretaciones posibles?','¿Cuál es la amenaza real? Evalúa la probabilidad de que realmente ocurra lo que temes.','¿Qué pasaría si lo peor ocurriera? Imagínate afrontándolo bien.','Si la emoción se ajusta a los hechos → resolución de problemas. Si no → acción opuesta.']},
+    {id:'accion-opuesta',name:'Acción opuesta',duration:'10 min',icon:'↩️',iconBg:'var(--sky-dim)',tags:[{l:'RE',c:'tag-dbt'}],timerMin:10,fuente:'RE Ficha 5 · Sesión 11',
+     steps:['Identifica la emoción y el impulso de acción que te genera (ej: tristeza → aislarte).','Comprueba si la emoción está justificada por los hechos reales.','Si NO está justificada: haz exactamente lo contrario al impulso. Si quieres aislarte → contacta a alguien.','Hazlo completamente: en postura, expresión facial, tono de voz y pensamientos. No a medias.','Continúa la acción opuesta hasta que la emoción disminuya perceptiblemente.']},
+    {id:'mejora',name:'Mejora el momento — ÚSALAS',duration:'10 min',icon:'✨',iconBg:'var(--moss-dim)',tags:[{l:'DBT',c:'tag-dbt'}],timerMin:10,fuente:'TM Ficha 8 · Sesión 5',
+     steps:['U — Una cosa a la vez: pon toda la atención en lo que haces ahora. Nada más.','S — Significado: encuentra algo de valor en este momento difícil. Haz virtud de la necesidad.','A — Aliento: repítete "puedo superarlo", "no durará siempre", "estoy haciendo lo mejor que puedo".','L — Lugar seguro: imagina un espacio relajante y seguro solo tuyo.','A — Alto/Vacaciones: tómate 20 minutos de respiro total. Desconecta sin culpa.','S — Sabiduría: abre tu corazón a tu propia mente sabia. Pide fuerzas para tolerar este momento.']},
+    {id:'mente-clara-practica',name:'De Mente Limpia a Mente Clara',duration:'10 min',icon:'🌿',iconBg:'var(--moss-dim)',tags:[{l:'Adicciones',c:'tag-adicciones'}],timerMin:10,fuente:'Adicciones Fichas 3 y 4 · Sesión 7',
+     steps:['Reconoce si estás en Mente Limpia: "ya no tengo problema", "puedo controlarlo". Esto es peligroso.','Mente Clara = estar sobrio/a Y recordar que la adicción sigue siendo posible.','Revisa señales de mente limpia: ¿evitas la terapia? ¿te juntas con personas que consumen? ¿llevas dinero encima sin necesidad?','Practica la aceptación radical: la caída no es imposible. Planificar para los impulsos es de Mente Clara, no de cobardía.','Identifica una conducta de Mente Limpia que tengas ahora y sustitúyela por una de Mente Clara.']}
+  ],
+  construir:[
+    {id:'please',name:'Revisión PLEASE diaria',duration:'5 min',icon:'🌱',iconBg:'var(--sky-dim)',tags:[{l:'PLEASE',c:'tag-please'},{l:'RE',c:'tag-dbt'}],timerMin:5,fuente:'RE Ficha 14 · Sesión 13',
+     steps:['PL — Salud física: ¿Tienes algún malestar sin atender? La enfermedad no tratada sube la vulnerabilidad al craving.','E — Evitar sustancias: ¿Has evitado otras sustancias que alteren el estado de ánimo?','A — Alimentación: ¿Has comido equilibrado? Saltarse comidas baja la glucosa y aumenta la irritabilidad.','S — Sueño: La desregulación del ritmo circadiano es el biomarcador de vulnerabilidad más consistente en TUA.','E — Ejercicio: 20 minutos de actividad física reduce el cortisol y aumenta la dopamina.']},
+    {id:'mente-sabia-ejercicio',name:'Practicar Mente Sabia / Mente Clara',duration:'10 min',icon:'🪨',iconBg:'var(--bark-dim)',tags:[{l:'Mindfulness',c:'tag-mindful'},{l:'Adicciones',c:'tag-adicciones'}],timerMin:10,fuente:'CP Fichas 2-3 · Adicciones Ficha 3 · Sesiones 1 y 7',
+     steps:['Siéntate cómodamente. Respira profundo tres veces.','Visualización "Una piedra en un lago": imagínate como una piedra que cae suavemente al fondo de un lago tranquilo. Al llegar al fondo, descansa. Eso es tu centro — tu mente sabia.','Inhala diciendo mentalmente "MENTE", exhala diciendo "SABIA". Repite 5 veces.','Desde ese lugar, pregúntate: ¿estoy en Mente Clara ahora mismo? ¿Estoy sobrio/a Y recuerdo que el riesgo sigue existiendo?','Si detectas Mente Limpia (sobreconfianza), identifica una conducta de mente limpia y escribe cómo cambiarla a una de Mente Clara.','Cierra con tres respiraciones conscientes.']},
+    {id:'activacion',name:'Activación conductual',duration:'20 min',icon:'🚶',iconBg:'var(--rust-dim)',tags:[{l:'Activación',c:'tag-motor'},{l:'RE',c:'tag-dbt'}],timerMin:20,fuente:'RE Ficha 10-11 · Sesión 13',
+     steps:['Elige una actividad incompatible con beber: caminar, llamar a alguien, ducharse, cocinar, voluntariado.','No importa que no tengas ganas. El estado de ánimo sigue a la conducta — no al revés.','20 minutos de actividad física ligera: caminar, estiramientos, yoga.','Centra la atención en sensaciones físicas: pies en el suelo, aire en la piel.','Al terminar, anota en el diario cómo ha cambiado tu craving.']},
+    {id:'abstinencia-dialectica',name:'Abstinencia Dialéctica',duration:'10 min',icon:'🔒',iconBg:'var(--earth-dim)',tags:[{l:'Adicciones',c:'tag-adicciones'}],timerMin:10,fuente:'Adicciones Ficha 1 · Sesión 6',
+     steps:['El objetivo es la abstinencia completa. Pero si hay una caída, el objetivo es minimizar el daño y volver al vagón lo antes posible.','Una caída no te condena. Lo que importa es no dejar que se convierta en un desastre.','Plan para la abstinencia: planifica actividades incompatibles, rodéate de personas que apoyen tu sobriedad.','Plan para si hay caída: llama a tu terapeuta, elimina las tentaciones, vuelve a las habilidades, anímate ("Una caída no es un desastre").','Comprométete al 100% con la abstinencia — y si hay caída, vuelve al 100% lo antes posible.']},
+    {id:'acumula',name:'Acumular experiencias positivas',duration:'15 min',icon:'🌟',iconBg:'var(--amber-dim)',tags:[{l:'RE',c:'tag-dbt'}],timerMin:15,fuente:'RE Fichas 10-12 · Sesión 13',
+     steps:['Haz cosas agradables posibles hoy. Incrementa los sucesos que provocan emociones positivas.','Sé plenamente consciente de la experiencia positiva mientras ocurre. No la dejes pasar.','Observa las preocupaciones como producto de tu mente — déjalas pasar sin engancharte.','A largo plazo: elige un valor importante, identifica metas, da un pequeño paso hoy.','El bienestar no se construye esperando; se construye acumulando momentos buenos de forma consciente.']}
+  ]
+};
+
+function switchUso(uso){
+  currentUso=uso;
+  document.querySelectorAll('.uso-tab').forEach(t=>t.classList.remove('active'));
+  const tabMap={crisis:'tab-crisis',vulnerable:'tab-vulnerable',construir:'tab-construir'};
+  const btn=document.getElementById(tabMap[uso]);
+  if(btn)btn.classList.add('active');
+  document.querySelectorAll('.uso-context').forEach(c=>c.classList.remove('show'));
+  const ctx=document.getElementById('ctx-'+uso);
+  if(ctx)ctx.classList.add('show');
+  renderTareas(uso);
+}
+
+let timerInterval=null,timerSec=0;
+function renderTareas(uso){
+  const list=document.getElementById('tareas-list');
+  if(!list)return;
+  const tareas=TAREAS_USO[uso]||[];
+  list.innerHTML=tareas.map(t=>{
+    const timerBtn=t.timerMin?`<button class="tarea-timer-btn" onclick="event.stopPropagation();startTimer('${t.id}','${t.name.replace(/'/g,"\\'")}',${t.timerMin})">▶ Iniciar temporizador (${t.timerMin} min)</button>`:'';
+    return`<div class="tarea-card" id="tc-${t.id}" onclick="toggleTarea('${t.id}')">
+      <div class="tarea-header">
+        <div class="tarea-icon" style="background:${t.iconBg}">${t.icon}</div>
+        <div class="tarea-meta"><div class="tarea-name">${t.name}</div><div class="tarea-tags">${t.tags.map(x=>`<span class="tarea-tag ${x.c}">${x.l}</span>`).join('')}</div></div>
+        <div class="tarea-duration">⏱ ${t.duration}</div>
+      </div>
+      <div class="tarea-body" id="tb-${t.id}">
+        <div class="tarea-steps">${t.steps.map((s,i)=>`<div class="step"><div class="step-num">${i+1}</div><div class="step-text">${s}</div></div>`).join('')}</div>
+        ${timerBtn}
+        <div class="tarea-fuente">📖 ${t.fuente}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+function toggleTarea(id){const b=document.getElementById('tb-'+id);if(!b)return;const o=b.classList.contains('open');document.querySelectorAll('.tarea-body').forEach(x=>x.classList.remove('open'));if(!o)b.classList.add('open')}
+function startTimer(id,name,mins){timerSec=mins*60;document.getElementById('timer-name').textContent=name;document.getElementById('timer-overlay').classList.add('open');clearInterval(timerInterval);updateTD();timerInterval=setInterval(()=>{timerSec--;updateTD();if(timerSec<=0){stopTimer();showToast('¡Ejercicio completado! 🌿')}},1000)}
+function updateTD(){const m=Math.floor(timerSec/60),s=timerSec%60;document.getElementById('timer-display').textContent=m+':'+String(s).padStart(2,'0')}
+function stopTimer(){clearInterval(timerInterval);document.getElementById('timer-overlay').classList.remove('open')}
+
+// ── PROGRESO ──
+function renderProgreso(){
+  const r=db.registros,days=db.soberDate?Math.floor((new Date()-new Date(db.soberDate))/86400000):0;
+  const avgC=r.length?(r.reduce((s,x)=>s+(x.craving||0),0)/r.length).toFixed(1):'—';
+  const avgM=r.length?(r.reduce((s,x)=>s+(x.malestar||0),0)/r.length).toFixed(1):'—';
+  const avgE=r.length?(r.reduce((s,x)=>s+(x.eficacia||0),0)/r.length).toFixed(1):'—';
+  document.getElementById('stat-row').innerHTML=`<div class="stat-box"><div class="stat-val">${days}</div><div class="stat-label">Días de sobriedad</div></div><div class="stat-box"><div class="stat-val">${r.length}</div><div class="stat-label">Registros</div></div><div class="stat-box"><div class="stat-val" style="color:var(--rust)">${avgC}</div><div class="stat-label">Craving promedio</div></div><div class="stat-box"><div class="stat-val" style="color:var(--sky)">${avgM}</div><div class="stat-label">Malestar promedio</div></div>`;
+  const k7=Array.from({length:7},(_,i)=>{const d=new Date();d.setDate(d.getDate()-(6-i));return d.toISOString().split('T')[0]});
+  document.getElementById('bar-chart').innerHTML=k7.map(key=>{
+    const reg=r.find(x=>x.date===key);
+    const d=new Date(key+'T12:00');
+    const cH=reg?reg.craving*7:4;
+    const mH=reg?(reg.malestar||0)*7:4;
+    return`<div class="bar-col">
+      <div style="display:flex;gap:2px;align-items:flex-end;height:70px">
+        <div class="bar craving" style="height:${cH}px;opacity:${reg?.65:.15};flex:1"></div>
+        <div class="bar malestar" style="height:${mH}px;opacity:${reg?.55:.15};flex:1"></div>
+      </div>
+      <div class="bar-day">${d.toLocaleDateString('es-ES',{weekday:'narrow'})}</div>
+    </div>`;
+  }).join('');
+  const weekAgo=new Date(new Date()-7*86400000),week=r.filter(x=>new Date(x.date+'T12:00')>=weekAgo);
+  // Mente Clara semanal
+  const mr=db.menteRegistros||[];
+  const mWeek=mr.filter(x=>new Date(x.date+'T12:00')>=weekAgo);
+  const mCount={adicta:0,clara:0,limpia:0};mWeek.forEach(x=>{if(mCount[x.mente]!==undefined)mCount[x.mente]++});
+  document.getElementById('mente-week-row').innerHTML=[
+    {k:'adicta',e:'🌀',l:'Adicta',c:'var(--rust)'},
+    {k:'clara',e:'🌿',l:'Clara',c:'var(--moss)'},
+    {k:'limpia',e:'☀️',l:'Limpia',c:'var(--amber)'}
+  ].map(m=>`<div class="mente-week-item" style="background:${m.k==='adicta'?'var(--rust-dim)':m.k==='clara'?'var(--moss-dim)':'var(--amber-dim)'}"><div style="font-size:20px">${m.e}</div><div style="font-size:10px;color:var(--text-dim)">${m.l}</div><div style="font-size:18px;font-family:var(--font-display);color:${m.c}">${mCount[m.k]}d</div></div>`).join('');
+  // PLEASE
+  const pK=['enfermedad','sustancias','alimentacion','sueno','ejercicio'];
+  const pL=['PL Salud','E Sust.','A Alim.','S Sueño','E Ejerc.'];
+  document.getElementById('please-row').innerHTML=pK.map((k,i)=>{const cnt=week.filter(x=>x.please&&x.please[k]).length;return`<div class="halt-item"><div class="halt-letter" style="font-size:12px;color:var(--sky)">${pL[i].split(' ')[0]}</div><div class="halt-name">${pL[i].split(' ')[1]}</div><div class="halt-count" style="color:${cnt>=5?'var(--moss)':cnt>=3?'var(--amber)':'var(--rust)'}">${cnt}/${week.length||7}d</div></div>`}).join('');
+  const L=[{e:'🌱',n:'Primer día',r:days>=1},{e:'⭐',n:'3 días',r:days>=3},{e:'🌿',n:'1 semana',r:days>=7},{e:'🌸',n:'2 semanas',r:days>=14},{e:'🏆',n:'1 mes',r:days>=30},{e:'📓',n:'5 registros',r:r.length>=5},{e:'📊',n:'10 registros',r:r.length>=10},{e:'🦋',n:'3 meses',r:days>=90},{e:'🎯',n:'1 año',r:days>=365}];
+  document.getElementById('logros-grid').innerHTML=L.map(l=>`<div class="logro ${l.r?'':'locked'}"><div class="logro-icon">${l.e}</div><div class="logro-name">${l.n}</div></div>`).join('');
+}
+
+// ── AJUSTES ──
+function renderAjustes(){document.getElementById('profile-id').textContent='ID: '+db.uuid;document.getElementById('contact-display').textContent=db.contact?db.contact.name:'No configurado'}
+function editContact(){const n=prompt('Nombre del contacto de confianza:');if(!n)return;const p=prompt('Teléfono (ej: 612345678):');if(!p)return;db.contact={name:n,phone:p};saveDB();renderAjustes();showToast('Contacto guardado ✓')}
+function exportData(){const b=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='sendadigital-'+new Date().toISOString().split('T')[0]+'.json';a.click();showToast('Datos exportados ✓')}
+function clearData(){localStorage.removeItem(DB_KEY);db={uuid:'SD-'+Math.random().toString(36).substr(2,8).toUpperCase(),registros:[],soberDate:null,contact:null,pin:'1234',prevTime:null,evaShown:false,menteRegistros:[]};saveDB();showToast('Datos borrados');renderAjustes();renderHome()}
+function changePin(){const p=prompt('PIN actual:');if(p!==db.pin){alert('PIN incorrecto');return}const n=prompt('Nuevo PIN de 4 dígitos:');if(!n||!/^\d{4}$/.test(n)){alert('Debe tener 4 dígitos');return}db.pin=n;saveDB();showToast('PIN actualizado ✓')}
+
+// ── TERAPEUTA ──
+let pinVal='';
+function openTerapeuta(){pinVal='';updatePinDots();document.getElementById('pin-error').textContent='';document.getElementById('pin-screen').style.display='flex';document.getElementById('terap-dashboard').style.display='none';document.getElementById('terapeuta-screen').classList.add('open')}
+function closeTerapeuta(){document.getElementById('terapeuta-screen').classList.remove('open')}
+function pinInput(d){if(pinVal.length>=4)return;pinVal+=d;updatePinDots();if(pinVal.length===4){if(pinVal===db.pin){document.getElementById('pin-screen').style.display='none';renderTerap();document.getElementById('terap-dashboard').style.display='block'}else{document.getElementById('pin-error').textContent='PIN incorrecto';setTimeout(()=>{pinVal='';updatePinDots();document.getElementById('pin-error').textContent=''},800)}}}
+function pinDelete(){pinVal=pinVal.slice(0,-1);updatePinDots()}
+function updatePinDots(){for(let i=0;i<4;i++)document.getElementById('pd'+i).classList.toggle('filled',i<pinVal.length)}
+
+function renderTerap(){
+  const r=db.registros,now=new Date(),weekAgo=new Date(now-7*86400000);
+  const week=r.filter(x=>new Date(x.date+'T12:00')>=weekAgo);
+  const days=db.soberDate?Math.floor((now-new Date(db.soberDate))/86400000):'—';
+  const avgC=week.length?(week.reduce((s,x)=>s+(x.craving||0),0)/week.length).toFixed(1):'—';
+  const avgM=week.length?(week.reduce((s,x)=>s+(x.malestar||0),0)/week.length).toFixed(1):'—';
+  const avgE=week.length?(week.reduce((s,x)=>s+(x.eficacia||0),0)/week.length).toFixed(1):'—';
+  document.getElementById('terap-stats').innerHTML=`<div class="terap-stat"><div class="terap-stat-val">${days}</div><div class="terap-stat-label">Días sobriedad</div></div><div class="terap-stat"><div class="terap-stat-val" style="color:var(--rust)">${avgC}</div><div class="terap-stat-label">Craving medio</div></div><div class="terap-stat"><div class="terap-stat-val" style="color:var(--sky)">${avgM}</div><div class="terap-stat-label">Malestar medio</div></div><div class="terap-stat"><div class="terap-stat-val">${avgE}</div><div class="terap-stat-label">Autoeficacia</div></div>`;
+  const nextMonday=new Date();nextMonday.setDate(nextMonday.getDate()+(1+7-nextMonday.getDay())%7||7);
+  document.getElementById('next-review-date').textContent=nextMonday.toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'});
+  const alerts=[];
+  const hC=week.filter(x=>(x.craving||0)>=7);if(hC.length>=2)alerts.push({t:'⚠️ Craving elevado repetido',b:`${hC.length} días con craving ≥ 7.`});
+  const hM=week.filter(x=>(x.malestar||0)>=7);if(hM.length>=2)alerts.push({t:'⚠️ Malestar elevado repetido',b:`${hM.length} días con malestar ≥ 7.`});
+  const lE=week.filter(x=>(x.eficacia||0)<=3);if(lE.length>=2)alerts.push({t:'⚠️ Autoeficacia baja',b:`${lE.length} días con autoeficacia ≤ 3.`});
+  const nA=week.filter(x=>x.apoyo==='no');if(nA.length>=4)alerts.push({t:'⚠️ Aislamiento social',b:`${nA.length} días sin contacto con red de apoyo.`});
+  const pS=week.filter(x=>x.horas<=4||x.calidadSueno<=2);if(pS.length>=3)alerts.push({t:'⚠️ Descanso deficiente',b:`${pS.length} días con sueño de mala calidad.`});
+  const mr=db.menteRegistros||[];
+  const mWeek=mr.filter(x=>new Date(x.date+'T12:00')>=weekAgo);
+  const mAdicta=mWeek.filter(x=>x.mente==='adicta').length;
+  const mLimpia=mWeek.filter(x=>x.mente==='limpia').length;
+  if(mAdicta>=2)alerts.push({t:'⚠️ Mente Adicta detectada',b:`${mAdicta} días con mente adicta registrada.`});
+  if(mLimpia>=3)alerts.push({t:'⚠️ Mente Limpia persistente',b:`${mLimpia} días con mente limpia. Riesgo de sobreconfianza.`});
+  if(!week.length)alerts.push({t:'ℹ️ Sin registros esta semana',b:'El participante no ha completado ningún diario en los últimos 7 días.'});
+  const semColor=alerts.length>=3||hC.length>=2||mAdicta>=2?'🔴 Rojo — contacto urgente recomendado':alerts.length>=1?'🟡 Ámbar — refuerzo motivacional':'🟢 Verde — seguimiento rutinario';
+  const ae=document.getElementById('terap-alerts');
+  ae.innerHTML=`<div style="font-weight:600;font-size:14px;margin-bottom:10px">${semColor}</div>`+(alerts.length?alerts.map(a=>`<div class="alert-box"><div class="alert-title">${a.t}</div><div class="alert-body">${a.b}</div></div>`).join(''):`<div class="alert-box" style="background:var(--moss-dim);border-color:rgba(74,124,89,.25)"><div class="alert-title" style="color:var(--moss)">✓ Sin alertas esta semana</div></div>`);
+  const mCount={adicta:0,clara:0,limpia:0};mWeek.forEach(x=>{if(mCount[x.mente]!==undefined)mCount[x.mente]++});
+  document.getElementById('terap-mente').innerHTML=`<div style="font-size:12px;color:var(--text-dim);margin-bottom:8px">Mente Clara esta semana (${mWeek.length} días registrados):</div>`+
+    [['🌀 Adicta',mCount.adicta,'var(--rust)'],['🌿 Clara',mCount.clara,'var(--moss)'],['☀️ Limpia',mCount.limpia,'var(--amber)']].map(([l,v,c])=>`<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="flex:1;font-size:13px;color:var(--text-mid)">${l}</span><span style="font-size:14px;font-weight:600;color:${c}">${v} día${v!==1?'s':''}</span></div>`).join('');
+  const pK=['enfermedad','sustancias','alimentacion','sueno','ejercicio'];
+  const pL={enfermedad:'PL — Salud física',sustancias:'E — Otras sustancias',alimentacion:'A — Alimentación',sueno:'S — Sueño',ejercicio:'E — Actividad física'};
+  document.getElementById('terap-please').innerHTML=`<div style="font-size:12px;color:var(--text-dim);margin-bottom:8px">Adherencia PLEASE (${week.length||0} registros):</div>`+pK.map(k=>{const cnt=week.filter(x=>x.please&&x.please[k]).length;return`<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="flex:1;font-size:13px;color:var(--text-mid)">${pL[k]}</span><span style="font-size:13px;font-weight:600;color:${cnt>=5?'var(--moss)':cnt>=3?'var(--amber)':'var(--rust)'}">${cnt}/${week.length||'—'}</span></div>`}).join('');
+  const k7=Array.from({length:7},(_,i)=>{const d=new Date();d.setDate(d.getDate()-(6-i));return d.toISOString().split('T')[0]}).reverse();
+  document.getElementById('terap-tbody').innerHTML=k7.map(key=>{
+    const reg=r.find(x=>x.date===key),d=new Date(key+'T12:00').toLocaleDateString('es-ES',{weekday:'short',day:'numeric',month:'short'});
+    if(!reg)return`<tr><td>${d}</td><td colspan="6" style="color:var(--text-dim);font-size:11px">Sin registro</td></tr>`;
+    const cc=reg.craving>=7?'color:var(--rust)':reg.craving>=5?'color:var(--amber)':'color:var(--moss)';
+    const mc=(reg.malestar||0)>=7?'color:var(--rust)':(reg.malestar||0)>=5?'color:var(--amber)':'color:var(--moss)';
+    const ec=reg.eficacia>=7?'color:var(--moss)':reg.eficacia>=5?'color:var(--amber)':'color:var(--rust)';
+    const me=reg.mente==='adicta'?'🌀':reg.mente==='clara'?'🌿':reg.mente==='limpia'?'☀️':'—';
+    return`<tr><td>${d}</td><td style="${cc}">${reg.craving}</td><td style="${mc}">${reg.malestar||'—'}</td><td>${me}</td><td style="${ec}">${reg.eficacia}</td><td>${reg.pleaseScore||0}/5</td><td>${reg.apoyo==='si'?'✓':'✗'}</td></tr>`;
+  }).join('');
+  document.getElementById('terap-uuid').textContent=db.uuid;
+}
+
+function exportTerapeutaData(){
+  const r=db.registros;
+  const weekAgo=new Date(new Date()-7*86400000);
+  const week=r.filter(x=>new Date(x.date+'T12:00')>=weekAgo);
+  const avgC=week.length?(week.reduce((s,x)=>s+(x.craving||0),0)/week.length).toFixed(1):'—';
+  const avgM=week.length?(week.reduce((s,x)=>s+(x.malestar||0),0)/week.length).toFixed(1):'—';
+  const avgE=week.length?(week.reduce((s,x)=>s+(x.eficacia||0),0)/week.length).toFixed(1):'—';
+  const mr=db.menteRegistros||[];
+  const mWeek=mr.filter(x=>new Date(x.date+'T12:00')>=weekAgo);
+  const mCount={adicta:0,clara:0,limpia:0};mWeek.forEach(x=>{if(mCount[x.mente]!==undefined)mCount[x.mente]++});
+  const hC=week.filter(x=>(x.craving||0)>=7).length;
+  const hM=week.filter(x=>(x.malestar||0)>=7).length;
+  const alerts=[];
+  if(hC>=2)alerts.push(`Craving ≥7 en ${hC} días`);
+  if(hM>=2)alerts.push(`Malestar ≥7 en ${hM} días`);
+  if(week.filter(x=>x.eficacia<=3).length>=2)alerts.push('Autoeficacia baja repetida');
+  if(week.filter(x=>x.apoyo==='no').length>=4)alerts.push('Sin red de apoyo ≥4 días');
+  if(week.filter(x=>x.horas<=4||x.calidadSueno<=2).length>=3)alerts.push('Descanso deficiente repetido');
+  if(mCount.adicta>=2)alerts.push(`Mente Adicta ${mCount.adicta} días`);
+  if(mCount.limpia>=3)alerts.push(`Mente Limpia ${mCount.limpia} días (sobreconfianza)`);
+  if(!week.length)alerts.push('Sin registros esta semana');
+  const semaforo=alerts.length>=3||hC>=2||mCount.adicta>=2?'🔴 ROJO — contacto urgente recomendado':alerts.length>=1?'🟡 ÁMBAR — refuerzo motivacional':'🟢 VERDE — seguimiento rutinario';
+  const pK=['enfermedad','sustancias','alimentacion','sueno','ejercicio'];
+  const pL=['PL Salud','E Sustancias','A Alimentación','S Sueño','E Ejercicio'];
+  const k7=Array.from({length:7},(_,i)=>{const d=new Date();d.setDate(d.getDate()-(6-i));return d.toISOString().split('T')[0]}).reverse();
+  const html=`<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Informe SendaDigital — ${db.uuid}</title>
+<style>
+  body{font-family:Arial,sans-serif;max-width:800px;margin:0 auto;padding:24px;color:#2e2418;font-size:14px}
+  h1{font-size:22px;margin-bottom:4px;color:#4a7c59}
+  .sub{font-size:12px;color:#9a8870;margin-bottom:24px}
+  h2{font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9a8870;margin:20px 0 8px;border-bottom:1px solid #ddd0b8;padding-bottom:4px}
+  .semaforo{font-size:16px;font-weight:700;padding:12px 16px;border-radius:8px;margin-bottom:16px}
+  .rojo{background:#fdf0ed;border:2px solid #c05840;color:#c05840}
+  .ambar{background:#fdf5ec;border:2px solid #c8843a;color:#c8843a}
+  .verde{background:#edf5f0;border:2px solid #4a7c59;color:#4a7c59}
+  .stats{display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+  .stat{background:#f7f2e8;border:1px solid #ddd0b8;border-radius:8px;padding:12px 16px;text-align:center;flex:1;min-width:80px}
+  .stat-val{font-size:28px;font-weight:700;line-height:1}
+  .stat-label{font-size:11px;color:#9a8870;margin-top:4px}
+  .alert{background:#fdf0ed;border-left:4px solid #c05840;padding:8px 12px;margin-bottom:6px;border-radius:0 6px 6px 0;font-size:13px}
+  .ok{background:#edf5f0;border-left:4px solid #4a7c59;padding:8px 12px;border-radius:0 6px 6px 0;font-size:13px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{background:#ede5d4;padding:8px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+  td{padding:8px;border-bottom:1px solid #ede5d4}
+  tr:last-child td{border-bottom:none}
+  .c-red{color:#c05840;font-weight:600}
+  .c-amber{color:#c8843a;font-weight:600}
+  .c-green{color:#4a7c59;font-weight:600}
+  .mente-row{display:flex;gap:8px;margin-bottom:4px}
+  .mente-chip{padding:4px 10px;border-radius:12px;font-size:12px;font-weight:600}
+  .please-row{display:flex;gap:8px;flex-wrap:wrap}
+  .please-chip{padding:4px 10px;border-radius:12px;font-size:12px}
+  @media print{body{padding:12px}.semaforo{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<h1>🌿 SendaDigital — Informe semanal</h1>
+<div class="sub">UUID: ${db.uuid} · Generado: ${new Date().toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long',year:'numeric'})} · Días de sobriedad: ${db.soberDate?Math.floor((new Date()-new Date(db.soberDate))/86400000):'—'}</div>
+
+<h2>Semáforo clínico</h2>
+<div class="semaforo ${alerts.length>=3||hC>=2||mCount.adicta>=2?'rojo':alerts.length>=1?'ambar':'verde'}">${semaforo}</div>
+
+<h2>Métricas semanales</h2>
+<div class="stats">
+  <div class="stat"><div class="stat-val" style="color:#c05840">${avgC}</div><div class="stat-label">Craving medio</div></div>
+  <div class="stat"><div class="stat-val" style="color:#4a8fa8">${avgM}</div><div class="stat-label">Malestar medio</div></div>
+  <div class="stat"><div class="stat-val" style="color:#4a7c59">${avgE}</div><div class="stat-label">Autoeficacia</div></div>
+  <div class="stat"><div class="stat-val">${week.length}</div><div class="stat-label">Registros</div></div>
+  <div class="stat"><div class="stat-val">${db.registros.length}</div><div class="stat-label">Total histórico</div></div>
+</div>
+
+<h2>Alertas clínicas</h2>
+${alerts.length?alerts.map(a=>`<div class="alert">⚠️ ${a}</div>`).join(''):'<div class="ok">✓ Sin alertas esta semana</div>'}
+
+<h2>Mente Clara — esta semana</h2>
+<div class="mente-row">
+  <span class="mente-chip" style="background:#fdf0ed;color:#c05840">🌀 Adicta: ${mCount.adicta}d</span>
+  <span class="mente-chip" style="background:#edf5f0;color:#4a7c59">🌿 Clara: ${mCount.clara}d</span>
+  <span class="mente-chip" style="background:#fdf5ec;color:#c8843a">☀️ Limpia: ${mCount.limpia}d</span>
+  <span class="mente-chip" style="background:#f7f2e8;color:#9a8870">Sin registro: ${7-mWeek.length}d</span>
+</div>
+
+<h2>Adherencia PLEASE</h2>
+<div class="please-row">
+${pK.map((k,i)=>{const cnt=week.filter(x=>x.please&&x.please[k]).length;const col=cnt>=5?'#4a7c59':cnt>=3?'#c8843a':'#c05840';return`<span class="please-chip" style="background:#f7f2e8;border:1px solid ${col};color:${col}">${pL[i]}: ${cnt}/${week.length||0}d</span>`}).join('')}
+</div>
+
+<h2>Registros diarios — últimos 7 días</h2>
+<table>
+<thead><tr><th>Fecha</th><th>Craving</th><th>Malestar</th><th>Mente</th><th>Autoef.</th><th>PLEASE</th><th>Apoyo</th><th>Sueño</th></tr></thead>
+<tbody>
+${k7.map(key=>{
+  const reg=r.find(x=>x.date===key);
+  const dl=new Date(key+'T12:00').toLocaleDateString('es-ES',{weekday:'short',day:'numeric',month:'short'});
+  if(!reg)return`<tr><td>${dl}</td><td colspan="7" style="color:#9a8870;font-style:italic">Sin registro</td></tr>`;
+  const cc=reg.craving>=7?'c-red':reg.craving>=5?'c-amber':'c-green';
+  const mc=(reg.malestar||0)>=7?'c-red':(reg.malestar||0)>=5?'c-amber':'c-green';
+  const ec=reg.eficacia>=7?'c-green':reg.eficacia>=5?'c-amber':'c-red';
+  const me=reg.mente==='adicta'?'🌀 Adicta':reg.mente==='clara'?'🌿 Clara':reg.mente==='limpia'?'☀️ Limpia':'—';
+  return`<tr><td>${dl}</td><td class="${cc}">${reg.craving}</td><td class="${mc}">${reg.malestar||'—'}</td><td>${me}</td><td class="${ec}">${reg.eficacia}</td><td>${reg.pleaseScore||0}/5</td><td>${reg.apoyo==='si'?'✓':'✗'}</td><td>${reg.horas||'—'}h / cal.${reg.calidadSueno||'—'}</td></tr>`;
+}).join('')}
+</tbody>
+</table>
+
+<div style="margin-top:32px;font-size:11px;color:#9a8870;border-top:1px solid #ddd0b8;padding-top:12px">
+SendaDigital — Herramienta de apoyo DBT para TUA · Pilot study · La correspondencia UUID ↔ identidad real está en el registro físico del centro.
+</div>
+</body></html>`;
+  const b=new Blob([html],{type:'text/html'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(b);
+  a.download='informe-'+db.uuid+'-'+new Date().toISOString().split('T')[0]+'.html';
+  a.click();
+  showToast('Informe HTML descargado ✓');
+}
+
+// Terapeuta: importar informe HTML de paciente (abre archivo HTML)
+let importedData=null;
+function importarInforme(){
+  const input=document.createElement('input');
+  input.type='file';input.accept='.html,.json';
+  input.onchange=e=>{
+    const file=e.target.files[0];if(!file)return;
+    if(file.name.endsWith('.html')){
+      const url=URL.createObjectURL(file);
+      window.open(url,'_blank');
+      showToast('Informe abierto en nueva pestaña ✓');
+      return;
+    }
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      try{
+        importedData=JSON.parse(ev.target.result);
+        renderImportedData();
+      }catch(err){showToast('Error al leer el archivo')}
+    };
+    reader.readAsText(file);
+  };
+  input.click();
+}
+
+function renderImportedData(){
+  if(!importedData)return;
+  const d=importedData;
+  const panel=document.getElementById('imported-panel');
+  if(!panel)return;
+  panel.style.display='block';
+  const weekAgo=new Date(new Date()-7*86400000);
+  const week=(d.registros||[]).filter(x=>new Date(x.date+'T12:00')>=weekAgo);
+  const avgC=week.length?(week.reduce((s,x)=>s+(x.craving||0),0)/week.length).toFixed(1):'—';
+  const avgM=week.length?(week.reduce((s,x)=>s+(x.malestar||0),0)/week.length).toFixed(1):'—';
+  const avgE=week.length?(week.reduce((s,x)=>s+(x.eficacia||0),0)/week.length).toFixed(1):'—';
+  const mr=d.menteRegistros||[];
+  const mWeek=mr.filter(x=>new Date(x.date+'T12:00')>=weekAgo);
+  const mAdicta=mWeek.filter(x=>x.mente==='adicta').length;
+  const mLimpia=mWeek.filter(x=>x.mente==='limpia').length;
+  const hC=week.filter(x=>(x.craving||0)>=7).length;
+  const hM=week.filter(x=>(x.malestar||0)>=7).length;
+  const alerts=[];
+  if(hC>=2)alerts.push(`⚠️ Craving ≥7 en ${hC} días`);
+  if(hM>=2)alerts.push(`⚠️ Malestar ≥7 en ${hM} días`);
+  if(week.filter(x=>x.eficacia<=3).length>=2)alerts.push('⚠️ Autoeficacia baja repetida');
+  if(week.filter(x=>x.apoyo==='no').length>=4)alerts.push('⚠️ Sin red de apoyo ≥4 días');
+  if(mAdicta>=2)alerts.push(`⚠️ Mente Adicta ${mAdicta} días`);
+  if(mLimpia>=3)alerts.push(`⚠️ Mente Limpia ${mLimpia} días (sobreconfianza)`);
+  if(!week.length)alerts.push('ℹ️ Sin registros esta semana');
+  const semColor=alerts.length>=3||hC>=2||mAdicta>=2?'🔴 Rojo':alerts.length>=1?'🟡 Ámbar':'🟢 Verde';
+  const k7=Array.from({length:7},(_,i)=>{const dt=new Date();dt.setDate(dt.getDate()-(6-i));return dt.toISOString().split('T')[0]}).reverse();
+  panel.innerHTML=`
+    <div style="background:var(--warm);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;margin-bottom:12px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px">Paciente importado</div>
+      <div style="font-family:monospace;font-size:14px;color:var(--earth);margin-bottom:6px">${d.uuid||'—'}</div>
+      <div style="font-size:12px;color:var(--text-dim)">Días sobriedad: <strong>${d.diasSobriedad??'—'}</strong> · Registros totales: <strong>${d.totalRegistros??0}</strong> · Exportado: ${d.fechaExporte?new Date(d.fechaExporte).toLocaleDateString('es-ES'):'—'}</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-bottom:12px">
+      ${[['Craving',avgC,'var(--rust)'],['Malestar',avgM,'var(--sky)'],['Autoeficacia',avgE,'var(--moss)'],['Registros sem.',week.length,'var(--bark)']].map(([l,v,c])=>`<div class="terap-stat"><div class="terap-stat-val" style="color:${c};font-size:20px">${v}</div><div class="terap-stat-label">${l}</div></div>`).join('')}
+    </div>
+    <div style="font-weight:600;font-size:13px;margin-bottom:8px">${alerts.length>=3||hC>=2||mAdicta>=2?'🔴 Rojo — contacto urgente':alerts.length>=1?'🟡 Ámbar — refuerzo motivacional':'🟢 Verde — seguimiento rutinario'}</div>
+    ${alerts.map(a=>`<div class="alert-box" style="margin-bottom:6px"><div class="alert-body">${a}</div></div>`).join('')||'<div class="alert-box" style="background:var(--moss-dim);border-color:rgba(74,124,89,.25)"><div class="alert-title" style="color:var(--moss)">✓ Sin alertas esta semana</div></div>'}
+    <div style="background:var(--warm);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-top:12px">
+      <table class="terap-table"><thead><tr><th>Fecha</th><th>C</th><th>M</th><th>Mente</th><th>E</th><th>PL</th><th>Apoyo</th></tr></thead><tbody>
+      ${k7.map(key=>{
+        const reg=(d.registros||[]).find(x=>x.date===key);
+        const dl=new Date(key+'T12:00').toLocaleDateString('es-ES',{weekday:'short',day:'numeric',month:'short'});
+        if(!reg)return`<tr><td>${dl}</td><td colspan="6" style="color:var(--text-dim);font-size:11px">Sin registro</td></tr>`;
+        const cc=reg.craving>=7?'color:var(--rust)':reg.craving>=5?'color:var(--amber)':'color:var(--moss)';
+        const mc=(reg.malestar||0)>=7?'color:var(--rust)':(reg.malestar||0)>=5?'color:var(--amber)':'color:var(--moss)';
+        const ec=reg.eficacia>=7?'color:var(--moss)':reg.eficacia>=5?'color:var(--amber)':'color:var(--rust)';
+        const me=reg.mente==='adicta'?'🌀':reg.mente==='clara'?'🌿':reg.mente==='limpia'?'☀️':'—';
+        return`<tr><td>${dl}</td><td style="${cc}">${reg.craving}</td><td style="${mc}">${reg.malestar||'—'}</td><td>${me}</td><td style="${ec}">${reg.eficacia}</td><td>${reg.pleaseScore||0}/5</td><td>${reg.apoyo==='si'?'✓':'✗'}</td></tr>`;
+      }).join('')}
+      </tbody></table>
+    </div>`;
+}
+
+let toastTimer;
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2500)}
+
+// Init — defer until DOM is fully ready
+window.addEventListener('DOMContentLoaded',()=>{
+  renderHome();
+  renderRegistros();
+  renderTareas('crisis');
+});
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{})});
+}
+</script>
+</body>
+</html>
