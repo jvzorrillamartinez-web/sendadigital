@@ -686,7 +686,12 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
 <div id="ajustes" class="screen">
   <div class="screen-header"><div class="screen-label">Mi perfil</div><div class="screen-title">Ajustes</div></div>
   <div class="profile-box"><div class="profile-avatar">🌿</div><div class="profile-name">Usuario</div><div class="profile-id" id="profile-id">ID: —</div></div>
-  <div class="settings-section"><div class="settings-section-title">Emergencia</div><div class="settings-row" onclick="editContact()"><div><div class="settings-row-label">Contacto de confianza</div><div class="settings-row-val" id="contact-display">No configurado</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
+  <div class="settings-section"><div class="settings-section-title">Identificación</div>
+    <div class="settings-row" onclick="showUUID()">
+      <div><div class="settings-row-label">Mi código de participante</div><div class="settings-row-val" id="uuid-short">—</div></div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </div>
+  </div><div class="settings-row" onclick="editContact()"><div><div class="settings-row-label">Contacto de confianza</div><div class="settings-row-val" id="contact-display">No configurado</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
   <div class="settings-section"><div class="settings-section-title">Terapeuta</div><div class="settings-row" onclick="openTerapeuta()"><div><div class="settings-row-label">Acceso del terapeuta</div><div class="settings-row-val">Informe semanal protegido</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div><div class="settings-row" onclick="changePin()"><div><div class="settings-row-label">Cambiar PIN</div><div class="settings-row-val">4 dígitos</div></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
   <div class="settings-section"><div class="settings-section-title">Datos</div><div class="settings-row" onclick="exportData()"><div class="settings-row-label">Exportar mis datos</div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div><div class="settings-row" onclick="if(confirm('¿Borrar todos los datos?'))clearData()"><div class="settings-row-label" style="color:var(--rust)">Borrar todos mis datos</div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
   <div class="data-note"><strong>Privacidad:</strong> Todos tus datos se almacenan únicamente en este dispositivo. No se envían a ningún servidor externo.</div>
@@ -817,9 +822,9 @@ html,body{height:100%;background:var(--cream);color:var(--text);font-family:var(
     <div class="terap-section"><div class="terap-section-title">Identificación</div><div style="background:var(--warm);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px"><div class="code-label">UUID anónimo</div><div class="code-val" id="terap-uuid">—</div><div class="code-note">La correspondencia UUID ↔ identidad real está en el registro físico del centro.</div></div>
     <div style="background:var(--moss-dim);border:1px solid rgba(74,124,89,.2);border-radius:var(--radius-sm);padding:14px 16px;margin-top:10px;font-size:13px;color:var(--text-mid);line-height:1.6">
       📤 <strong>Cómo enviar el informe a la terapeuta:</strong><br>
-      1. Pulsa el botón — se descarga un archivo JSON<br>
+      1. Pulsa el botón — se descarga un archivo HTML<br>
       2. Envíalo por email o WhatsApp a tu terapeuta<br>
-      3. La terapeuta lo abre en SendaDigital (panel terapeuta → importar)
+      3. La terapeuta lo abre directamente en el navegador
     </div>
     <button class="export-btn" onclick="exportTerapeutaData()">⬇ Descargar informe HTML</button></div>
 
@@ -1249,7 +1254,15 @@ function renderProgreso(){
 }
 
 // ── AJUSTES ──
-function renderAjustes(){document.getElementById('profile-id').textContent='ID: '+db.uuid;document.getElementById('contact-display').textContent=db.contact?db.contact.name:'No configurado'}
+function renderAjustes(){
+  document.getElementById('profile-id').textContent='ID: '+db.uuid;
+  document.getElementById('contact-display').textContent=db.contact?db.contact.name:'No configurado';
+  const s=document.getElementById('uuid-short');
+  if(s)s.textContent=db.uuid;
+}
+function showUUID(){
+  alert('Tu código de participante:\n\n'+db.uuid+'\n\nDáselo a tu terapeuta en la primera sesión para que pueda vincular tus informes.');
+}
 function editContact(){const n=prompt('Nombre del contacto de confianza:');if(!n)return;const p=prompt('Teléfono (ej: 612345678):');if(!p)return;db.contact={name:n,phone:p};saveDB();renderAjustes();showToast('Contacto guardado ✓')}
 function exportData(){const b=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='sendadigital-'+new Date().toISOString().split('T')[0]+'.json';a.click();showToast('Datos exportados ✓')}
 function clearData(){localStorage.removeItem(DB_KEY);db={uuid:'SD-'+Math.random().toString(36).substr(2,8).toUpperCase(),registros:[],soberDate:null,contact:null,pin:'1234',prevTime:null,evaShown:false,menteRegistros:[]};saveDB();showToast('Datos borrados');renderAjustes();renderHome()}
