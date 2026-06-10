@@ -1264,7 +1264,7 @@ function showUUID(){
   alert('Tu código de participante:\n\n'+db.uuid+'\n\nDáselo a tu terapeuta en la primera sesión para que pueda vincular tus informes.');
 }
 function editContact(){const n=prompt('Nombre del contacto de confianza:');if(!n)return;const p=prompt('Teléfono (ej: 612345678):');if(!p)return;db.contact={name:n,phone:p};saveDB();renderAjustes();showToast('Contacto guardado ✓')}
-function exportData(){const b=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='sendadigital-'+new Date().toISOString().split('T')[0]+'.json';a.click();showToast('Datos exportados ✓')}
+function exportData(){const {pin,...dbExport}=db;const b=new Blob([JSON.stringify(dbExport,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='sendadigital-'+new Date().toISOString().split('T')[0]+'.json';a.click();showToast('Datos exportados ✓')}
 function clearData(){localStorage.removeItem(DB_KEY);db={uuid:'SD-'+Math.random().toString(36).substr(2,8).toUpperCase(),registros:[],soberDate:null,contact:null,pin:'1234',prevTime:null,evaShown:false,menteRegistros:[]};saveDB();showToast('Datos borrados');renderAjustes();renderHome()}
 function changePin(){const p=prompt('PIN actual:');if(p!==db.pin){alert('PIN incorrecto');return}const n=prompt('Nuevo PIN de 4 dígitos:');if(!n||!/^\d{4}$/.test(n)){alert('Debe tener 4 dígitos');return}db.pin=n;saveDB();showToast('PIN actualizado ✓')}
 
